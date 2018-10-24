@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Post
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114229787692702722}
---- !u!114 &114229787692702722
+  - {fileID: 114477517214692286}
+--- !u!114 &114477517214692286
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
