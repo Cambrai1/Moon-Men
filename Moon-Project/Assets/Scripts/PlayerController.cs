@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private PlayerMovementSettings m_movement;
+}
+
+[System.Serializable]
+public class PlayerMovementSettings
+{
+    public float movementSpeed = 1f;
+    public float teleportDistance = 1f;
 }
