@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class PlayerController : MonoBehaviour {
 
     [SerializeField]
-    private PlayerMovementSettings m_movement;
+    private PlayerMovementSettings m_movementSettings;
 
+    [SerializeField]
+    private Transform m_rightHand, m_leftHand;
+
+    [SerializeField]
     private Vector2 m_movementInput;
+    [SerializeField]
     private Vector2 m_normalisedInput;
 
     private void Update()
@@ -17,7 +23,8 @@ public class PlayerController : MonoBehaviour {
 
     private void GetInput()
     {
-
+        m_movementInput = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
+        m_normalisedInput = m_movementInput.normalized;
     }
 }
 
