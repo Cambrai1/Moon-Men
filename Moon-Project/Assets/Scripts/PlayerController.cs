@@ -5,6 +5,8 @@ using Valve.VR;
 
 public class PlayerController : MonoBehaviour {
 
+    private Transform m_transform;
+
     [SerializeField]
     private PlayerMovementSettings m_movementSettings;
 
@@ -14,9 +16,15 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float m_trackpadDeadzone = 0.5f;
 
+    private void Start()
+    {
+        m_transform = transform;
+    }
+
     private void Update()
     {
         GetInput();
+        if (m_movementSettings.useTrackpad) { TrackpadMovement(); }
     }
 
     private void GetInput()
@@ -48,11 +56,22 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
+    private void TrackpadMovement()
+    {
+        Vector3 move = Vector3.zero;
+        move.x = leftHand.trackpadNormalised.x * m_movementSettings.movementSpeed;
+        move.z = leftHand.trackpadNormalised.y * m_movementSettings.movementSpeed;
+        move *= Time.deltaTime;
+
+        m_transform.position += move;
+    }
 }
 
 [System.Serializable]
 public class PlayerMovementSettings
 {
+    public bool useTrackpad = true;
     public float movementSpeed = 1f;
     public float teleportDistance = 1f;
 }
