@@ -6,6 +6,19 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private PlayerMovementSettings m_movement;
+
+    private Vector2 m_movementInput;
+    private Vector2 m_normalisedInput;
+
+    private void Update()
+    {
+        GetInput();
+    }
+
+    private void GetInput()
+    {
+
+    }
 }
 
 [System.Serializable]
