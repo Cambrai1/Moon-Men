@@ -12,9 +12,11 @@ public class PlayerController : MonoBehaviour {
     private Transform m_rightHand, m_leftHand;
 
     [SerializeField]
-    private Vector2 m_movementInput;
+    private Vector2 m_trackpadInput;
     [SerializeField]
-    private Vector2 m_normalisedInput;
+    private Vector2 m_trackpadNormalised;
+    [SerializeField]
+    private float m_trackpadDeadzone = 0.5f;
 
     private void Update()
     {
@@ -23,8 +25,18 @@ public class PlayerController : MonoBehaviour {
 
     private void GetInput()
     {
-        m_movementInput = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
-        m_normalisedInput = m_movementInput.normalized;
+        {
+            m_trackpadInput = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
+            if(m_trackpadInput.magnitude <= m_trackpadDeadzone)
+            {
+                m_trackpadInput = Vector2.zero;
+                m_trackpadNormalised = Vector2.zero;
+            }
+            else
+            {
+                m_trackpadNormalised = m_trackpadInput.normalized;
+            }
+        }
     }
 }
 
