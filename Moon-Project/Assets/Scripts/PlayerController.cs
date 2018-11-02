@@ -11,10 +11,17 @@ public class PlayerController : MonoBehaviour {
     private PlayerMovementSettings m_movementSettings;
 
     [Header("Input")]
+
     public PlayerControllerInput rightHand;
     public PlayerControllerInput leftHand;
     [SerializeField]
     private float m_trackpadDeadzone = 0.5f;
+
+    [Header("Interaction")]
+
+    public bool canGrab = true;
+    public GrabableObject rightHandObject;
+    public GrabableObject leftHandObject;
 
     private void Start()
     {
