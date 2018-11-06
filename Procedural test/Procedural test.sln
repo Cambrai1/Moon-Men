@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procedural test", "Procedural test.csproj", "{243C8CB0-CEFE-2C61-2CDB-F6F2A271D96E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procedural test.Editor", "Procedural test.Editor.csproj", "{7B420749-9025-0C85-DAE6-0DD5AEA69769}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{243C8CB0-CEFE-2C61-2CDB-F6F2A271D96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{243C8CB0-CEFE-2C61-2CDB-F6F2A271D96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{243C8CB0-CEFE-2C61-2CDB-F6F2A271D96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{243C8CB0-CEFE-2C61-2CDB-F6F2A271D96E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B420749-9025-0C85-DAE6-0DD5AEA69769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B420749-9025-0C85-DAE6-0DD5AEA69769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B420749-9025-0C85-DAE6-0DD5AEA69769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B420749-9025-0C85-DAE6-0DD5AEA69769}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {935F07D7-8AA1-4F8B-8F9A-7FAC66EAFC03}
+	EndGlobalSection
+EndGlobal
