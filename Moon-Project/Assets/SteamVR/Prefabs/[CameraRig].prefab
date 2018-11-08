@@ -3012,8 +3012,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f94e8214f416ba45b5ad0c2aebac027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3840
-  height: 2160
+  width: 3000
+  height: 2000
   fov: 80
   cam: {fileID: 20000014031267948}
 --- !u!114 &114270731539730606

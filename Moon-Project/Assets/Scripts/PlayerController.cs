@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour {
         }
         if(SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
-            GetComponent<ScreenshotTool>().Capture(2);
+            GetComponent<ScreenshotTool>().Capture();
         }
     }
 
