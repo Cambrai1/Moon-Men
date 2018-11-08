@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -23,15 +24,45 @@ public class PlayerController : MonoBehaviour {
     public GrabableObject rightHandObject;
     public GrabableObject leftHandObject;
 
+    [Header("Stats")]
+
+    public Transform oxygenUi;
+    private Text m_oxygenIcon;
+    private Image m_oxygenBar;
+    public Transform powerUi;
+    private Image m_powerIcon;
+    private Image m_powerBar;
+    public float oxygen = 100.0f;
+    private float m_oxygenDepletionRate = 1.0f;
+    public float power = 100.0f;
+
     private void Start()
     {
         m_transform = transform;
+
+        if(oxygenUi)
+        {
+            m_oxygenIcon = oxygenUi.GetChild(0).GetComponent<Text>();
+            m_oxygenBar = oxygenUi.GetChild(1).GetComponent<Image>();
+        }
+        if (powerUi)
+        {
+            m_powerIcon = powerUi.GetChild(0).GetComponent<Image>();
+            m_powerBar = powerUi.GetChild(1).GetComponent<Image>();
+        }
     }
 
     private void Update()
     {
+        //  INPUT & MOVEMENT
         GetInput();
         if (m_movementSettings.useTrackpad) { TrackpadMovement(); }
+
+        //  DEPLETE OXYGEN
+        oxygen -= m_oxygenDepletionRate * Time.deltaTime;
+
+        //  UPDATE WRIST UI
+        UpdateWristUi();
     }
 
     private void GetInput()
@@ -72,6 +103,15 @@ public class PlayerController : MonoBehaviour {
         move *= Time.deltaTime;
 
         m_transform.position += move;
+    }
+
+    private void UpdateWristUi()
+    {
+        //  OXYGEN
+        m_oxygenBar.fillAmount = oxygen / 100.0f;
+
+        //  POWER
+        m_powerBar.fillAmount = power / 100.0f;
     }
 }
 
