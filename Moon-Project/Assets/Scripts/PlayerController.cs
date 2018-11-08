@@ -32,9 +32,15 @@ public class PlayerController : MonoBehaviour {
     public Transform powerUi;
     private Image m_powerIcon;
     private Image m_powerBar;
+
     public float oxygen = 100.0f;
     private float m_oxygenDepletionRate = 1.0f;
     public float power = 100.0f;
+
+    public Color resourceHigh = Color.green;
+    public Color resourceMedium = Color.yellow;
+    public Color resourceLow = new Color(1.0f, 0.66f, 0.0f);
+    public Color resourceCritical = Color.red;
 
     private void Start()
     {
@@ -58,8 +64,9 @@ public class PlayerController : MonoBehaviour {
         GetInput();
         if (m_movementSettings.useTrackpad) { TrackpadMovement(); }
 
-        //  DEPLETE OXYGEN
-        oxygen -= m_oxygenDepletionRate * Time.deltaTime;
+        //  DEPLETE OXYGEN & POWER
+        DecreaseOxygenLevel(m_oxygenDepletionRate * Time.deltaTime);
+        DecreasePowerLevel(m_oxygenDepletionRate * Time.deltaTime / 3.0f);
 
         //  UPDATE WRIST UI
         UpdateWristUi();
@@ -109,9 +116,37 @@ public class PlayerController : MonoBehaviour {
     {
         //  OXYGEN
         m_oxygenBar.fillAmount = oxygen / 100.0f;
+        if (oxygen <= 25.0f) { m_oxygenBar.color = resourceCritical; }
+        else if (oxygen <= 50.0f) { m_oxygenBar.color = resourceLow; }
+        else if (oxygen <= 75.0f) { m_oxygenBar.color = resourceMedium; }
+        else { m_oxygenBar.color = resourceHigh; }
+        m_oxygenIcon.color = m_oxygenBar.color;
 
         //  POWER
         m_powerBar.fillAmount = power / 100.0f;
+        if (power <= 25.0f) { m_powerBar.color = resourceCritical; }
+        else if (power <= 50.0f) { m_powerBar.color = resourceLow; }
+        else if (power <= 75.0f) { m_powerBar.color = resourceMedium; }
+        else { m_powerBar.color = resourceHigh; }
+        m_powerIcon.color = m_powerBar.color;
+    }
+
+    public void SetOxygenLevel(float _level)
+    {
+        oxygen = _level;
+    }
+    public void DecreaseOxygenLevel(float _amount)
+    {
+        SetOxygenLevel(oxygen - _amount);
+    }
+
+    public void SetPowerLevel(float _level)
+    {
+        power = _level;
+    }
+    public void DecreasePowerLevel(float _amount)
+    {
+        SetPowerLevel(power - _amount);
     }
 }
 
