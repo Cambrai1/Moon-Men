@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 3380982}
   - component: {fileID: 11489174}
   - component: {fileID: 114992721828267194}
+  - component: {fileID: 114219022931445448}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -282,7 +283,7 @@ GameObject:
   - component: {fileID: 114406612889930066}
   m_Layer: 8
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3000,6 +3001,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114219022931445448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f94e8214f416ba45b5ad0c2aebac027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 3840
+  height: 2160
+  fov: 80
+  cam: {fileID: 20000014031267948}
 --- !u!114 &114270731539730606
 MonoBehaviour:
   m_ObjectHideFlags: 1

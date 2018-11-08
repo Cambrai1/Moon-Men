@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
     private Image m_powerBar;
 
     public float oxygen = 100.0f;
-    private float m_oxygenDepletionRate = 1.0f;
+    private float m_oxygenDepletionRate = 2.0f;
     public float power = 100.0f;
 
     public Color resourceHigh = Color.green;
@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour {
             {
                 leftHand.trackpadNormalised = leftHand.trackpadAbsolute.normalized;
             }
+        }
+        if(SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
+        {
+            GetComponent<ScreenshotTool>().Capture(2);
         }
     }
 
