@@ -13,16 +13,18 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Input")]
 
-    public PlayerControllerInput rightHand;
-    public PlayerControllerInput leftHand;
+    public PlayerControllerInput rHandInput;
+    public PlayerControllerInput lHandInput;
     [SerializeField]
     private float m_trackpadDeadzone = 0.5f;
 
     [Header("Interaction")]
 
+    public Transform rHandTransform;
+    public Transform lHandTransform;
     public bool canGrab = true;
-    public GrabableObject rightHandObject;
-    public GrabableObject leftHandObject;
+    public GrabableObject rHandGrabbedObject;
+    public GrabableObject lHandGrabbedObject;
 
     [Header("Stats")]
 
@@ -45,6 +47,12 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         m_transform = transform;
+
+        if(!rHandTransform || !lHandTransform)
+        {
+            rHandTransform = m_transform.Find("Controller (right)");
+            lHandTransform = m_transform.Find("Controller (left)");
+        }
 
         if(oxygenUi)
         {
@@ -76,28 +84,28 @@ public class PlayerController : MonoBehaviour {
     {
         //  RIGHT HAND
         {
-            rightHand.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.RightHand);
-            if (rightHand.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
+            rHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.RightHand);
+            if (rHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
-                rightHand.trackpadAbsolute = Vector2.zero;
-                rightHand.trackpadNormalised = Vector2.zero;
+                rHandInput.trackpadAbsolute = Vector2.zero;
+                rHandInput.trackpadNormalised = Vector2.zero;
             }
             else
             {
-                rightHand.trackpadNormalised = rightHand.trackpadAbsolute.normalized;
+                rHandInput.trackpadNormalised = rHandInput.trackpadAbsolute.normalized;
             }
         }
         //  LEFT HAND
         {
-            leftHand.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
-            if(leftHand.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
+            lHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
+            if(lHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
-                leftHand.trackpadAbsolute = Vector2.zero;
-                leftHand.trackpadNormalised = Vector2.zero;
+                lHandInput.trackpadAbsolute = Vector2.zero;
+                lHandInput.trackpadNormalised = Vector2.zero;
             }
             else
             {
-                leftHand.trackpadNormalised = leftHand.trackpadAbsolute.normalized;
+                lHandInput.trackpadNormalised = lHandInput.trackpadAbsolute.normalized;
             }
         }
         if(SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
@@ -109,8 +117,8 @@ public class PlayerController : MonoBehaviour {
     private void TrackpadMovement()
     {
         Vector3 move = Vector3.zero;
-        move.x = leftHand.trackpadNormalised.x * m_movementSettings.movementSpeed;
-        move.z = leftHand.trackpadNormalised.y * m_movementSettings.movementSpeed;
+        move.x = lHandInput.trackpadNormalised.x * m_movementSettings.movementSpeed;
+        move.z = lHandInput.trackpadNormalised.y * m_movementSettings.movementSpeed;
         move *= Time.deltaTime;
 
         m_transform.position += move;

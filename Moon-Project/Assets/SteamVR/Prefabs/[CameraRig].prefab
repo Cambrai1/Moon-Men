@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 114219022931445448}
   m_Layer: 0
   m_Name: '[CameraRig]'
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3012,9 +3012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f94e8214f416ba45b5ad0c2aebac027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3000
-  height: 2000
-  fov: 80
+  width: 1920
+  height: 1080
+  fov: 60
   cam: {fileID: 20000014031267948}
 --- !u!114 &114270731539730606
 MonoBehaviour:
@@ -5107,16 +5107,18 @@ MonoBehaviour:
     useTrackpad: 1
     movementSpeed: 1
     teleportDistance: 1
-  rightHand:
+  rHandInput:
     trackpadAbsolute: {x: 0, y: 0}
     trackpadNormalised: {x: 0, y: 0}
-  leftHand:
+  lHandInput:
     trackpadAbsolute: {x: 0, y: 0}
     trackpadNormalised: {x: 0, y: 0}
   m_trackpadDeadzone: 0.5
+  rHandTransform: {fileID: 0}
+  lHandTransform: {fileID: 0}
   canGrab: 1
-  rightHandObject: {fileID: 0}
-  leftHandObject: {fileID: 0}
+  rHandGrabbedObject: {fileID: 0}
+  lHandGrabbedObject: {fileID: 0}
   oxygenUi: {fileID: 224127610839916566}
   powerUi: {fileID: 224962074429861526}
   oxygen: 100
