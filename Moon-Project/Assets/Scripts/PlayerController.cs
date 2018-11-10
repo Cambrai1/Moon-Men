@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour {
     public Transform rHandTransform;
     public Transform lHandTransform;
     public bool canGrab = true;
+    public GrabableObject rHandHoverObject;
+    public GrabableObject lHandHoverObject;
     public GrabableObject rHandGrabbedObject;
     public GrabableObject lHandGrabbedObject;
 
@@ -94,6 +96,12 @@ public class PlayerController : MonoBehaviour {
             {
                 rHandInput.trackpadNormalised = rHandInput.trackpadAbsolute.normalized;
             }
+
+            if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
+            {
+                //GetComponent<ScreenshotTool>().Capture();
+                TryGrab(Hand.right);
+            }
         }
         //  LEFT HAND
         {
@@ -107,10 +115,12 @@ public class PlayerController : MonoBehaviour {
             {
                 lHandInput.trackpadNormalised = lHandInput.trackpadAbsolute.normalized;
             }
-        }
-        if(SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
-        {
-            GetComponent<ScreenshotTool>().Capture();
+
+            if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                //GetComponent<ScreenshotTool>().Capture();
+                TryGrab(Hand.left);
+            }
         }
     }
 
@@ -123,6 +133,69 @@ public class PlayerController : MonoBehaviour {
 
         m_transform.position += move;
     }
+
+    public void RequestHoverStatus(GrabableObject _obj, Transform _hand, bool _state)
+    {
+        //  RIGHT HAND
+        if(_hand == rHandTransform)
+        {
+            if(_state)
+            {
+                if (_obj != rHandHoverObject)
+                {
+                    if (!rHandHoverObject || _obj.closestHandDistance < Vector3.Distance(_hand.position, rHandHoverObject.transform.position))
+                    {
+                        rHandHoverObject = _obj;
+                        _obj.ConfirmHoveredObject(_hand, true);
+                    }
+                }
+            }
+            else
+            {
+                if(_obj == rHandHoverObject) { rHandHoverObject = null; }
+                _obj.ConfirmHoveredObject(rHandTransform, false);
+            }
+        }
+        //  LEFT HAND
+        else if (_hand == lHandTransform)
+        {
+            if (_state)
+            {
+                if (_obj != lHandHoverObject)
+                {
+                    if (!lHandHoverObject || _obj.closestHandDistance < Vector3.Distance(_hand.position, lHandHoverObject.transform.position))
+                    {
+                        lHandHoverObject = _obj;
+                        _obj.ConfirmHoveredObject(_hand, true);
+                    }
+                } 
+            }
+            else
+            {
+                if (_obj == lHandHoverObject) { lHandHoverObject = null; }
+                _obj.ConfirmHoveredObject(lHandTransform, false);
+            }
+        }
+    }
+    private void TryGrab(Hand _hand)
+    {
+        if(_hand == Hand.right)
+        {
+            if(rHandHoverObject && !rHandGrabbedObject)
+            {
+                rHandHoverObject.Grab(rHandTransform);
+            }
+        }
+        else
+        {
+            if (lHandHoverObject && !lHandGrabbedObject)
+            {
+                lHandHoverObject.Grab(lHandTransform);
+            }
+        }
+    }
+
+    private enum Hand { right, left }
 
     private void UpdateWristUi()
     {

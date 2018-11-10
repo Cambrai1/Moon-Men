@@ -28,8 +28,9 @@ public class GrabableObject : MonoBehaviour {
     private PlayerController m_player;
     private Transform m_rHand, m_lHand;
     private Transform m_closestHand;
-    [SerializeField]
-    private float m_handDistance;
+    public float closestHandDistance;
+
+    public GrabMethod grabMethod;
 
     private void Start()
     {
@@ -69,23 +70,25 @@ public class GrabableObject : MonoBehaviour {
 
         GetHandDistances();
 
-        isHovered = false;
+        //isHovered = false;
+        bool flag = false;
         if (!useCollider)
         {
-            if (m_handDistance <= grabRange) isHovered = true;
+            if (closestHandDistance <= grabRange)flag = true;
         }
         else
         {
-            if(m_handDistance <= m_checkRange)
+            if(closestHandDistance <= m_checkRange)
             {
                 if (m_col.bounds.Contains(m_closestHand.position))
                 {
-                    isHovered = true;
+                    flag = true;
                 }
             }
         }
+        m_player.RequestHoverStatus(this, m_closestHand, flag);
 
-        if(isHovered && !isGrabbed)
+        if (isHovered && !isGrabbed)
         {
             m_renderer.material.color = Color.blue;
         }
@@ -99,7 +102,48 @@ public class GrabableObject : MonoBehaviour {
     {
         float rHandDist = Vector3.Distance(m_transform.position, m_rHand.position);
         float lHandDist = Vector3.Distance(m_transform.position, m_lHand.position);
-        if (rHandDist <= lHandDist) { m_closestHand = m_rHand; m_handDistance = rHandDist; }
-        else { m_closestHand = m_lHand; m_handDistance = lHandDist; }
+        if (rHandDist <= lHandDist) { m_closestHand = m_rHand; closestHandDistance = rHandDist; }
+        else { m_closestHand = m_lHand; closestHandDistance = lHandDist; }
+    }
+
+    public void ConfirmHoveredObject(Transform _hand, bool _state)
+    {
+        isHovered = _state;
+    }
+
+    public enum GrabMethod { parent, spring, position }
+
+    public void Grab(Transform _hand)
+    {
+        switch (grabMethod)
+        {
+            case GrabMethod.parent:
+                ParentGrab(_hand);
+                break;
+            case GrabMethod.spring:
+                SpringGrab(_hand);
+                break;
+            case GrabMethod.position:
+                PositionGrab(_hand);
+                break;
+            default:
+                break;
+        }
+    }
+    private void ParentGrab(Transform _hand)
+    {
+        m_transform.SetParent(_hand);
+        m_transform.localPosition = Vector3.zero;
+        m_transform.rotation = _hand.rotation;
+        body.isKinematic = true;
+        isGrabbed = true;
+    }
+    private void SpringGrab(Transform _hand)
+    {
+
+    }
+    private void PositionGrab(Transform _hand)
+    {
+
     }
 }
