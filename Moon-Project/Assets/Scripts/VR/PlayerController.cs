@@ -23,10 +23,13 @@ public class PlayerController : MonoBehaviour {
     public Transform rHandTransform;
     public Transform lHandTransform;
     public bool canGrab = true;
-    public GrabableObject rHandHoverObject;
-    public GrabableObject lHandHoverObject;
-    public GrabableObject rHandGrabbedObject;
-    public GrabableObject lHandGrabbedObject;
+    public Interactable rHoverObject;
+    public Interactable lHoverObject;
+    public GrabableObject rGrabbedObject;
+    public GrabableObject lGrabbedObject;
+
+    [SerializeField]
+    private List<Interactable> m_interactables;
 
     [Header("Stats")]
 
@@ -70,6 +73,8 @@ public class PlayerController : MonoBehaviour {
 
     private void Update()
     {
+        HoverInteractable();
+
         //  INPUT & MOVEMENT
         GetInput();
         if (m_movementSettings.useTrackpad) { TrackpadMovement(); }
@@ -100,7 +105,7 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
-                TryGrab(Hand.right);
+                TryGrab(rHoverObject, rHandTransform, rGrabbedObject);
             }
         }
         //  LEFT HAND
@@ -119,7 +124,7 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
-                TryGrab(Hand.left);
+                TryGrab(lHoverObject, lHandTransform, lGrabbedObject);
             }
         }
     }
@@ -134,63 +139,117 @@ public class PlayerController : MonoBehaviour {
         m_transform.position += move;
     }
 
-    public void RequestHoverStatus(GrabableObject _obj, Transform _hand, bool _state)
+    public void AddInteractable(Interactable _obj)
     {
-        //  RIGHT HAND
-        if(_hand == rHandTransform)
+        if(!m_interactables.Contains(_obj))
         {
-            if(_state)
+            m_interactables.Add(_obj);
+        }
+    }
+    public void RemoveInteractable(Interactable _obj)
+    {
+        if (m_interactables.Contains(_obj))
+        {
+            m_interactables.Remove(_obj);
+        }
+
+    }
+    private void HoverInteractable()
+    {
+        if(rHoverObject)
+        {
+            if(rHoverObject.useCollider)
             {
-                if (_obj != rHandHoverObject)
+                if(!rHoverObject.collider.bounds.Contains(rHandTransform.position))
                 {
-                    if (!rHandHoverObject || _obj.closestHandDistance < Vector3.Distance(_hand.position, rHandHoverObject.transform.position))
-                    {
-                        rHandHoverObject = _obj;
-                        _obj.ConfirmHoveredObject(_hand, true);
-                    }
+                    rHoverObject.HoverEnd(rHandTransform);
+                    rHoverObject = null;
                 }
             }
             else
             {
-                if(_obj == rHandHoverObject) { rHandHoverObject = null; }
-                _obj.ConfirmHoveredObject(rHandTransform, false);
+                if(Vector3.Distance(rHoverObject.transform.position, rHandTransform.position) > rHoverObject.grabRange)
+                {
+                    rHoverObject.HoverEnd(rHandTransform);
+                    rHoverObject = null;
+                }
             }
         }
-        //  LEFT HAND
-        else if (_hand == lHandTransform)
+        if (lHoverObject)
         {
-            if (_state)
+            if (lHoverObject.useCollider)
             {
-                if (_obj != lHandHoverObject)
+                if (!lHoverObject.collider.bounds.Contains(lHandTransform.position))
                 {
-                    if (!lHandHoverObject || _obj.closestHandDistance < Vector3.Distance(_hand.position, lHandHoverObject.transform.position))
-                    {
-                        lHandHoverObject = _obj;
-                        _obj.ConfirmHoveredObject(_hand, true);
-                    }
-                } 
+                    lHoverObject.HoverEnd(lHandTransform);
+                    lHoverObject = null;
+                }
             }
             else
             {
-                if (_obj == lHandHoverObject) { lHandHoverObject = null; }
-                _obj.ConfirmHoveredObject(lHandTransform, false);
+                if (Vector3.Distance(lHoverObject.transform.position, lHandTransform.position) > lHoverObject.grabRange)
+                {
+                    lHoverObject.HoverEnd(lHandTransform);
+                    lHoverObject = null;
+                }
             }
         }
+
+        foreach (Interactable obj in m_interactables)
+        {
+            //  RIGHT HAND
+            if(!rGrabbedObject)
+            {
+                if (obj.collider.bounds.Contains(rHandTransform.position))
+                {
+                    if(rHoverObject)
+                    {
+                        if (Vector3.Distance(obj.transform.position, rHandTransform.position) < Vector3.Distance(rHoverObject.transform.position, rHandTransform.position))
+                        {
+                            rHoverObject.HoverEnd(rHandTransform);
+                            rHoverObject = obj;
+                        }
+                    }
+                    else
+                    {
+                        rHoverObject = obj;
+                    }
+                }
+            }
+
+            //  LEFT HAND
+            if (!lGrabbedObject)
+            {
+                if (obj.collider.bounds.Contains(lHandTransform.position))
+                {
+                    if (lHoverObject)
+                    {
+                        if (Vector3.Distance(obj.transform.position, lHandTransform.position) < Vector3.Distance(lHoverObject.transform.position, lHandTransform.position))
+                        {
+                            lHoverObject.HoverEnd(lHandTransform);
+                            lHoverObject = obj;
+                        }
+                    }
+                    else
+                    {
+                        lHoverObject = obj;
+                    }
+                }
+            }
+        }
+
+        if (rHoverObject) rHoverObject.HoverStart(rHandTransform);
+        if (lHoverObject) lHoverObject.HoverStart(lHandTransform);
     }
-    private void TryGrab(Hand _hand)
+
+    private void TryGrab(Interactable _targetObject, Transform _handTransform, GrabableObject _grabbedObject)
     {
-        if(_hand == Hand.right)
+        if (_targetObject is GrabableObject)
         {
-            if(rHandHoverObject && !rHandGrabbedObject)
+            if (_targetObject && !_grabbedObject)
             {
-                rHandHoverObject.Grab(rHandTransform);
-            }
-        }
-        else
-        {
-            if (lHandHoverObject && !lHandGrabbedObject)
-            {
-                lHandHoverObject.Grab(lHandTransform);
+                GrabableObject obj = _targetObject as GrabableObject;
+                obj.Grab(_handTransform);
             }
         }
     }
