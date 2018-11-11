@@ -23,12 +23,12 @@ public class PlayerController : MonoBehaviour {
     public Transform rHandTransform;
     public Transform lHandTransform;
     public bool canGrab = true;
+    [HideInInspector]
     public Interactable rHoverObject;
+    [HideInInspector]
     public Interactable lHoverObject;
     public GrabableObject rGrabbedObject;
     public GrabableObject lGrabbedObject;
-
-    [SerializeField]
     private List<Interactable> m_interactables;
 
     [Header("Stats")]
@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         m_transform = transform;
+
+        m_interactables = new List<Interactable>();
 
         if(!rHandTransform || !lHandTransform)
         {
@@ -105,7 +107,11 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
-                TryGrab(rHoverObject, rHandTransform, rGrabbedObject);
+                TryGrab(rHoverObject, rHandTransform, ref rGrabbedObject);
+            }
+            if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.RightHand))
+            {
+                TryRelease(ref rGrabbedObject);
             }
         }
         //  LEFT HAND
@@ -124,7 +130,11 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
-                TryGrab(lHoverObject, lHandTransform, lGrabbedObject);
+                TryGrab(lHoverObject, lHandTransform, ref lGrabbedObject);
+            }
+            if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
+            {
+                TryRelease(ref lGrabbedObject);
             }
         }
     }
@@ -242,16 +252,21 @@ public class PlayerController : MonoBehaviour {
         if (lHoverObject) lHoverObject.HoverStart(lHandTransform);
     }
 
-    private void TryGrab(Interactable _targetObject, Transform _handTransform, GrabableObject _grabbedObject)
+    private void TryGrab(Interactable _targetObject, Transform _handTransform, ref GrabableObject _grabbedObject)
     {
         if (_targetObject is GrabableObject)
         {
             if (_targetObject && !_grabbedObject)
             {
                 GrabableObject obj = _targetObject as GrabableObject;
-                obj.Grab(_handTransform);
+                _grabbedObject = obj.Grab(_handTransform);
             }
         }
+    }
+    private void TryRelease(ref GrabableObject _grabbedObject)
+    {
+        if(_grabbedObject) _grabbedObject.Release();
+        _grabbedObject = null;
     }
 
     private enum Hand { right, left }
