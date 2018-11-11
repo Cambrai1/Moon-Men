@@ -96,6 +96,12 @@ public class GrabableObject : MonoBehaviour {
         {
             m_renderer.material.color = m_originalColour;
         }
+
+        if(isGrabbed && grabMethod == GrabMethod.position)
+        {
+            m_transform.position = m_closestHand.position;
+            m_transform.rotation = m_closestHand.rotation;
+        }
     }
 
     public void GetHandDistances()
@@ -136,14 +142,22 @@ public class GrabableObject : MonoBehaviour {
         m_transform.localPosition = Vector3.zero;
         m_transform.rotation = _hand.rotation;
         body.isKinematic = true;
+        body.useGravity = false;
         isGrabbed = true;
     }
     private void SpringGrab(Transform _hand)
     {
-
+        SpringJoint spring = GetComponent<SpringJoint>();
+        if (!spring)
+        {
+            spring = gameObject.AddComponent<SpringJoint>();
+        }
+        spring.connectedBody = _hand.GetComponent<Rigidbody>();
+        body.useGravity = false;
+        isGrabbed = true;
     }
     private void PositionGrab(Transform _hand)
     {
-
+        isGrabbed = true;
     }
 }
