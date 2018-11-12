@@ -36,7 +36,7 @@ public class Interactable : MonoBehaviour {
 
     private void Start()
     {
-        InitInteractable();
+        InteractableInit();
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class Interactable : MonoBehaviour {
         InteractableUpdate();
     }
 
-    public void InitInteractable()
+    public virtual void InteractableInit()
     {
         if (!player) player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 

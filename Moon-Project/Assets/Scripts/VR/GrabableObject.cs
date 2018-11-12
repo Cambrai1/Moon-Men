@@ -12,6 +12,10 @@ public class GrabableObject : Interactable {
     private Transform m_handTransform;
     public bool disableColliderOnGrab = false;
 
+    [SerializeField]
+    private int m_momentumExtrapolation = 10;
+    private Vector3[] m_positionFrames;
+
     public void ConfirmHoveredObject(Transform _hand, bool _state)
     {
         isHovered = _state;
@@ -86,10 +90,18 @@ public class GrabableObject : Interactable {
         if (disableColliderOnGrab) collider.enabled = true;
         isGrabbed = false;
         m_handTransform = null;
+
+        body.AddForce(EstimateVelocity(), ForceMode.Impulse);
     }
 
     public override void InteractableUpdate()
     {
+        for(int i = m_momentumExtrapolation - 1; i > 0; i--)
+        {
+            m_positionFrames[i] = m_positionFrames[i - 1];
+        }
+        m_positionFrames[0] = transform.position;
+
         if(grabMethod == GrabMethod.position)
         {
             if(isGrabbed && m_handTransform)
@@ -97,5 +109,16 @@ public class GrabableObject : Interactable {
                 transform.position = m_handTransform.position;
             }
         }
+    }
+
+    public Vector3 EstimateVelocity()
+    {
+        return (m_positionFrames[0] - m_positionFrames[m_momentumExtrapolation - 1]) / (Time.deltaTime * m_momentumExtrapolation);
+    }
+
+    public override void InteractableInit()
+    {
+        base.InteractableInit();
+        m_positionFrames = new Vector3[m_momentumExtrapolation];
     }
 }

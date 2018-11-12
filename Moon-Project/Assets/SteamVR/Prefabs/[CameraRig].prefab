@@ -5149,17 +5149,17 @@ MonoBehaviour:
   rHandTransform: {fileID: 0}
   lHandTransform: {fileID: 0}
   canGrab: 1
-  rHandHoverObject: {fileID: 0}
-  lHandHoverObject: {fileID: 0}
-  rHandGrabbedObject: {fileID: 0}
-  lHandGrabbedObject: {fileID: 0}
+  rHoverObject: {fileID: 0}
+  lHoverObject: {fileID: 0}
+  rGrabbedObject: {fileID: 0}
+  lGrabbedObject: {fileID: 0}
   oxygenUi: {fileID: 224127610839916566}
   powerUi: {fileID: 224962074429861526}
   oxygen: 100
   power: 100
   resourceHigh: {r: 0, g: 1, b: 0, a: 1}
   resourceMedium: {r: 1, g: 1, b: 0, a: 1}
-  resourceLow: {r: 1, g: 0.66, b: 0, a: 1}
+  resourceLow: {r: 1, g: 0.5691919, b: 0, a: 1}
   resourceCritical: {r: 1, g: 0, b: 0, a: 1}
 --- !u!137 &137006650003427658
 SkinnedMeshRenderer:
