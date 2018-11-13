@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     private Transform m_transform;
 
+    [Header("Movement")]
     [SerializeField]
     private PlayerMovementSettings m_movementSettings;
 
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Interaction")]
 
+    private Transform m_headTransform;
     public Transform rHandTransform;
     public Transform lHandTransform;
     public bool canGrab = true;
@@ -55,6 +57,10 @@ public class PlayerController : MonoBehaviour {
 
         m_interactables = new List<Interactable>();
 
+        if(!m_headTransform)
+        {
+            m_headTransform = m_transform.Find("Camera");
+        }
         if(!rHandTransform || !lHandTransform)
         {
             rHandTransform = m_transform.Find("Controller (right)");
@@ -141,12 +147,32 @@ public class PlayerController : MonoBehaviour {
 
     private void TrackpadMovement()
     {
-        Vector3 move = Vector3.zero;
-        move.x = lHandInput.trackpadNormalised.x * m_movementSettings.movementSpeed;
-        move.z = lHandInput.trackpadNormalised.y * m_movementSettings.movementSpeed;
-        move *= Time.deltaTime;
+        Vector2 input = Vector2.zero;
+        Vector3 direction = Vector3.zero;
+        input.x = lHandInput.trackpadAbsolute.x * m_movementSettings.movementSpeed;
+        input.y = lHandInput.trackpadAbsolute.y * m_movementSettings.movementSpeed;
+        switch (m_movementSettings.movementOrientation)
+        {
+            case MovementOrientation.head:
+                input = RotateVector2(input, m_headTransform.localEulerAngles.y);
+                break;
+            case MovementOrientation.controller:
+                break;
+            default:
+                break;
+        }
+        input.Normalize();
+        direction.x = input.x; direction.z = input.y;
+        direction *= Time.deltaTime;
 
-        m_transform.position += move;
+        m_transform.position += direction;
+    }
+    private Vector2 RotateVector2(Vector2 _vector, float _angle)
+    {
+        float t = (_angle / 180.0f) * Mathf.PI;
+        float newX = _vector.x * Mathf.Cos(t) + _vector.y * Mathf.Sin(t);
+        float newY = _vector.y * Mathf.Cos(t) + _vector.x * Mathf.Sin(t);
+        return new Vector2(newX, newY);
     }
 
     public void AddInteractable(Interactable _obj)
@@ -314,6 +340,7 @@ public class PlayerMovementSettings
 {
     public bool useTrackpad = true;
     public float movementSpeed = 1f;
+    public MovementOrientation movementOrientation;
     public float teleportDistance = 1f;
 }
 
@@ -322,4 +349,11 @@ public class PlayerControllerInput
 {
     public Vector2 trackpadAbsolute;
     public Vector2 trackpadNormalised;
+}
+
+public enum MovementOrientation
+{
+    world,
+    head,
+    controller
 }

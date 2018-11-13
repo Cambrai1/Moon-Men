@@ -96,7 +96,7 @@ public class GrabableObject : Interactable {
         isGrabbed = false;
         m_handTransform = null;
 
-        body.AddForce(EstimateVelocity(), ForceMode.Impulse);
+        body.velocity = EstimateVelocity();
     }
 
     public override void InteractableUpdate()
