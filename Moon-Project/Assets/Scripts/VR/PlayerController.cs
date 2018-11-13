@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour {
             }
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.RightHand))
             {
-                TryRelease(ref rGrabbedObject);
+                TryRelease(ref rGrabbedObject, rHandTransform);
             }
         }
         //  LEFT HAND
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
             }
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
             {
-                TryRelease(ref lGrabbedObject);
+                TryRelease(ref lGrabbedObject, lHandTransform);
             }
         }
     }
@@ -263,9 +263,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
-    private void TryRelease(ref GrabableObject _grabbedObject)
+    private void TryRelease(ref GrabableObject _grabbedObject, Transform _hand)
     {
-        if(_grabbedObject) _grabbedObject.Release();
+        if(_grabbedObject) _grabbedObject.Release(_hand);
         _grabbedObject = null;
     }
 

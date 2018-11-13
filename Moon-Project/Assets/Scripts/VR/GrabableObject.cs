@@ -69,6 +69,11 @@ public class GrabableObject : Interactable {
         body.isKinematic = true;
     }
 
+    public void Release(Transform _hand)
+    {
+        if (_hand != m_handTransform) return;
+        Release();
+    }
     public void Release()
     {
         if (!body) return;
