@@ -31,7 +31,7 @@ MonoBehaviour:
     value: 1
   preset:
     overrideState: 1
-    value: 2
+    value: 3
   maximumIterationCount:
     overrideState: 0
     value: 16
