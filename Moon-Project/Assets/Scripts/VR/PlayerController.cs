@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour {
     {
         float t = (_angle / 180.0f) * Mathf.PI;
         float newX = _vector.x * Mathf.Cos(t) + _vector.y * Mathf.Sin(t);
-        float newY = _vector.y * Mathf.Cos(t) + _vector.x * Mathf.Sin(t);
+        float newY = _vector.y * Mathf.Cos(t) - _vector.x * Mathf.Sin(t);
         return new Vector2(newX, newY);
     }
 
