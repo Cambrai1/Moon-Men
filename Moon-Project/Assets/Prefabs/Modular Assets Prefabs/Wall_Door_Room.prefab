@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 64908438526803566}
   - component: {fileID: 114637453149172862}
   m_Layer: 0
-  m_Name: Wall_Door_Start_Room
+  m_Name: Wall_Door_Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
