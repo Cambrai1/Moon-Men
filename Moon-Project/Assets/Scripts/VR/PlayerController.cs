@@ -4,52 +4,54 @@ using UnityEngine;
 using Valve.VR;
 using UnityEngine.UI;
 
+//  CLASS IS USED TO CONTROLL PLAYER MOVEMENT AND INTERACTION
 public class PlayerController : MonoBehaviour {
 
-    private Transform m_transform;
+    private Transform m_transform;                          //  The transform of the vr controller
 
     [Header("Movement")]
+
     [SerializeField]
-    private PlayerMovementSettings m_movementSettings;
+    private PlayerMovementSettings m_movementSettings;      //  The movement settings
 
     [Header("Input")]
 
-    public PlayerControllerInput rHandInput;
-    public PlayerControllerInput lHandInput;
+    public PlayerControllerInput rHandInput;                //  The right hand input
+    public PlayerControllerInput lHandInput;                //  The left hand input
     [SerializeField]
-    private float m_trackpadDeadzone = 0.5f;
+    private float m_trackpadDeadzone = 0.5f;                //  The trackpad movement deadzone
 
     [Header("Interaction")]
 
-    private Transform m_headTransform;
-    public Transform rHandTransform;
-    public Transform lHandTransform;
-    public bool canGrab = true;
+    private Transform m_headTransform;                      //  The transform of the head object
+    public Transform rHandTransform;                        //  The transform of the right hand
+    public Transform lHandTransform;                        //  The transform of the left hand
+    public bool canGrab = true;                             //  Should the player be able to grab?
     [HideInInspector]
-    public Interactable rHoverObject;
+    public Interactable rHoverObject;                       //  The interactable being hovered over by the right hand
     [HideInInspector]
-    public Interactable lHoverObject;
-    public GrabableObject rGrabbedObject;
-    public GrabableObject lGrabbedObject;
-    private List<Interactable> m_interactables;
+    public Interactable lHoverObject;                       //  The interactable being hovered over by the left hand
+    public GrabableObject rGrabbedObject;                   //  The grabable being grabbed by the right hand
+    public GrabableObject lGrabbedObject;                   //  The grabable being grabbed by the left hand
+    private List<Interactable> m_interactables;             //  A list of all nearby interactables
 
     [Header("Stats")]
 
-    public Transform oxygenUi;
-    private Text m_oxygenIcon;
-    private Image m_oxygenBar;
-    public Transform powerUi;
-    private Image m_powerIcon;
-    private Image m_powerBar;
+    public Transform oxygenUi;                              //  The main transform of the Oxygen UI
+    private Text m_oxygenIcon;                              //  The O2 UI text
+    private Image m_oxygenBar;                              //  The O2 resource bar
+    public Transform powerUi;                               //  The main transform of the Power UI
+    private Image m_powerIcon;                              //  The Power UI image
+    private Image m_powerBar;                               //  The Power resource bar
 
-    public float oxygen = 100.0f;
-    private float m_oxygenDepletionRate = 2.0f;
-    public float power = 100.0f;
+    public float oxygen = 100.0f;                           //  The amount of oxygen remaining
+    private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
+    public float power = 100.0f;                            //  The amount of power remaining
 
-    public Color resourceHigh = Color.green;
-    public Color resourceMedium = Color.yellow;
-    public Color resourceLow = new Color(1.0f, 0.66f, 0.0f);
-    public Color resourceCritical = Color.red;
+    public Color resourceHigh = Color.green;                //  The colour used to indicate high resource quantity
+    public Color resourceMedium = Color.yellow;             //  The colour used to indicate medium resource quantity
+    public Color resourceLow = new Color(1.0f, 0.6f, 0.0f); //  The colour used to indicate low resource quantity
+    public Color resourceCritical = Color.red;              //  The colour used to indicate critical resource quantity
 
     private void Start()
     {

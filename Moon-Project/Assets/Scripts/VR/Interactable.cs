@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (Collider))]
+//  CLASS IS USED FOR ALL INTERACTABLE OBJECTS
 public class Interactable : MonoBehaviour {
 
-    public bool isHovered;
-    public bool useCollider = true;
+    public bool isHovered;                  //  Is the interactable being hovered over by the player?
+    public bool useCollider = true;         //  Should the collider be used to detect hover status?
     [HideInInspector]
-    public Collider collider;
-    public float grabRange = 0.2f;
-    public float checkRange = 0.5f;
+    public Collider collider;               //  The collider of the interactable
+    public float checkRange = 0.5f;         //  The range at which the interactable will add to the player's list
+    public float grabRange = 0.4f;
     [HideInInspector]
-    public PlayerController player;
+    public PlayerController player;         //  A reference to the player controller
     [HideInInspector]
-    public Renderer renderer;
+    public Renderer renderer;               //  The interactable's main renderer component
     [HideInInspector]
-    public Rigidbody body;
+    public Rigidbody body;                  //  The interactable's rigidbody component
     [HideInInspector]
-    public Color originalColour;
+    public Color originalColour;            //  The original colour of the interactable's material
 
     public virtual void HoverStart(Transform _hand)
     {

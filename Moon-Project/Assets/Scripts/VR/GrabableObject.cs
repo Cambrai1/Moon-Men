@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+//  INHERIT FROM INTERACTABLE & MONOBEHAVIOUR
 public class GrabableObject : Interactable {
 
-    [SerializeField]
-    private bool m_ready;
-    public GrabMethod grabMethod;
-    public bool isGrabbed;
-    private Transform m_handTransform;
-    public bool disableColliderOnGrab = false;
+    public GrabMethod grabMethod;                   //  The method used to grab the object
+    public bool isGrabbed;                          //  Is the object currently grabbed?
+    private Transform m_handTransform;              //  The hand currently grabbing the object
+    public bool disableColliderOnGrab = false;      //  Should the collider be disabled when grabbed?
 
     [SerializeField]
-    private int m_momentumExtrapolation = 10;
-    private Vector3[] m_positionFrames;
+    private int m_momentumExtrapolation = 10;       //  The number of frames used to extrapolate velocity
+    private Vector3[] m_positionFrames;             //  The array of the most recent extrapolation frames
 
     public void ConfirmHoveredObject(Transform _hand, bool _state)
     {
