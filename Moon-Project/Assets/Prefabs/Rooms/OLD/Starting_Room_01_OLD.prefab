@@ -449,13 +449,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4111559668757546}
   - component: {fileID: 114876656784964350}
+  - component: {fileID: 65614435953656772}
   m_Layer: 0
   m_Name: Starting_Room_01_OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1317820699255160
 GameObject:
   m_ObjectHideFlags: 1
@@ -4925,6 +4926,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 3.5, z: 1.25}
   m_Center: {x: 0.5, y: 1.75, z: -0.875}
+--- !u!65 &65614435953656772
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315102322613290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 19, y: 1, z: 19}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!65 &65621576926569120
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -6101,17 +6114,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114021838071550554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6598,17 +6603,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114073224567323534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12434,17 +12431,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114531369351877012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13734,11 +13723,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 04000000
-  m_SelectedEdges:
-  - x: 16
-    y: 17
-  m_selectedTriangles: 1000000011000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114605031319273710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17588,25 +17575,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 2a0000002b000000
-  m_SelectedEdges:
-  - x: 165
-    y: 164
-  - x: 164
-    y: 166
-  - x: 166
-    y: 167
-  - x: 167
-    y: 165
-  - x: 169
-    y: 168
-  - x: 168
-    y: 170
-  - x: 170
-    y: 171
-  - x: 171
-    y: 169
-  m_selectedTriangles: a6000000a5000000a4000000a6000000a7000000a5000000aa000000a9000000a8000000aa000000ab000000a9000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114665336938553916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23159,25 +23130,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 2a0000002b000000
-  m_SelectedEdges:
-  - x: 165
-    y: 164
-  - x: 164
-    y: 166
-  - x: 166
-    y: 167
-  - x: 167
-    y: 165
-  - x: 169
-    y: 168
-  - x: 168
-    y: 170
-  - x: 170
-    y: 171
-  - x: 171
-    y: 169
-  m_selectedTriangles: a6000000a5000000a4000000a6000000a7000000a5000000aa000000a9000000a8000000aa000000ab000000a9000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114792896034560056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24309,6 +24264,7 @@ MonoBehaviour:
     - straight
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
+  safetyBox: {fileID: 65614435953656772}
 --- !u!114 &114880488936819100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -25143,17 +25099,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114883596868086048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29294,25 +29242,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 2a0000002b000000
-  m_SelectedEdges:
-  - x: 165
-    y: 164
-  - x: 164
-    y: 166
-  - x: 166
-    y: 167
-  - x: 167
-    y: 165
-  - x: 169
-    y: 168
-  - x: 168
-    y: 170
-  - x: 170
-    y: 171
-  - x: 171
-    y: 169
-  m_selectedTriangles: a6000000a5000000a4000000a6000000a7000000a5000000aa000000a9000000a8000000aa000000ab000000a9000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114932694052907602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29736,17 +29668,9 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
 --- !u!114 &114984873269395480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -30059,14 +29983,6 @@ MonoBehaviour:
     angleError: 8
     areaError: 15
   dontDestroyMeshOnDelete: 0
-  m_selectedFaces: 02000000
-  m_SelectedEdges:
-  - x: 8
-    y: 9
-  - x: 10
-    y: 8
-  - x: 9
-    y: 11
-  - x: 11
-    y: 10
-  m_selectedTriangles: 08000000090000000a000000090000000b0000000a000000
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 

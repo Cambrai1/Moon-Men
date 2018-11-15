@@ -843,13 +843,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4678689215518072}
   - component: {fileID: 114562325874427004}
+  - component: {fileID: 65147822384632148}
   m_Layer: 0
   m_Name: Corridor_Dead_End_6x6_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1732712086258194
 GameObject:
   m_ObjectHideFlags: 1
@@ -4124,6 +4125,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 3.5, z: 0.75}
   m_Center: {x: 0.5, y: 1.75, z: -0.625}
+--- !u!65 &65147822384632148
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705131136659554}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 1, z: 7}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!65 &65178506637386530
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -17171,6 +17184,7 @@ MonoBehaviour:
     - straight
     parentModule: {fileID: 114562325874427004}
     linkedModule: {fileID: 0}
+  safetyBox: {fileID: 65147822384632148}
 --- !u!114 &114565461420427902
 MonoBehaviour:
   m_ObjectHideFlags: 1

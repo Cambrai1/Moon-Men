@@ -7,7 +7,8 @@ public class RoomModule : MonoBehaviour
     public string moduleCode = "untagged";
     public bool unique = false;
     public int abundance = 1;
-    public List<ModuleConnector> connectors;    
+    public List<ModuleConnector> connectors;
+    public BoxCollider safetyBox;
 
     private bool m_singleEntranceEnforced = false;
     private ModuleConnector m_entranceConnector;
@@ -82,6 +83,7 @@ public class RoomModule : MonoBehaviour
             con.allowedCodesArray = con.allowedCodes.Split(',');
             con.parentModule = this;
         }
+        if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
     }
 
     public void SetId(int _id)

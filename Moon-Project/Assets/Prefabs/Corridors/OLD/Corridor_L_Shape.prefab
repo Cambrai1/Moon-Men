@@ -377,13 +377,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4944897592382272}
   - component: {fileID: 114284787979330854}
+  - component: {fileID: 65301723710661506}
   m_Layer: 0
   m_Name: Corridor_L_Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1169489501321764
 GameObject:
   m_ObjectHideFlags: 1
@@ -10695,6 +10696,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.50000036, y: 0.5, z: 4.9999986}
   m_Center: {x: -0.00000017881393, y: 0.25, z: 0.5000008}
+--- !u!65 &65301723710661506
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1165114871086884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13, y: 1, z: 13}
+  m_Center: {x: -0.5, y: -1, z: -0.5}
 --- !u!65 &65307798075386432
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -22307,6 +22320,7 @@ MonoBehaviour:
     - l
     parentModule: {fileID: 114284787979330854}
     linkedModule: {fileID: 0}
+  safetyBox: {fileID: 65301723710661506}
 --- !u!114 &114288604362440872
 MonoBehaviour:
   m_ObjectHideFlags: 1

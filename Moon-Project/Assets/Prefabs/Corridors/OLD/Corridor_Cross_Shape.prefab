@@ -2204,13 +2204,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4050600565730270}
   - component: {fileID: 114923902725504534}
+  - component: {fileID: 65461730691518360}
   m_Layer: 0
   m_Name: Corridor_Cross_Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1481211407039234
 GameObject:
   m_ObjectHideFlags: 1
@@ -4953,7 +4954,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478868463554826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18975,6 +18976,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 4, z: 0}
   m_Center: {x: -1, y: 2, z: 0}
+--- !u!65 &65461730691518360
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1478868463554826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: -1, z: 0}
 --- !u!65 &65474297629595592
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -98890,6 +98903,7 @@ MonoBehaviour:
     - straight
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
+  safetyBox: {fileID: 65461730691518360}
 --- !u!114 &114923995712067892
 MonoBehaviour:
   m_ObjectHideFlags: 1
