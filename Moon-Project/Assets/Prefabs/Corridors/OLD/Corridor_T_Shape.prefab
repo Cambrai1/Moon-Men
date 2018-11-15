@@ -2692,6 +2692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4087716363872340}
+  - component: {fileID: 114060907275384166}
   m_Layer: 0
   m_Name: Corridor_T_Shape
   m_TagString: Untagged
@@ -3707,7 +3708,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760423598782522}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 13}
+  m_LocalPosition: {x: -62.44, y: 0, z: -27.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4403259523358190}
@@ -15040,7 +15041,7 @@ Animator:
   m_GameObject: {fileID: 1883680425972916}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3bb395e8a9ceab4b94c930d6a5f8b9e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15058,7 +15059,7 @@ Animator:
   m_GameObject: {fileID: 1715037387205892}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3bb395e8a9ceab4b94c930d6a5f8b9e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15076,7 +15077,7 @@ Animator:
   m_GameObject: {fileID: 1046603648361552}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3bb395e8a9ceab4b94c930d6a5f8b9e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15093,10 +15094,10 @@ Animation:
   m_GameObject: {fileID: 1715037387205892}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 808b2aacf3e3acc47b0804eeb74cba0c, type: 2}
-  - {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -15109,10 +15110,10 @@ Animation:
   m_GameObject: {fileID: 1883680425972916}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 808b2aacf3e3acc47b0804eeb74cba0c, type: 2}
-  - {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -15125,10 +15126,10 @@ Animation:
   m_GameObject: {fileID: 1046603648361552}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 808b2aacf3e3acc47b0804eeb74cba0c, type: 2}
-  - {fileID: 7400000, guid: 6b693774468cd494daab7cb6ff76aede, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -21215,6 +21216,27 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114060907275384166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1760423598782522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a3ca7bcd69ac0429638843420da499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleCode: module_t
+  unique: 0
+  childCodes:
+  - module_cross
+  - module_dead_end
+  - module_dead_end_door
+  - module_l
+  - module_straight
+  - module_t
+  connectors: []
 --- !u!114 &114061693695186854
 MonoBehaviour:
   m_ObjectHideFlags: 1
