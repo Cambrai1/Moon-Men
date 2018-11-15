@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Name: GenerationRules
   m_EditorClassIdentifier: 
   maximumRooms: 50
+  minimumRooms: 20
+  iterations: 2
+  generationMethod: 0

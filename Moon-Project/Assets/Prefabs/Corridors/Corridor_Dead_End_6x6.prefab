@@ -12015,7 +12015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: dead_end
   unique: 0
-  rarity: 15
+  rarity: 6
   connectors:
   - transformPoint: {fileID: 4712760521944460}
     isEntrance: 1
