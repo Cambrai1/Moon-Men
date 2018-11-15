@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1169489501321764
 GameObject:
   m_ObjectHideFlags: 1
@@ -2866,7 +2866,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1498031922517656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4360403613044296}
@@ -3469,7 +3469,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606834850144352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4086996344885816}
@@ -3513,7 +3513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557747367475638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4174187873622114}
@@ -3869,7 +3869,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1514084853757228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4677354179131134}
@@ -4223,7 +4223,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484233841303714}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -10.001, y: 0, z: 9}
+  m_LocalPosition: {x: -7.0010004, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4944897592382272}
@@ -4317,7 +4317,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1670834121746906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4127411691067456}
@@ -4437,7 +4437,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1183736051487892}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.001, y: 0, z: -1.007}
+  m_LocalPosition: {x: 2.9990005, y: 0, z: -7.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4944897592382272}
@@ -4569,7 +4569,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1675621536839614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4516277585448006}
@@ -4606,8 +4606,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165114871086884}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.24, y: 0, z: 8.77}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4978458806297840}
@@ -4657,7 +4657,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638491746387432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4801227732771824}
@@ -19975,7 +19975,7 @@ MonoBehaviour:
     y: 3
   - x: 3
     y: 2
-  m_selectedTriangles: 000000000100000002000000010000000300000002000000
+  m_selectedTriangles: 00000000010000000200000003000000
 --- !u!114 &114259166375972924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -35849,7 +35849,7 @@ MonoBehaviour:
     y: 3
   - x: 3
     y: 2
-  m_selectedTriangles: 000000000100000002000000010000000300000002000000
+  m_selectedTriangles: 00000000010000000200000003000000
 --- !u!114 &114560185388663374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -50052,7 +50052,7 @@ MonoBehaviour:
     y: 3
   - x: 3
     y: 2
-  m_selectedTriangles: 000000000100000002000000010000000300000002000000
+  m_selectedTriangles: 00000000010000000200000003000000
 --- !u!114 &114857554138837656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51349,7 +51349,7 @@ MonoBehaviour:
     y: 3
   - x: 3
     y: 2
-  m_selectedTriangles: 000000000100000002000000010000000300000002000000
+  m_selectedTriangles: 00000000010000000200000003000000
 --- !u!114 &114919106130650346
 MonoBehaviour:
   m_ObjectHideFlags: 1
