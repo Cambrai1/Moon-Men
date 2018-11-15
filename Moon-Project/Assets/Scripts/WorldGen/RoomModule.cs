@@ -6,7 +6,7 @@ public class RoomModule : MonoBehaviour
 {
     public string moduleCode = "untagged";
     public bool unique = false;
-    public int rarity = 1;
+    public int abundance = 1;
     public List<ModuleConnector> connectors;    
 
     private bool m_singleEntranceEnforced = false;
@@ -44,7 +44,7 @@ public class RoomModule : MonoBehaviour
     public void SetRarityMinMax(int _min)
     {
         m_rareMin = _min;
-        m_rareMax = _min + rarity;
+        m_rareMax = _min + abundance;
     }
     public int GetMinRarity() { return m_rareMin; }
     public int GetMaxRarity() { return m_rareMax; }

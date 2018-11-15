@@ -17158,7 +17158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: dead_end_door
   unique: 0
-  rarity: 6
+  abundance: 5
   connectors:
   - transformPoint: {fileID: 4569646601199800}
     isEntrance: 1

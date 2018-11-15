@@ -98852,13 +98852,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: cross
   unique: 0
-  rarity: 1
+  abundance: 1
   connectors:
   - transformPoint: {fileID: 4700246762543000}
     isEntrance: 1
-    allowedCodes: cross,dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight
     allowedCodesArray:
-    - cross
     - dead_end
     - dead_end_door
     - straight
@@ -98866,9 +98865,8 @@ MonoBehaviour:
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4117216763353234}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight
     allowedCodesArray:
-    - cross
     - dead_end
     - dead_end_door
     - straight
@@ -98876,9 +98874,8 @@ MonoBehaviour:
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4294475686460458}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight
     allowedCodesArray:
-    - cross
     - dead_end
     - dead_end_door
     - straight
@@ -98886,9 +98883,8 @@ MonoBehaviour:
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4985831894010562}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight
     allowedCodesArray:
-    - cross
     - dead_end
     - dead_end_door
     - straight

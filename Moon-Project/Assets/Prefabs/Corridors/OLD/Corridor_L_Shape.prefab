@@ -22286,7 +22286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: l
   unique: 0
-  rarity: 2
+  abundance: 3
   connectors:
   - transformPoint: {fileID: 4861215715581930}
     isEntrance: 0

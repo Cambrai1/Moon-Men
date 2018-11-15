@@ -11,10 +11,11 @@ public class ModularWorldGenerator : MonoBehaviour
 	public RoomModule[] modules;
 	public RoomModule startModule;
     public bool visibleIterations = true;
+    [Range(1,1000)]
     public int maximumAttempts = 100;
 
     private int m_totalRarity;
-    private List<GameObject> m_allRooms;
+    private List<RoomModule> m_spawnedModules;
 
 	void Start()
 	{
@@ -22,7 +23,7 @@ public class ModularWorldGenerator : MonoBehaviour
         foreach(RoomModule mod in modules)
         {
             mod.SetRarityMinMax(m_totalRarity);
-            m_totalRarity += mod.rarity;
+            m_totalRarity += mod.abundance;
         }
         Debug.Log("Loaded " + modules.Length + " modules, total rarity " + m_totalRarity + "!");
 
@@ -52,21 +53,23 @@ public class ModularWorldGenerator : MonoBehaviour
         bool success = false;
         int roomCount = 0;
         int currentAttempts = 0;
-        m_allRooms = new List<GameObject>();
+        string failReason = "";
+        int failReasons = 0;
+        m_spawnedModules = new List<RoomModule>();
         float startTime = Time.time;
 
         while(!success && currentAttempts <= maximumAttempts)
         {
             success = true;
 
-            if(m_allRooms.Count >= 1)
+            if(m_spawnedModules.Count >= 1)
             {
-                foreach (GameObject obj in m_allRooms)
+                foreach (RoomModule mod in m_spawnedModules)
                 {
-                    GameObject.Destroy(obj);
+                    GameObject.Destroy(mod.gameObject);
                 }
             }
-            m_allRooms = new List<GameObject>();
+            m_spawnedModules = new List<RoomModule>();
             roomCount = 0;
             List<ModuleConnector> pendingConnections = new List<ModuleConnector>(startModule.GetExits());
             switch (method)
@@ -84,9 +87,9 @@ public class ModularWorldGenerator : MonoBehaviour
                                     newModule.gameObject.SetActive(true);
                                     LinkModules(pendingConnections[0], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
-                                    Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
+                                    //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
                                     newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode);
-                                    m_allRooms.Add(newModule.gameObject);
+                                    m_spawnedModules.Add(newModule);
                                     roomCount++;
                                     pendingConnections.RemoveAt(0);
 
@@ -121,9 +124,9 @@ public class ModularWorldGenerator : MonoBehaviour
                                     newModule.gameObject.SetActive(true);
                                     LinkModules(pendingConnections[c], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
-                                    Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
+                                    //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
                                     newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode); 
-                                    m_allRooms.Add(newModule.gameObject);
+                                    m_spawnedModules.Add(newModule);
                                     roomCount++;
                                     pendingConnections.RemoveAt(c);
 
@@ -145,16 +148,67 @@ public class ModularWorldGenerator : MonoBehaviour
                     break;
             }
 
-            if (roomCount <= generationRules.minimumRooms) success = false;
-            if (roomCount >= generationRules.maximumRooms) success = false;
+            if (roomCount <= generationRules.minimumRooms)
+            {
+                failReason += ("\nRoom count " + roomCount + " below minimum of " + generationRules.minimumRooms + ".");
+                failReasons++;
+                success = false;
+            }
+            if (roomCount >= generationRules.maximumRooms)
+            {
+                failReason += ("\nRoom count " + roomCount + " above maximum of " + generationRules.maximumRooms + ".");
+                failReasons++;
+                success = false;
+            }
+            foreach(ModuleRule rule in generationRules.moduleRules)
+            {
+                if (!TestModuleRule(rule))
+                {
+                    success = false;
+                    failReason += ("\nModule rule '" + rule.moduleCode + "' violated.");
+                    failReasons++;
+                }
+            }
             if (neverStop) success = false;
+
+            if(!success && !neverStop)
+            {
+                if(failReasons >= 2)
+                {
+                    failReason = "FAIL REASON :\nMultiple Reasons" + failReason;
+                }
+                else
+                {
+                    failReason = "FAIL REASON :" + failReason;
+                }
+                Debug.LogWarning(failReason);
+                failReason = "";
+                failReasons = 0;
+            }
 
             currentAttempts++;
         }
 
-        Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS");
+        Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + currentAttempts + " ATTEMPTS!");
 
         yield return null;
+    }
+
+    private bool TestModuleRule(ModuleRule _rule)
+    {
+        int count = 0;
+        foreach(RoomModule mod in m_spawnedModules)
+        {
+            if(mod.moduleCode == _rule.moduleCode)
+            {
+                count++;
+            }
+        }
+
+        if (count < _rule.minimum) return false;
+        if (count > _rule.maximum) return false;
+
+        return false;
     }
 
     private void LinkModules(ModuleConnector _a, ModuleConnector _b)
