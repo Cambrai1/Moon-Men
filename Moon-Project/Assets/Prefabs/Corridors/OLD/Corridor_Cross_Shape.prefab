@@ -98856,44 +98856,44 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4700246762543000}
     isEntrance: 1
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,straight
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
-    - l
     - straight
     parentModule: {fileID: 114923902725504534}
+    linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4117216763353234}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,straight
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
-    - l
     - straight
     parentModule: {fileID: 114923902725504534}
+    linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4294475686460458}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,straight
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
-    - l
     - straight
     parentModule: {fileID: 114923902725504534}
+    linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4985831894010562}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,straight
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
-    - l
     - straight
     parentModule: {fileID: 114923902725504534}
+    linkedModule: {fileID: 0}
 --- !u!114 &114923995712067892
 MonoBehaviour:
   m_ObjectHideFlags: 1

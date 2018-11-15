@@ -17158,7 +17158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: dead_end_door
   unique: 0
-  rarity: 5
+  rarity: 15
   connectors:
   - transformPoint: {fileID: 4569646601199800}
     isEntrance: 1
@@ -17170,6 +17170,7 @@ MonoBehaviour:
     - l
     - straight
     parentModule: {fileID: 114562325874427004}
+    linkedModule: {fileID: 0}
 --- !u!114 &114565461420427902
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6082,7 +6082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: straight
   unique: 0
-  rarity: 5
+  rarity: 15
   connectors:
   - transformPoint: {fileID: 4343049538463094}
     isEntrance: 0
@@ -6094,6 +6094,7 @@ MonoBehaviour:
     - l
     - straight
     parentModule: {fileID: 114904580360592290}
+    linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4790983152567958}
     isEntrance: 0
     allowedCodes: cross,dead_end,dead_end_door,l,straight
@@ -6104,6 +6105,7 @@ MonoBehaviour:
     - l
     - straight
     parentModule: {fileID: 114904580360592290}
+    linkedModule: {fileID: 0}
 --- !u!114 &114919863613931716
 MonoBehaviour:
   m_ObjectHideFlags: 1

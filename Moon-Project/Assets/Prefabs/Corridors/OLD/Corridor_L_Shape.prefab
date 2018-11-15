@@ -22286,7 +22286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: l
   unique: 0
-  rarity: 1
+  rarity: 2
   connectors:
   - transformPoint: {fileID: 4861215715581930}
     isEntrance: 0
@@ -22296,6 +22296,7 @@ MonoBehaviour:
     - dead_end_door
     - straight
     parentModule: {fileID: 114284787979330854}
+    linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4732087745761496}
     isEntrance: 0
     allowedCodes: cross,dead_end,dead_end_door,l
@@ -22305,6 +22306,7 @@ MonoBehaviour:
     - dead_end_door
     - l
     parentModule: {fileID: 114284787979330854}
+    linkedModule: {fileID: 0}
 --- !u!114 &114288604362440872
 MonoBehaviour:
   m_ObjectHideFlags: 1
