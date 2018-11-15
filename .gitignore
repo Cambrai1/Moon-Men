@@ -36,3 +36,7 @@ sysinfo.txt
 *.unitypackage
 
 Moon-Project/Assets/Scenes/VR_Test_Scene/
+
+Moon-Project/Library/
+
+Moon-Project/ProjectSettings/ProjectVersion\.txt
