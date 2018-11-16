@@ -98865,7 +98865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: cross
   unique: 0
-  abundance: 0
+  abundance: 1
   connectors:
   - transformPoint: {fileID: 4700246762543000}
     isEntrance: 1

@@ -7,7 +7,6 @@ public class GenerationRules : ScriptableObject
 {
     public int maximumRooms = 30;
     public int minimumRooms = 20;
-    public int iterations = 2;
     public GenerationMethod generationMethod;
     public List<ModuleRule> moduleRules;
 }

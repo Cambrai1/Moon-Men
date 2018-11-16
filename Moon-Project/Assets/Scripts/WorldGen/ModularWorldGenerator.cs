@@ -16,6 +16,7 @@ public class ModularWorldGenerator : MonoBehaviour
 
     private int m_totalRarity;
     private List<RoomModule> m_spawnedModules;
+    public List<Vector2Int> occupiedCells;
 
 	void Start()
 	{
@@ -43,13 +44,12 @@ public class ModularWorldGenerator : MonoBehaviour
     
     public void Regenerate()
     {
-        StartCoroutine(Regenerate(generationRules.iterations));
+        StartCoroutine(RegenerateCoroutine());
     }
-    private IEnumerator Regenerate(int _iterations)
+    private IEnumerator RegenerateCoroutine()
     {
         GenerationMethod method = generationRules.generationMethod;
-        RoomModule startingModule = Instantiate(startModule, transform.position, transform.rotation).GetComponent<RoomModule>();
-        startingModule.gameObject.SetActive(true);
+        if (neverStop) visibleIterations = true;
         bool success = false;
         int roomCount = 0;
         int currentAttempts = 0;
@@ -58,11 +58,12 @@ public class ModularWorldGenerator : MonoBehaviour
         m_spawnedModules = new List<RoomModule>();
         float startTime = Time.time;
 
-        while(!success && currentAttempts <= maximumAttempts)
+        while(!success && (currentAttempts <= maximumAttempts || neverStop))
         {
             success = true;
+            occupiedCells = new List<Vector2Int>();
 
-            if(m_spawnedModules.Count >= 1)
+            if (m_spawnedModules.Count >= 1)
             {
                 foreach (RoomModule mod in m_spawnedModules)
                 {
@@ -71,20 +72,27 @@ public class ModularWorldGenerator : MonoBehaviour
             }
             m_spawnedModules = new List<RoomModule>();
             roomCount = 0;
-            List<ModuleConnector> pendingConnections = new List<ModuleConnector>(startModule.GetExits());
+            int roomTry = 0;
+
+            RoomModule startingModule = Instantiate(startModule, transform.position, transform.rotation).GetComponent<RoomModule>();
+            startingModule.gameObject.SetActive(true);
+            m_spawnedModules.Add(startingModule);
+            bool t = TestSafeBox(startingModule);
+
+            List<ModuleConnector> pendingConnections = new List<ModuleConnector>(startingModule.GetExits());
             switch (method)
             {
                 case GenerationMethod.widthFirst:
                     {
-                        for (int i = 0; i < _iterations; i++)
+                        while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
                         {
-                            while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
+                            if (pendingConnections[0] != null && roomTry <= 10)
                             {
-                                if (pendingConnections[0] != null)
+                                RoomModule newModule = GameObject.Instantiate(GetRandomModuleForConnector(pendingConnections[0], true), transform).GetComponent<RoomModule>();
+                                AlignConnectors(pendingConnections[0], newModule.GetEntrance());
+                                newModule.gameObject.SetActive(true);
+                                if (TestSafeBox(newModule))
                                 {
-                                    RoomModule newModule = GameObject.Instantiate(GetRandomModuleForConnector(pendingConnections[0], true), transform).GetComponent<RoomModule>();
-                                    AlignConnectors(pendingConnections[0], newModule.GetEntrance());
-                                    newModule.gameObject.SetActive(true);
                                     LinkModules(pendingConnections[0], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
                                     //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
@@ -99,12 +107,18 @@ public class ModularWorldGenerator : MonoBehaviour
                                     }
                                     pendingConnections.Remove(newModule.GetEntrance());
 
-                                    if (visibleIterations) yield return new WaitForEndOfFrame();
+                                    if (visibleIterations) yield return null;
                                 }
                                 else
                                 {
-                                    Debug.LogWarning("PENDING CONNECTIONS [0] SOMEHOW IS NULL");
+                                    GameObject.Destroy(newModule.gameObject);
+                                    roomTry++;
                                 }
+                            }
+                            else
+                            {
+                                Debug.LogWarning("PENDING CONNECTIONS [0] SOMEHOW IS NULL");
+                                pendingConnections.RemoveAt(0);
                             }
                         }
                     }
@@ -112,20 +126,21 @@ public class ModularWorldGenerator : MonoBehaviour
 
                 case GenerationMethod.depthFirst:
                     {
-                        for (int i = 0; i < _iterations; i++)
+                        while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
                         {
-                            while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
+                            int c = pendingConnections.Count - 1;
+                            if (pendingConnections[c] != null && roomTry <= 10)
                             {
-                                int c = pendingConnections.Count - 1;
-                                if (pendingConnections[c] != null)
+                                RoomModule newModule = Instantiate(GetRandomModuleForConnector(pendingConnections[c], true), transform).GetComponent<RoomModule>();
+                                AlignConnectors(pendingConnections[c], newModule.GetEntrance());
+                                newModule.gameObject.SetActive(true);
+                                
+                                if(TestSafeBox(newModule))
                                 {
-                                    RoomModule newModule = Instantiate(GetRandomModuleForConnector(pendingConnections[c], true), transform).GetComponent<RoomModule>();
-                                    AlignConnectors(pendingConnections[c], newModule.GetEntrance());
-                                    newModule.gameObject.SetActive(true);
                                     LinkModules(pendingConnections[c], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
                                     //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
-                                    newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode); 
+                                    newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode);
                                     m_spawnedModules.Add(newModule);
                                     roomCount++;
                                     pendingConnections.RemoveAt(c);
@@ -136,12 +151,18 @@ public class ModularWorldGenerator : MonoBehaviour
                                     }
                                     pendingConnections.Remove(newModule.GetEntrance());
 
-                                    if (visibleIterations) yield return new WaitForEndOfFrame();
+                                    if (visibleIterations) yield return null;
                                 }
                                 else
                                 {
-                                    Debug.LogWarning("PENDING CONNECTIONS [" + c + "] SOMEHOW IS NULL");
+                                    GameObject.Destroy(newModule.gameObject);
+                                    roomTry++;
                                 }
+                            }
+                            else
+                            {
+                                Debug.LogWarning("PENDING CONNECTIONS [" + c + "] SOMEHOW IS NULL");
+                                pendingConnections.RemoveAt(c);
                             }
                         }
                     }
@@ -192,6 +213,39 @@ public class ModularWorldGenerator : MonoBehaviour
         Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + currentAttempts + " ATTEMPTS!");
 
         yield return null;
+    }
+
+    private bool TestSafeBox(RoomModule _module)
+    {
+        Vector2 minF, maxF;
+        Vector2Int min, max;
+        Vector3 center = _module.safetyBox.bounds.center;
+        Vector3 pos = _module.gameObject.transform.position;
+
+        minF = new Vector2((- _module.safetyBox.bounds.extents.x) + center.x + pos.x, (- _module.safetyBox.bounds.extents.z) + center.z + pos.z);
+        maxF = new Vector2(_module.safetyBox.bounds.extents.x + center.x + pos.x, _module.safetyBox.bounds.extents.z + center.z + pos.z);
+
+        max = new Vector2Int(Mathf.CeilToInt(maxF.x), Mathf.CeilToInt(maxF.y));
+        min = new Vector2Int(Mathf.FloorToInt(minF.x), Mathf.FloorToInt(minF.y));
+
+        for (int i = 0; i < occupiedCells.Count; i++)
+        {
+            if((occupiedCells[i].x >= min.x && occupiedCells[i].x <= max.x)
+            && (occupiedCells[i].y >= min.y && occupiedCells[i].y <= max.y))
+            {
+                return false;
+            }
+        }
+
+        for (int x = 0; x < max.x; x++)
+        {
+            for (int y = min.y; y < max.y; y++)
+            {
+                occupiedCells.Add(new Vector2Int(x, y));
+            }
+        }
+
+        return true;
     }
 
     private bool TestModuleRule(ModuleRule _rule)
