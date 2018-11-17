@@ -10,6 +10,7 @@ public class ModularWorldGenerator : MonoBehaviour
     public bool autoModules = true;
 	public RoomModule[] modules;
 	public RoomModule startModule;
+    public RoomModule nullModule;
     public bool visibleIterations = true;
     [Range(1,1000)]
     public int maximumAttempts = 100;
@@ -86,11 +87,13 @@ public class ModularWorldGenerator : MonoBehaviour
                         {
                             if (pendingConnections[0] != null && roomTry <= 10)
                             {
-                                RoomModule newModule = GameObject.Instantiate(GetRandomModuleForConnector(pendingConnections[0], true), transform).GetComponent<RoomModule>();
+                                RoomModule newModule = GameObject.Instantiate(GetRandomModule(pendingConnections[0]), transform).GetComponent<RoomModule>();
                                 AlignConnectors(pendingConnections[0], newModule.GetEntrance());
                                 newModule.gameObject.SetActive(true);
-                                if (0 != 1)
+                                if (TestSafeBox(newModule))
                                 {
+                                    roomTry = 0;
+
                                     LinkModules(pendingConnections[0], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
                                     //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
@@ -109,7 +112,7 @@ public class ModularWorldGenerator : MonoBehaviour
                                 }
                                 else
                                 {
-                                    GameObject.Destroy(newModule.gameObject);
+                                    Destroy(newModule.gameObject);
                                     roomTry++;
                                 }
                             }
@@ -129,7 +132,7 @@ public class ModularWorldGenerator : MonoBehaviour
                             int c = pendingConnections.Count - 1;
                             if (pendingConnections[c] != null && roomTry <= 10)
                             {
-                                RoomModule newModule = Instantiate(GetRandomModuleForConnector(pendingConnections[c], true), transform).GetComponent<RoomModule>();
+                                RoomModule newModule = Instantiate(GetRandomModule(pendingConnections[c]), transform).GetComponent<RoomModule>();
                                 AlignConnectors(pendingConnections[c], newModule.GetEntrance());
                                 newModule.gameObject.SetActive(true);
                                 
@@ -214,6 +217,12 @@ public class ModularWorldGenerator : MonoBehaviour
         yield return null;
     }
 
+    private RoomModule TrySpawnModule(ModuleConnector _connector)
+    {
+
+        return new RoomModule();
+    }
+
     private bool TestSafeBox(RoomModule _module)
     {
         Debug.Log("STARTED RAYCAST TEST");
@@ -222,15 +231,15 @@ public class ModularWorldGenerator : MonoBehaviour
         Ray ray;
         LayerMask mask = LayerMask.GetMask("World");
 
-        foreach(Transform t in _module.raycastCheckers)
-        {
-            ray = new Ray(t.position, Vector3.down);
-            Physics.Raycast(ray, out hit, 50f, mask, QueryTriggerInteraction.UseGlobal);
-            if(hit.collider)
-            {
-                if(hit.collider.gameObject != _module.gameObject) return false;
-            }
-        }
+        //foreach(Transform t in _module.raycastCheckers)
+        //{
+        //    ray = new Ray(t.position, Vector3.down);
+        //    Physics.Raycast(ray, out hit, 50f, mask, QueryTriggerInteraction.UseGlobal);
+        //    if(hit.collider)
+        //    {
+        //        if(hit.collider.gameObject != _module.gameObject) return false;
+        //    }
+        //}
 
         return true;
     }
@@ -268,46 +277,30 @@ public class ModularWorldGenerator : MonoBehaviour
 		newModule.transform.position += correctiveTranslation;
 	}
 
-	private GameObject GetRandomModuleForConnector(ModuleConnector _connector, bool _useRarity)
+    private GameObject GetRandomModule(ModuleConnector _connector)
+    {
+        return GetRandomModuleExcluding(_connector, new List<string>());
+    }
+	private GameObject GetRandomModuleExcluding(ModuleConnector _connector, List<string> _excludedCodes)
 	{
         bool foundModule = false;
-
         if (_connector == null) return GetSpecificModule("straight");
-
         int useModId = 0;
-
+        bool excluded = false;
         while (!foundModule)
         {
-            if(_useRarity)
+            int random = Random.Range(0, m_totalRarity);
+            for (int i = 0; i < modules.Length; i++)
             {
-                int random = Random.Range(0, m_totalRarity);
-                for (int i = 0; i < modules.Length; i++)
+                if (!foundModule)
                 {
-                    if (!foundModule)
+                    foreach (string code in _excludedCodes)
                     {
-                        if(modules[i].unique)
-                        {
-
-                        }
-                        else if (random >= modules[i].GetMinRarity() && random <= modules[i].GetMaxRarity())
-                        {
-                            useModId = i;
-                            foundModule = true;
-                        }
+                        if (modules[i].moduleCode == code) excluded = true;
                     }
-                }
-            }
-            else
-            {
-                int random = Random.Range(0, _connector.allowedCodesArray.Length);
-                string randomModuleCode = _connector.allowedCodesArray[random];
-                for (int i = 0; i < modules.Length; i++)
-                {
-                    if (modules[i].unique)
-                    {
-
-                    }
-                    else if (modules[i].moduleCode == randomModuleCode)
+                    if (excluded) { }
+                    else if (modules[i].unique) { }
+                    else if (random >= modules[i].GetMinRarity() && random <= modules[i].GetMaxRarity())
                     {
                         useModId = i;
                         foundModule = true;
