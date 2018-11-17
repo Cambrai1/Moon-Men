@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 33074136741279296}
   - component: {fileID: 114961649608717680}
   - component: {fileID: 65377591237785448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_6x4 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 33552280294472890}
   - component: {fileID: 114115113789471876}
   - component: {fileID: 64137600668017698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 23106818575310078}
   - component: {fileID: 33934412689966586}
   - component: {fileID: 114389112117725824}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Extention_4x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 23681398395879034}
   - component: {fileID: 33855182605325126}
   - component: {fileID: 114812808486129504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Extention_Corner_Inner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 23597677145841394}
   - component: {fileID: 33647785736122734}
   - component: {fileID: 114495076922929154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Extention_5x1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,8 +120,23 @@ GameObject:
   - component: {fileID: 23194101963006308}
   - component: {fileID: 33847437403593348}
   - component: {fileID: 114701931463928892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Extention_4x1 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1234480318070572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4894526063101188}
+  m_Layer: 9
+  m_Name: RaycastCheck (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +155,7 @@ GameObject:
   - component: {fileID: 33396567480810332}
   - component: {fileID: 114741467226633068}
   - component: {fileID: 65562451544828220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +175,7 @@ GameObject:
   - component: {fileID: 33080613484584750}
   - component: {fileID: 114848604909702828}
   - component: {fileID: 65568998122148176}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_6x4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +195,7 @@ GameObject:
   - component: {fileID: 33336771732330374}
   - component: {fileID: 114780900793869204}
   - component: {fileID: 64431581759518052}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +215,7 @@ GameObject:
   - component: {fileID: 33336883476383268}
   - component: {fileID: 114612737667118714}
   - component: {fileID: 65732104835285648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +235,7 @@ GameObject:
   - component: {fileID: 33285509493274718}
   - component: {fileID: 114453283487965030}
   - component: {fileID: 65358528304421004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +255,7 @@ GameObject:
   - component: {fileID: 33547999039512282}
   - component: {fileID: 114252803799166218}
   - component: {fileID: 65537050907334592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4712760521944460}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: moduleConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4893627431490632}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor Extentions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +305,7 @@ GameObject:
   - component: {fileID: 33102284816167182}
   - component: {fileID: 114378573262253314}
   - component: {fileID: 64470424970629794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4470759684370004}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +339,7 @@ GameObject:
   - component: {fileID: 23192613894266390}
   - component: {fileID: 33186194413242588}
   - component: {fileID: 114258023891580828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Extention_5x1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,13 +356,13 @@ GameObject:
   - component: {fileID: 4603835789186718}
   - component: {fileID: 114707357707879208}
   - component: {fileID: 65756267506882278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Corridor_Dead_End_6x6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1396326739196498
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,8 +371,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4224223632749426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1415313747400542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4930374018407628}
+  m_Layer: 9
+  m_Name: RaycastCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -371,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4335020754973430}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling Extentions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +420,7 @@ GameObject:
   - component: {fileID: 23002832714117544}
   - component: {fileID: 33206304418956066}
   - component: {fileID: 114352950168080182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Extention_5x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,8 +440,23 @@ GameObject:
   - component: {fileID: 33972009125122066}
   - component: {fileID: 114073141372254408}
   - component: {fileID: 65155537196284754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Four
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1473183102863966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4695896256873714}
+  m_Layer: 9
+  m_Name: RaycastCheck (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -430,7 +475,7 @@ GameObject:
   - component: {fileID: 33632991899561262}
   - component: {fileID: 114482531742837600}
   - component: {fileID: 65564684745607554}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_6x4 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +494,7 @@ GameObject:
   - component: {fileID: 23526707908766156}
   - component: {fileID: 33836463000790262}
   - component: {fileID: 114301632579195314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Extention_Corner_Inner (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +514,7 @@ GameObject:
   - component: {fileID: 33069103585816638}
   - component: {fileID: 114730332462754660}
   - component: {fileID: 64471140838381114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +534,7 @@ GameObject:
   - component: {fileID: 33907040499026442}
   - component: {fileID: 114748627741232402}
   - component: {fileID: 65217323160162638}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_6x4 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +553,7 @@ GameObject:
   - component: {fileID: 23293114606294070}
   - component: {fileID: 33238776194190768}
   - component: {fileID: 114575409641599912}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Extention_Corner_Inner (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +573,7 @@ GameObject:
   - component: {fileID: 33129107137877872}
   - component: {fileID: 114628098116903614}
   - component: {fileID: 65947241780063126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Three
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +593,7 @@ GameObject:
   - component: {fileID: 33991444267089740}
   - component: {fileID: 114292358392089350}
   - component: {fileID: 64944946249802100}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_6x6_End_Shape (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4802362572197860}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +628,7 @@ GameObject:
   - component: {fileID: 33827308025917258}
   - component: {fileID: 114756371147574924}
   - component: {fileID: 65735057423394494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +648,7 @@ GameObject:
   - component: {fileID: 33269554720071148}
   - component: {fileID: 114075048726954750}
   - component: {fileID: 65881077838099830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_6x6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +668,7 @@ GameObject:
   - component: {fileID: 33947240335954292}
   - component: {fileID: 114786027647350722}
   - component: {fileID: 65070930391312972}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Five
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +687,7 @@ GameObject:
   - component: {fileID: 23565651271318142}
   - component: {fileID: 33803066473862722}
   - component: {fileID: 114253723103496456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Extention_5x1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +707,7 @@ GameObject:
   - component: {fileID: 33666438797798856}
   - component: {fileID: 114181773922932376}
   - component: {fileID: 64950321994129440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,8 +727,38 @@ GameObject:
   - component: {fileID: 33387743640406316}
   - component: {fileID: 114284644099515202}
   - component: {fileID: 65870006553292200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Two
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1791395537032642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4837451186437422}
+  m_Layer: 9
+  m_Name: RaycastCheck (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1814828228062552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4216691112739338}
+  m_Layer: 9
+  m_Name: RaycastCheck (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -702,7 +777,7 @@ GameObject:
   - component: {fileID: 33957102892218218}
   - component: {fileID: 114583622584963676}
   - component: {fileID: 64506475044678742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_One
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +796,7 @@ GameObject:
   - component: {fileID: 23699897966387510}
   - component: {fileID: 33631547029490110}
   - component: {fileID: 114151347869605324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Extention_Corner_Inner (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +816,7 @@ GameObject:
   - component: {fileID: 33752537007523660}
   - component: {fileID: 114552157033123164}
   - component: {fileID: 64672636188254960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +836,7 @@ GameObject:
   - component: {fileID: 33553499218123726}
   - component: {fileID: 114553409083195760}
   - component: {fileID: 65834563505835624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Six
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,8 +856,23 @@ GameObject:
   - component: {fileID: 33924906066567120}
   - component: {fileID: 114994878109600000}
   - component: {fileID: 64601183468633006}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Two
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1953585179467068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4761842809309266}
+  m_Layer: 9
+  m_Name: RaycastCheck (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +891,7 @@ GameObject:
   - component: {fileID: 33191503279420076}
   - component: {fileID: 114521025512866964}
   - component: {fileID: 65477009618896634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +911,7 @@ GameObject:
   - component: {fileID: 33188845622526952}
   - component: {fileID: 114236991639909972}
   - component: {fileID: 65305789434902194}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,6 +1037,19 @@ Transform:
   m_Father: {fileID: 4638826226129292}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!4 &4216691112739338
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1814828228062552}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4224223632749426
 Transform:
   m_ObjectHideFlags: 1
@@ -1195,7 +1298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1380907076956772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4224223632749426}
@@ -1204,6 +1307,12 @@ Transform:
   - {fileID: 4335020754973430}
   - {fileID: 4470759684370004}
   - {fileID: 4712760521944460}
+  - {fileID: 4930374018407628}
+  - {fileID: 4695896256873714}
+  - {fileID: 4761842809309266}
+  - {fileID: 4837451186437422}
+  - {fileID: 4894526063101188}
+  - {fileID: 4216691112739338}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1264,6 +1373,19 @@ Transform:
   m_Father: {fileID: 4893627431490632}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
+--- !u!4 &4695896256873714
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1473183102863966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4712760521944460
 Transform:
   m_ObjectHideFlags: 1
@@ -1305,6 +1427,19 @@ Transform:
   m_Father: {fileID: 4722377223952138}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: 0}
+--- !u!4 &4761842809309266
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953585179467068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4795876171103656
 Transform:
   m_ObjectHideFlags: 1
@@ -1331,6 +1466,19 @@ Transform:
   - {fileID: 4098603257005162}
   m_Father: {fileID: 4603835789186718}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4837451186437422
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791395537032642}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854607361137118
 Transform:
@@ -1363,6 +1511,19 @@ Transform:
   m_Father: {fileID: 4603835789186718}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4894526063101188
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234480318070572}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4900759338585678
 Transform:
   m_ObjectHideFlags: 1
@@ -1376,6 +1537,19 @@ Transform:
   - {fileID: 4854607361137118}
   m_Father: {fileID: 4893627431490632}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4930374018407628
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1415313747400542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4603835789186718}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4946680217162494
 Transform:
@@ -3231,10 +3405,10 @@ BoxCollider:
   m_GameObject: {fileID: 1380907076956772}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 6, y: 1, z: 6}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Center: {x: 0, y: 10, z: 0}
 --- !u!65 &65834563505835624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -12042,6 +12216,13 @@ MonoBehaviour:
     parentModule: {fileID: 114707357707879208}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65756267506882278}
+  raycastCheckers:
+  - {fileID: 4930374018407628}
+  - {fileID: 4695896256873714}
+  - {fileID: 4761842809309266}
+  - {fileID: 4837451186437422}
+  - {fileID: 4894526063101188}
+  - {fileID: 4216691112739338}
 --- !u!114 &114708557944245134
 MonoBehaviour:
   m_ObjectHideFlags: 1

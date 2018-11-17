@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23317372979021146}
   - component: {fileID: 33628783072785226}
   - component: {fileID: 114447511126837622}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Door_Start_Room (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4926960265603532}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Static Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 33436528800352236}
   - component: {fileID: 114800626566673584}
   - component: {fileID: 65262548970429334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 33827555605807566}
   - component: {fileID: 114793341295690470}
   - component: {fileID: 65269483249451262}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4832480506587130}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door Frames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 33296280019545576}
   - component: {fileID: 114533525319841834}
   - component: {fileID: 65899655573750192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 33231756285951834}
   - component: {fileID: 114984873269395480}
   - component: {fileID: 114927717194437002}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Frame_Temp (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 33518318104070936}
   - component: {fileID: 114584023859811094}
   - component: {fileID: 64150546810058176}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor_Start_Room_6x5_Octagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 114883596868086048}
   - component: {fileID: 95713642343544168}
   - component: {fileID: 111624040692397404}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Temp_NEW (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4493761804897238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,8 +208,38 @@ GameObject:
   - component: {fileID: 33864927409893716}
   - component: {fileID: 114750595909785858}
   - component: {fileID: 65651632307131754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Ceiling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1103782140588562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4001393013481648}
+  m_Layer: 9
+  m_Name: RaycastCheck (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1105642659528556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4067349014964962}
+  m_Layer: 9
+  m_Name: RaycastCheck (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +258,7 @@ GameObject:
   - component: {fileID: 33208435744792496}
   - component: {fileID: 114819765243272612}
   - component: {fileID: 65336896684734206}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +278,7 @@ GameObject:
   - component: {fileID: 33537000334038522}
   - component: {fileID: 114578261331510232}
   - component: {fileID: 65694862105114056}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +298,7 @@ GameObject:
   - component: {fileID: 33682020477658252}
   - component: {fileID: 114781261536853608}
   - component: {fileID: 65433701003542314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +318,7 @@ GameObject:
   - component: {fileID: 33227642835154460}
   - component: {fileID: 114377605772428818}
   - component: {fileID: 65476253591815354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +338,7 @@ GameObject:
   - component: {fileID: 33335882628622352}
   - component: {fileID: 114329235771683132}
   - component: {fileID: 65225975972807906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +358,7 @@ GameObject:
   - component: {fileID: 33631712997322176}
   - component: {fileID: 114608847258402132}
   - component: {fileID: 65591562014632386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,8 +373,38 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4374346356848892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Structure Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1206978137143728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4186375120875040}
+  m_Layer: 9
+  m_Name: RaycastCheck (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1212765476832274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4968977902537744}
+  m_Layer: 9
+  m_Name: RaycastCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +423,7 @@ GameObject:
   - component: {fileID: 33111034819345330}
   - component: {fileID: 114313810393838734}
   - component: {fileID: 65633196674004960}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +443,7 @@ GameObject:
   - component: {fileID: 33213038911507736}
   - component: {fileID: 114142164876811300}
   - component: {fileID: 65323293625783364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +463,7 @@ GameObject:
   - component: {fileID: 33321086359106660}
   - component: {fileID: 114500488534277866}
   - component: {fileID: 65483086426086608}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4414064354521666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: moduleConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4613935091319636}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LightProbes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,13 +510,13 @@ GameObject:
   - component: {fileID: 4111559668757546}
   - component: {fileID: 114876656784964350}
   - component: {fileID: 65614435953656772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Starting_Room_01_OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1317820699255160
 GameObject:
   m_ObjectHideFlags: 1
@@ -470,7 +530,7 @@ GameObject:
   - component: {fileID: 33671563537012070}
   - component: {fileID: 114880488936819100}
   - component: {fileID: 65506349663681116}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,8 +550,23 @@ GameObject:
   - component: {fileID: 33128841900345268}
   - component: {fileID: 114925749413313952}
   - component: {fileID: 65771953230330708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1333534142688736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4365953114630050}
+  m_Layer: 9
+  m_Name: RaycastCheck (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +585,7 @@ GameObject:
   - component: {fileID: 33236829470376460}
   - component: {fileID: 114012067942155306}
   - component: {fileID: 65396469458480094}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +606,7 @@ GameObject:
   - component: {fileID: 114881049046031378}
   - component: {fileID: 95819650490977204}
   - component: {fileID: 111940999474432186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Temp_NEW (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,8 +621,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4208818970199220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dynamic Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1387058099417068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4295613035168774}
+  m_Layer: 9
+  m_Name: RaycastCheck (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +656,7 @@ GameObject:
   - component: {fileID: 33086877774586158}
   - component: {fileID: 114117918621887272}
   - component: {fileID: 65151361847105228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,8 +676,38 @@ GameObject:
   - component: {fileID: 33791206025654438}
   - component: {fileID: 114883104157877480}
   - component: {fileID: 65594516270667092}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1432089041901286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4374433590043638}
+  m_Layer: 9
+  m_Name: RaycastCheck (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1453818032943676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4167814863991392}
+  m_Layer: 9
+  m_Name: RaycastCheck (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,8 +726,23 @@ GameObject:
   - component: {fileID: 33932949596112224}
   - component: {fileID: 114317702182504706}
   - component: {fileID: 65498093363754770}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Floor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1483828493573556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4787307341614252}
+  m_Layer: 9
+  m_Name: RaycastCheck (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,7 +761,7 @@ GameObject:
   - component: {fileID: 33032947547853048}
   - component: {fileID: 114932694052907602}
   - component: {fileID: 65808586006419070}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4140803288788938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +796,7 @@ GameObject:
   - component: {fileID: 33876174310883194}
   - component: {fileID: 114645849085297282}
   - component: {fileID: 65415099579406898}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Start_Room_7x5 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,8 +816,23 @@ GameObject:
   - component: {fileID: 33553061755685356}
   - component: {fileID: 114700472403941026}
   - component: {fileID: 64108624686381716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Centre_Desk_Station
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1543305685526702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4716680516950314}
+  m_Layer: 9
+  m_Name: RaycastCheck (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +851,7 @@ GameObject:
   - component: {fileID: 33702976107336234}
   - component: {fileID: 114527176891699304}
   - component: {fileID: 65630176485812386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +871,7 @@ GameObject:
   - component: {fileID: 33916281394379504}
   - component: {fileID: 114228232378194880}
   - component: {fileID: 65977602342764820}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,8 +891,38 @@ GameObject:
   - component: {fileID: 33294808266050620}
   - component: {fileID: 114081651977618938}
   - component: {fileID: 65811981764273702}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_6x5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1609201980860884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4782004073634698}
+  m_Layer: 9
+  m_Name: RaycastCheck (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1614876789599956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4370195874658590}
+  m_Layer: 9
+  m_Name: RaycastCheck (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +941,7 @@ GameObject:
   - component: {fileID: 33254320184047808}
   - component: {fileID: 114247969946225346}
   - component: {fileID: 65589586653044150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +961,7 @@ GameObject:
   - component: {fileID: 33698929475242648}
   - component: {fileID: 114548052693496194}
   - component: {fileID: 65902064666629560}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,8 +976,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4859555112173962}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: moduleConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1641235831882352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4565071524786710}
+  m_Layer: 9
+  m_Name: RaycastCheck (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +1011,7 @@ GameObject:
   - component: {fileID: 33910552125692958}
   - component: {fileID: 114847792884337220}
   - component: {fileID: 65621576926569120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +1031,7 @@ GameObject:
   - component: {fileID: 33000398496662028}
   - component: {fileID: 114690488848485438}
   - component: {fileID: 65694895558398922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Start_Room_7x5 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +1051,7 @@ GameObject:
   - component: {fileID: 33949981881319676}
   - component: {fileID: 114048776739509860}
   - component: {fileID: 65753261712397278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Start_Room_7x5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,8 +1071,23 @@ GameObject:
   - component: {fileID: 33413800199282124}
   - component: {fileID: 114922304817044740}
   - component: {fileID: 65532961954639686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1660671755207430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4060585685413390}
+  m_Layer: 9
+  m_Name: RaycastCheck (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +1106,7 @@ GameObject:
   - component: {fileID: 33347821559517042}
   - component: {fileID: 114893381932919130}
   - component: {fileID: 65711345311896238}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +1125,7 @@ GameObject:
   - component: {fileID: 23639733410744568}
   - component: {fileID: 33126040549863298}
   - component: {fileID: 114444170089879246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Door_Start_Room (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,8 +1145,38 @@ GameObject:
   - component: {fileID: 33483174940513890}
   - component: {fileID: 114816876013641622}
   - component: {fileID: 65649143968751152}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1681374692362580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4645559968497604}
+  m_Layer: 9
+  m_Name: RaycastCheck (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1690323982887196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4929146443316330}
+  m_Layer: 9
+  m_Name: RaycastCheck (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +1195,7 @@ GameObject:
   - component: {fileID: 33933712697021048}
   - component: {fileID: 114306030816854004}
   - component: {fileID: 65593283490799946}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -974,8 +1214,23 @@ GameObject:
   - component: {fileID: 23651958323085932}
   - component: {fileID: 33675740872734366}
   - component: {fileID: 114354274731736640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Door_Start_Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1749660884602044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4005520210802114}
+  m_Layer: 9
+  m_Name: RaycastCheck (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +1249,7 @@ GameObject:
   - component: {fileID: 33307544214590044}
   - component: {fileID: 114016927270485754}
   - component: {fileID: 65159408245096532}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1269,7 @@ GameObject:
   - component: {fileID: 33608043150878762}
   - component: {fileID: 114045335675883606}
   - component: {fileID: 65623432033524096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1034,8 +1289,23 @@ GameObject:
   - component: {fileID: 33911443957550324}
   - component: {fileID: 114308837081910886}
   - component: {fileID: 65586495476972442}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall_Start_Room_7x5 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1784921556220476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4529596755162378}
+  m_Layer: 9
+  m_Name: RaycastCheck (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1053,7 +1323,7 @@ GameObject:
   - component: {fileID: 33573356997670558}
   - component: {fileID: 114492647879004432}
   - component: {fileID: 114782027371490738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Frame_Temp (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1073,8 +1343,23 @@ GameObject:
   - component: {fileID: 33581339117528260}
   - component: {fileID: 114996247890982122}
   - component: {fileID: 65769017322563296}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1826173076003814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4478505684181214}
+  m_Layer: 9
+  m_Name: RaycastCheck (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,8 +1373,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4258028874848244}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: moduleConnector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1827445941031232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4446628744888640}
+  m_Layer: 9
+  m_Name: RaycastCheck (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1108,7 +1408,7 @@ GameObject:
   - component: {fileID: 33635117814511314}
   - component: {fileID: 114680333609561440}
   - component: {fileID: 65015519668581518}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1128,8 +1428,23 @@ GameObject:
   - component: {fileID: 33274905526576676}
   - component: {fileID: 114632871218496878}
   - component: {fileID: 65489211804819336}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1891641526208680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4313968065375962}
+  m_Layer: 9
+  m_Name: RaycastCheck (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1464,7 @@ GameObject:
   - component: {fileID: 114187301727424896}
   - component: {fileID: 95691004138008802}
   - component: {fileID: 111426948051516352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Temp_NEW (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1484,7 @@ GameObject:
   - component: {fileID: 33561304459301534}
   - component: {fileID: 114187497492172580}
   - component: {fileID: 64604756077599664}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ceiling_Start_Room_Octagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1189,7 +1504,7 @@ GameObject:
   - component: {fileID: 33846907215479648}
   - component: {fileID: 114975696183109516}
   - component: {fileID: 65307803046645864}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,8 +1524,53 @@ GameObject:
   - component: {fileID: 33826798548785720}
   - component: {fileID: 114496981271477142}
   - component: {fileID: 65060058341353994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1927615991754154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4430999215463088}
+  m_Layer: 9
+  m_Name: RaycastCheck (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1934260008053958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4429457546834042}
+  m_Layer: 9
+  m_Name: RaycastCheck (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1936455792829882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4170848802938912}
+  m_Layer: 9
+  m_Name: RaycastCheck (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,7 +1589,7 @@ GameObject:
   - component: {fileID: 33747693897232122}
   - component: {fileID: 114062270334140260}
   - component: {fileID: 65826590285835444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Outer_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,8 +1609,23 @@ GameObject:
   - component: {fileID: 33894216398610310}
   - component: {fileID: 114020187411145440}
   - component: {fileID: 65225855813125892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Inner_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1968606615689346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4346186403312220}
+  m_Layer: 9
+  m_Name: RaycastCheck (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,7 +1644,7 @@ GameObject:
   - component: {fileID: 33677267842847444}
   - component: {fileID: 114373047503443416}
   - component: {fileID: 65989274530960126}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1288,13 +1663,39 @@ GameObject:
   - component: {fileID: 33722433276868832}
   - component: {fileID: 114682078695093910}
   - component: {fileID: 114650833960945246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Frame_Temp (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4001393013481648
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1103782140588562}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4005520210802114
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749660884602044}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: -6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4009297255242222
 Transform:
   m_ObjectHideFlags: 1
@@ -1347,6 +1748,32 @@ Transform:
   m_Father: {fileID: 4310371502418214}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!4 &4060585685413390
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1660671755207430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4067349014964962
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105642659528556}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4070551847836746
 Transform:
   m_ObjectHideFlags: 1
@@ -1405,6 +1832,31 @@ Transform:
   - {fileID: 4414064354521666}
   - {fileID: 4859555112173962}
   - {fileID: 4258028874848244}
+  - {fileID: 4968977902537744}
+  - {fileID: 4001393013481648}
+  - {fileID: 4313968065375962}
+  - {fileID: 4645559968497604}
+  - {fileID: 4716680516950314}
+  - {fileID: 4170848802938912}
+  - {fileID: 4060585685413390}
+  - {fileID: 4929146443316330}
+  - {fileID: 4429457546834042}
+  - {fileID: 4365953114630050}
+  - {fileID: 4782004073634698}
+  - {fileID: 4295613035168774}
+  - {fileID: 4167814863991392}
+  - {fileID: 4186375120875040}
+  - {fileID: 4478505684181214}
+  - {fileID: 4787307341614252}
+  - {fileID: 4430999215463088}
+  - {fileID: 4346186403312220}
+  - {fileID: 4374433590043638}
+  - {fileID: 4565071524786710}
+  - {fileID: 4067349014964962}
+  - {fileID: 4529596755162378}
+  - {fileID: 4005520210802114}
+  - {fileID: 4370195874658590}
+  - {fileID: 4446628744888640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1540,6 +1992,32 @@ Transform:
   m_Father: {fileID: 4573365852065418}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 90.00001}
+--- !u!4 &4167814863991392
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1453818032943676}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4170848802938912
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1936455792829882}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4173076081548718
 Transform:
   m_ObjectHideFlags: 1
@@ -1553,6 +2031,19 @@ Transform:
   m_Father: {fileID: 4310371502418214}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
+--- !u!4 &4186375120875040
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1206978137143728}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4193761031100050
 Transform:
   m_ObjectHideFlags: 1
@@ -1659,6 +2150,19 @@ Transform:
   m_Father: {fileID: 4139086495109570}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
+--- !u!4 &4295613035168774
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387058099417068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4305639107116462
 Transform:
   m_ObjectHideFlags: 1
@@ -1693,6 +2197,19 @@ Transform:
   m_Father: {fileID: 4832480506587130}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4313968065375962
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1891641526208680}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4342067081029468
 Transform:
   m_ObjectHideFlags: 1
@@ -1705,6 +2222,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4254240143957182}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4346186403312220
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968606615689346}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: 20, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4348091097571942
 Transform:
@@ -1732,6 +2262,32 @@ Transform:
   m_Father: {fileID: 4310371502418214}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 90.00001}
+--- !u!4 &4365953114630050
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1333534142688736}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4370195874658590
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614876789599956}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: 20, z: -6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4374346356848892
 Transform:
   m_ObjectHideFlags: 1
@@ -1755,6 +2311,19 @@ Transform:
   - {fileID: 4829250809041722}
   m_Father: {fileID: 4111559668757546}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4374433590043638
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432089041901286}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 20, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4391093212396506
 Transform:
@@ -1831,6 +2400,45 @@ Transform:
   m_Father: {fileID: 4573365852065418}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
+--- !u!4 &4429457546834042
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1934260008053958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4430999215463088
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927615991754154}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4446628744888640
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1827445941031232}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 20, z: -6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4453936130117750
 Transform:
   m_ObjectHideFlags: 1
@@ -1870,6 +2478,19 @@ Transform:
   m_Father: {fileID: 4619276605938264}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4478505684181214
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1826173076003814}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4493761804897238
 Transform:
   m_ObjectHideFlags: 1
@@ -1899,6 +2520,19 @@ Transform:
   m_Father: {fileID: 4573365852065418}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4529596755162378
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1784921556220476}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4564217000395158
 Transform:
   m_ObjectHideFlags: 1
@@ -1912,6 +2546,19 @@ Transform:
   m_Father: {fileID: 4408615880022436}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 90.00001}
+--- !u!4 &4565071524786710
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641235831882352}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 28
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4573365852065418
 Transform:
   m_ObjectHideFlags: 1
@@ -2017,6 +2664,19 @@ Transform:
   m_Father: {fileID: 4374346356848892}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!4 &4645559968497604
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681374692362580}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 20, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4687768066522808
 Transform:
   m_ObjectHideFlags: 1
@@ -2030,6 +2690,19 @@ Transform:
   m_Father: {fileID: 4374346356848892}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 225, z: 90.00001}
+--- !u!4 &4716680516950314
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1543305685526702}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9, y: 20, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4771885304807350
 Transform:
   m_ObjectHideFlags: 1
@@ -2042,6 +2715,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4408615880022436}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4782004073634698
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609201980860884}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4782548631448638
 Transform:
@@ -2058,6 +2744,19 @@ Transform:
   - {fileID: 4129930229094774}
   m_Father: {fileID: 4374346356848892}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4787307341614252
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1483828493573556}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 20, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4829250809041722
 Transform:
@@ -2218,6 +2917,32 @@ Transform:
   - {fileID: 4126475567133008}
   m_Father: {fileID: 4111559668757546}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4929146443316330
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690323982887196}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 20, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4968977902537744
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212765476832274}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4111559668757546}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4970516154553522
 Transform:
@@ -4934,10 +5659,10 @@ BoxCollider:
   m_GameObject: {fileID: 1315102322613290}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 19, y: 1, z: 19}
-  m_Center: {x: 0, y: -1, z: 0}
+  m_Center: {x: 0, y: 10, z: 0}
 --- !u!65 &65621576926569120
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -24265,6 +24990,30 @@ MonoBehaviour:
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65614435953656772}
+  raycastCheckers:
+  - {fileID: 4968977902537744}
+  - {fileID: 4001393013481648}
+  - {fileID: 4313968065375962}
+  - {fileID: 4645559968497604}
+  - {fileID: 4716680516950314}
+  - {fileID: 4170848802938912}
+  - {fileID: 4060585685413390}
+  - {fileID: 4929146443316330}
+  - {fileID: 4429457546834042}
+  - {fileID: 4365953114630050}
+  - {fileID: 4782004073634698}
+  - {fileID: 4295613035168774}
+  - {fileID: 4167814863991392}
+  - {fileID: 4186375120875040}
+  - {fileID: 4478505684181214}
+  - {fileID: 4787307341614252}
+  - {fileID: 4430999215463088}
+  - {fileID: 4346186403312220}
+  - {fileID: 4374433590043638}
+  - {fileID: 4565071524786710}
+  - {fileID: 4067349014964962}
+  - {fileID: 4529596755162378}
+  - {fileID: 4005520210802114}
 --- !u!114 &114880488936819100
 MonoBehaviour:
   m_ObjectHideFlags: 1

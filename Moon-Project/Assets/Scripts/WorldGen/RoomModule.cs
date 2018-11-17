@@ -9,6 +9,7 @@ public class RoomModule : MonoBehaviour
     public int abundance = 1;
     public List<ModuleConnector> connectors;
     public BoxCollider safetyBox;
+    public List<Transform> raycastCheckers;
 
     private bool m_singleEntranceEnforced = false;
     private ModuleConnector m_entranceConnector;
@@ -84,6 +85,7 @@ public class RoomModule : MonoBehaviour
             con.parentModule = this;
         }
         if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
+        safetyBox.enabled = false;
     }
 
     public void SetId(int _id)

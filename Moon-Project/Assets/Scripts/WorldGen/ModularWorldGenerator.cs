@@ -16,7 +16,6 @@ public class ModularWorldGenerator : MonoBehaviour
 
     private int m_totalRarity;
     private List<RoomModule> m_spawnedModules;
-    public List<Vector2Int> occupiedCells;
 
 	void Start()
 	{
@@ -25,6 +24,7 @@ public class ModularWorldGenerator : MonoBehaviour
         {
             mod.SetRarityMinMax(m_totalRarity);
             m_totalRarity += mod.abundance;
+            mod.gameObject.SetActive(false);
         }
         Debug.Log("Loaded " + modules.Length + " modules, total rarity " + m_totalRarity + "!");
 
@@ -61,7 +61,6 @@ public class ModularWorldGenerator : MonoBehaviour
         while(!success && (currentAttempts <= maximumAttempts || neverStop))
         {
             success = true;
-            occupiedCells = new List<Vector2Int>();
 
             if (m_spawnedModules.Count >= 1)
             {
@@ -77,7 +76,6 @@ public class ModularWorldGenerator : MonoBehaviour
             RoomModule startingModule = Instantiate(startModule, transform.position, transform.rotation).GetComponent<RoomModule>();
             startingModule.gameObject.SetActive(true);
             m_spawnedModules.Add(startingModule);
-            bool t = TestSafeBox(startingModule);
 
             List<ModuleConnector> pendingConnections = new List<ModuleConnector>(startingModule.GetExits());
             switch (method)
@@ -91,7 +89,7 @@ public class ModularWorldGenerator : MonoBehaviour
                                 RoomModule newModule = GameObject.Instantiate(GetRandomModuleForConnector(pendingConnections[0], true), transform).GetComponent<RoomModule>();
                                 AlignConnectors(pendingConnections[0], newModule.GetEntrance());
                                 newModule.gameObject.SetActive(true);
-                                if (TestSafeBox(newModule))
+                                if (0 != 1)
                                 {
                                     LinkModules(pendingConnections[0], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
@@ -137,6 +135,7 @@ public class ModularWorldGenerator : MonoBehaviour
                                 
                                 if(TestSafeBox(newModule))
                                 {
+                                    newModule.safetyBox.enabled = true;
                                     LinkModules(pendingConnections[c], newModule.GetEntrance());
                                     newModule.SetId(roomCount);
                                     //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
@@ -217,31 +216,19 @@ public class ModularWorldGenerator : MonoBehaviour
 
     private bool TestSafeBox(RoomModule _module)
     {
-        Vector2 minF, maxF;
-        Vector2Int min, max;
-        Vector3 center = _module.safetyBox.bounds.center;
-        Vector3 pos = _module.gameObject.transform.position;
+        Debug.Log("STARTED RAYCAST TEST");
 
-        minF = new Vector2((- _module.safetyBox.bounds.extents.x) + center.x + pos.x, (- _module.safetyBox.bounds.extents.z) + center.z + pos.z);
-        maxF = new Vector2(_module.safetyBox.bounds.extents.x + center.x + pos.x, _module.safetyBox.bounds.extents.z + center.z + pos.z);
+        RaycastHit hit;
+        Ray ray;
+        LayerMask mask = LayerMask.GetMask("World");
 
-        max = new Vector2Int(Mathf.CeilToInt(maxF.x), Mathf.CeilToInt(maxF.y));
-        min = new Vector2Int(Mathf.FloorToInt(minF.x), Mathf.FloorToInt(minF.y));
-
-        for (int i = 0; i < occupiedCells.Count; i++)
+        foreach(Transform t in _module.raycastCheckers)
         {
-            if((occupiedCells[i].x >= min.x && occupiedCells[i].x <= max.x)
-            && (occupiedCells[i].y >= min.y && occupiedCells[i].y <= max.y))
+            ray = new Ray(t.position, Vector3.down);
+            Physics.Raycast(ray, out hit, 50f, mask, QueryTriggerInteraction.UseGlobal);
+            if(hit.collider)
             {
-                return false;
-            }
-        }
-
-        for (int x = 0; x < max.x; x++)
-        {
-            for (int y = min.y; y < max.y; y++)
-            {
-                occupiedCells.Add(new Vector2Int(x, y));
+                if(hit.collider.gameObject != _module.gameObject) return false;
             }
         }
 
