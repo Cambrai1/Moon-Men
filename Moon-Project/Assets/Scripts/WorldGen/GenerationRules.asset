@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: GenerationRules
   m_EditorClassIdentifier: 
   maximumRooms: 75
-  minimumRooms: 25
+  minimumRooms: 20
   generationMethod: 0
   moduleRules: []

@@ -6240,7 +6240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: straight
   unique: 0
-  abundance: 15
+  abundance: 10
   connectors:
   - transformPoint: {fileID: 4343049538463094}
     isEntrance: 0
