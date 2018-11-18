@@ -199,17 +199,28 @@ public class ModularWorldGenerator : MonoBehaviour
         List<string> excludedCodes = new List<string>();
         foreach(RoomModule mod in loadedModules)
         {
-            bool allowed = false;
+            bool excluded = true;
             foreach(string code in _connector.allowedCodesArray)
             {
-                if (mod.moduleCode == code) allowed = true;
+                if (mod.moduleCode == code) excluded = false;
             }
-            if (!allowed) excludedCodes.Add(mod.moduleCode);
+            if (excluded) excludedCodes.Add(mod.moduleCode);
         }
         List<string> remainingCodes = new List<string>(_connector.allowedCodesArray);
 
-        RoomModule newModule = GameObject.Instantiate(GetRandomModule(_connector), transform).GetComponent<RoomModule>();
+        string r = "";
+        foreach (string m in remainingCodes) { r += m + ", "; }
+        Debug.Log("REMAINING MODULES : " + r);
+        r = "";
+        foreach (string m in excludedCodes) { r += m + ", "; }
+        Debug.Log("EXCLUDED MODULES : " + r);
+
+        List<string> testList = new List<string>();
+        testList.Add("cross");
+
+        RoomModule newModule = GameObject.Instantiate(GetRandomModuleExcluding(_connector, excludedCodes), transform).GetComponent<RoomModule>();
         AlignConnectors(_connector, newModule.GetEntrance());
+
         bool ready = false;
 
         //while (!ready)
@@ -317,23 +328,27 @@ public class ModularWorldGenerator : MonoBehaviour
     }
 	private GameObject GetRandomModuleExcluding(ModuleConnector _connector, List<string> _excludedCodes)
 	{
+        Debug.Log(_excludedCodes.Count + " codes");
         bool foundModule = false;
-        if (_connector == null) return GetSpecificModule("straight");
+        if (_connector == null)
+        {}
         int useModId = 0;
         bool excluded = false;
-        while (!foundModule)
+        int tries = 1;
+        while (!foundModule && tries <= _excludedCodes.Count)
         {
             int random = Random.Range(0, m_totalRarity);
             for (int i = 0; i < loadedModules.Length; i++)
             {
+                excluded = false;
                 if (!foundModule)
                 {
                     foreach (string code in _excludedCodes)
                     {
                         if (loadedModules[i].moduleCode == code) excluded = true;
                     }
-                    if (excluded) { }
-                    else if (loadedModules[i].unique) { }
+                    if (excluded) {}
+                    else if (loadedModules[i].unique) {}
                     else if (random >= loadedModules[i].GetMinRarity() && random <= loadedModules[i].GetMaxRarity())
                     {
                         useModId = i;
@@ -341,6 +356,12 @@ public class ModularWorldGenerator : MonoBehaviour
                     }
                 }
             }
+            tries++;
+        }
+        if(!foundModule)
+        {
+            Debug.Log("STRAIGHT AS AN ARROW");
+            return GetSpecificModule("straight");
         }
 
         return loadedModules[useModId].gameObject;
