@@ -6,12 +6,12 @@ public class AnimationBehaviour : MonoBehaviour {
 
     Animator m_Animator;
     float state = 0;
-	// Use this for initialization
+
 	void Start () {
         m_Animator = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
         if (Input.GetKey(KeyCode.X) && (state == 0))
         {
@@ -24,4 +24,5 @@ public class AnimationBehaviour : MonoBehaviour {
                 state = 0;
         }
 	}
+
 }
