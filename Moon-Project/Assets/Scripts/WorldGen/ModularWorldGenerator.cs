@@ -13,6 +13,7 @@ public class ModularWorldGenerator : MonoBehaviour
 	public RoomModule startModule;
     public RoomModule nullModule;
     public bool visibleIterations = true;
+    public bool showDebug = true;
     [Range(1,1000)]
     public int maximumAttempts = 100;
 
@@ -31,7 +32,7 @@ public class ModularWorldGenerator : MonoBehaviour
         genUi = GameObject.Find("Generation").GetComponent<Text>();
         modulesUi = GameObject.Find("Module").GetComponent<Text>();
 
-        if (autoModules) GetAutoModules();
+        if (autoModules) AutoLoadModules();
         foreach(RoomModule mod in loadedModules)
         {
             mod.SetRarityMinMax(m_totalRarity);
@@ -43,7 +44,7 @@ public class ModularWorldGenerator : MonoBehaviour
         Regenerate();
 	}
 
-    private void GetAutoModules()
+    private void AutoLoadModules()
     {
         int childCount = transform.childCount;
         loadedModules = new RoomModule[childCount];
@@ -137,13 +138,13 @@ public class ModularWorldGenerator : MonoBehaviour
 
             if (m_roomCount <= generationRules.minimumRooms)
             {
-                failReason += ("\nRoom count " + m_roomCount + " below minimum of " + generationRules.minimumRooms + ".");
+                failReason += ("\nModule count " + m_roomCount + " below minimum of " + generationRules.minimumRooms + ".");
                 failReasons++;
                 success = false;
             }
             if (m_roomCount >= generationRules.maximumRooms)
             {
-                failReason += ("\nRoom count " + m_roomCount + " above maximum of " + generationRules.maximumRooms + ".");
+                failReason += ("\nModule count " + m_roomCount + " above maximum of " + generationRules.maximumRooms + ".");
                 failReasons++;
                 success = false;
             }
@@ -157,7 +158,7 @@ public class ModularWorldGenerator : MonoBehaviour
                 }
             }
             if (neverStop) success = false;
-            if(!success && !neverStop)
+            if(!success && !neverStop && showDebug)
             {
                 if(failReasons >= 2)
                 {
@@ -199,14 +200,13 @@ public class ModularWorldGenerator : MonoBehaviour
         }
         List<string> remainingCodes = new List<string>(_connector.allowedCodesArray);
 
-        RoomModule newModule = new RoomModule();
-
-
+        RoomModule newModule = GameObject.Instantiate(GetRandomModuleExcluding(_connector, excludedCodes), transform).GetComponent<RoomModule>();
 
         bool ready = false;
 
         while (!ready && remainingCodes.Count >= 1 && m_roomTry <= loadedModules.Length)
         {
+            if(newModule.gameObject != null) Destroy(newModule.gameObject);
             newModule = GameObject.Instantiate(GetRandomModuleExcluding(_connector, excludedCodes), transform).GetComponent<RoomModule>();
             AlignConnectors(_connector, newModule.GetEntrance());
             if (TestSafeBox(newModule))
