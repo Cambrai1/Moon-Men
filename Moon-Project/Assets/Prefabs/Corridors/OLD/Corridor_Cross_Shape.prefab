@@ -99822,42 +99822,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: cross
   unique: 0
-  abundance: 3
+  abundance: 4
   connectors:
   - transformPoint: {fileID: 4700246762543000}
     isEntrance: 1
-    allowedCodes: dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight,l
     allowedCodesArray:
     - dead_end
     - dead_end_door
     - straight
+    - l
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4117216763353234}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight,l
     allowedCodesArray:
     - dead_end
     - dead_end_door
     - straight
+    - l
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4294475686460458}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight,l
     allowedCodesArray:
     - dead_end
     - dead_end_door
     - straight
+    - l
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4985831894010562}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight
+    allowedCodes: dead_end,dead_end_door,straight,l
     allowedCodesArray:
     - dead_end
     - dead_end_door
     - straight
+    - l
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65461730691518360}

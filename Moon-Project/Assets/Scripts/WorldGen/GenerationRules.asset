@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c85b22b275e13448979adc71f13b28f, type: 3}
   m_Name: GenerationRules
   m_EditorClassIdentifier: 
-  maximumRooms: 75
-  minimumRooms: 20
+  maximumRooms: 100
+  minimumRooms: 35
   generationMethod: 0
   moduleRules: []
