@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomModule : MonoBehaviour
 {
-    public string moduleCode = "untagged";
+    public string moduleCode = "error";
     public bool unique = false;
     public int abundance = 1;
     public List<ModuleConnector> connectors;

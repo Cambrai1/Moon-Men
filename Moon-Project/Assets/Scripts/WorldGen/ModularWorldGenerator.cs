@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class ModularWorldGenerator : MonoBehaviour
@@ -8,38 +9,50 @@ public class ModularWorldGenerator : MonoBehaviour
     public GenerationRules generationRules;
     public bool neverStop = false;
     public bool autoModules = true;
-	public RoomModule[] modules;
+	public RoomModule[] loadedModules;
 	public RoomModule startModule;
+    public RoomModule nullModule;
     public bool visibleIterations = true;
+    public bool showDebug = true;
     [Range(1,1000)]
     public int maximumAttempts = 100;
 
     private int m_totalRarity;
     private List<RoomModule> m_spawnedModules;
+    private int m_roomCount = 0;
+    private int m_currentAttempts = 0;
+    private int m_roomTry = 0;
+    private List<ModuleConnector> m_pendingConnections;
 
-	void Start()
+    private Text timeUi, genUi, modulesUi;
+
+    void Start()
 	{
-        if (autoModules) GetAutoModules();
-        foreach(RoomModule mod in modules)
+        timeUi = GameObject.Find("Time").GetComponent<Text>();
+        genUi = GameObject.Find("Generation").GetComponent<Text>();
+        modulesUi = GameObject.Find("Module").GetComponent<Text>();
+
+        if (autoModules) AutoLoadModules();
+        foreach(RoomModule mod in loadedModules)
         {
             mod.SetRarityMinMax(m_totalRarity);
             m_totalRarity += mod.abundance;
             mod.gameObject.SetActive(false);
         }
-        Debug.Log("Loaded " + modules.Length + " modules, total rarity " + m_totalRarity + "!");
+        Debug.Log("Loaded " + loadedModules.Length + " modules, total rarity " + m_totalRarity + "!");
 
         Regenerate();
 	}
 
-    private void GetAutoModules()
+    private void AutoLoadModules()
     {
         int childCount = transform.childCount;
-        modules = new RoomModule[childCount];
+        loadedModules = new RoomModule[childCount];
         for (int i = 0; i < childCount; i++)
         {
-            modules[i] = transform.GetChild(i).GetComponent<RoomModule>();
+            loadedModules[i] = transform.GetChild(i).GetComponent<RoomModule>();
         }
-        startModule = modules[0];
+        startModule = loadedModules[0];
     }
     
     public void Regenerate()
@@ -48,17 +61,16 @@ public class ModularWorldGenerator : MonoBehaviour
     }
     private IEnumerator RegenerateCoroutine()
     {
-        GenerationMethod method = generationRules.generationMethod;
         if (neverStop) visibleIterations = true;
         bool success = false;
-        int roomCount = 0;
-        int currentAttempts = 0;
         string failReason = "";
         int failReasons = 0;
+        m_roomCount = 0;
+        m_currentAttempts = 0;
         m_spawnedModules = new List<RoomModule>();
         float startTime = Time.time;
 
-        while(!success && (currentAttempts <= maximumAttempts || neverStop))
+        while(!success && (m_currentAttempts <= maximumAttempts || neverStop))
         {
             success = true;
 
@@ -70,113 +82,69 @@ public class ModularWorldGenerator : MonoBehaviour
                 }
             }
             m_spawnedModules = new List<RoomModule>();
-            roomCount = 0;
-            int roomTry = 0;
+            m_roomCount = 0;
+            m_roomTry = 0;
 
             RoomModule startingModule = Instantiate(startModule, transform.position, transform.rotation).GetComponent<RoomModule>();
             startingModule.gameObject.SetActive(true);
             m_spawnedModules.Add(startingModule);
 
-            List<ModuleConnector> pendingConnections = new List<ModuleConnector>(startingModule.GetExits());
-            switch (method)
+            m_pendingConnections = new List<ModuleConnector>(startingModule.GetExits());
+            switch (generationRules.generationMethod)
             {
                 case GenerationMethod.widthFirst:
                     {
-                        while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
+                        while (m_pendingConnections.Count >= 1 && m_roomCount <= generationRules.maximumRooms)
                         {
-                            if (pendingConnections[0] != null && roomTry <= 10)
+                            if (m_pendingConnections[0] != null)
                             {
-                                RoomModule newModule = GameObject.Instantiate(GetRandomModuleForConnector(pendingConnections[0], true), transform).GetComponent<RoomModule>();
-                                AlignConnectors(pendingConnections[0], newModule.GetEntrance());
-                                newModule.gameObject.SetActive(true);
-                                if (0 != 1)
-                                {
-                                    LinkModules(pendingConnections[0], newModule.GetEntrance());
-                                    newModule.SetId(roomCount);
-                                    //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
-                                    newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode);
-                                    m_spawnedModules.Add(newModule);
-                                    roomCount++;
-                                    pendingConnections.RemoveAt(0);
-
-                                    foreach (ModuleConnector con in newModule.GetExits())
-                                    {
-                                        pendingConnections.Add(con);
-                                    }
-                                    pendingConnections.Remove(newModule.GetEntrance());
-
-                                    if (visibleIterations) yield return null;
-                                }
-                                else
-                                {
-                                    GameObject.Destroy(newModule.gameObject);
-                                    roomTry++;
-                                }
+                                RoomModule newModule = TrySpawnRandomModule(m_pendingConnections[0]);
                             }
                             else
                             {
                                 Debug.LogWarning("PENDING CONNECTIONS [0] SOMEHOW IS NULL");
-                                pendingConnections.RemoveAt(0);
+                                m_pendingConnections.RemoveAt(0);
                             }
+
+                            timeUi.text = "Time : " + (Time.time - startTime);
+                            modulesUi.text = "Modules : " + m_spawnedModules.Count;
+                            if (visibleIterations) yield return null;
                         }
                     }
                     break;
 
                 case GenerationMethod.depthFirst:
                     {
-                        while (pendingConnections.Count >= 1 && roomCount <= generationRules.maximumRooms)
+                        while (m_pendingConnections.Count >= 1 && m_roomCount <= generationRules.maximumRooms)
                         {
-                            int c = pendingConnections.Count - 1;
-                            if (pendingConnections[c] != null && roomTry <= 10)
+                            int c = m_pendingConnections.Count - 1;
+                            if (m_pendingConnections[c] != null)
                             {
-                                RoomModule newModule = Instantiate(GetRandomModuleForConnector(pendingConnections[c], true), transform).GetComponent<RoomModule>();
-                                AlignConnectors(pendingConnections[c], newModule.GetEntrance());
-                                newModule.gameObject.SetActive(true);
-                                
-                                if(TestSafeBox(newModule))
-                                {
-                                    newModule.safetyBox.enabled = true;
-                                    LinkModules(pendingConnections[c], newModule.GetEntrance());
-                                    newModule.SetId(roomCount);
-                                    //Debug.Log("Spawned Room " + roomCount + ": " + newModule.moduleCode);
-                                    newModule.gameObject.name = ("Room " + roomCount + " : " + newModule.moduleCode);
-                                    m_spawnedModules.Add(newModule);
-                                    roomCount++;
-                                    pendingConnections.RemoveAt(c);
-
-                                    foreach (ModuleConnector con in newModule.GetExits())
-                                    {
-                                        pendingConnections.Add(con);
-                                    }
-                                    pendingConnections.Remove(newModule.GetEntrance());
-
-                                    if (visibleIterations) yield return null;
-                                }
-                                else
-                                {
-                                    GameObject.Destroy(newModule.gameObject);
-                                    roomTry++;
-                                }
+                                RoomModule newModule = TrySpawnRandomModule(m_pendingConnections[c]);
                             }
                             else
                             {
                                 Debug.LogWarning("PENDING CONNECTIONS [" + c + "] SOMEHOW IS NULL");
-                                pendingConnections.RemoveAt(c);
+                                m_pendingConnections.RemoveAt(c);
                             }
+
+                            timeUi.text = "Time : " + (Time.time - startTime);
+                            modulesUi.text = "Modules : " + m_spawnedModules.Count;
+                            if (visibleIterations) yield return null;
                         }
                     }
                     break;
             }
 
-            if (roomCount <= generationRules.minimumRooms)
+            if (m_roomCount <= generationRules.minimumRooms)
             {
-                failReason += ("\nRoom count " + roomCount + " below minimum of " + generationRules.minimumRooms + ".");
+                failReason += ("\nModule count " + m_roomCount + " below minimum of " + generationRules.minimumRooms + ".");
                 failReasons++;
                 success = false;
             }
-            if (roomCount >= generationRules.maximumRooms)
+            if (m_roomCount >= generationRules.maximumRooms)
             {
-                failReason += ("\nRoom count " + roomCount + " above maximum of " + generationRules.maximumRooms + ".");
+                failReason += ("\nModule count " + m_roomCount + " above maximum of " + generationRules.maximumRooms + ".");
                 failReasons++;
                 success = false;
             }
@@ -190,8 +158,7 @@ public class ModularWorldGenerator : MonoBehaviour
                 }
             }
             if (neverStop) success = false;
-
-            if(!success && !neverStop)
+            if(!success && !neverStop && showDebug)
             {
                 if(failReasons >= 2)
                 {
@@ -205,30 +172,105 @@ public class ModularWorldGenerator : MonoBehaviour
                 failReason = "";
                 failReasons = 0;
             }
+            m_currentAttempts++;
 
-            currentAttempts++;
+            genUi.text = "Generation : " + m_currentAttempts;
         }
 
-        Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + currentAttempts + " ATTEMPTS!");
+        timeUi.text = "Time : " + (Time.time - startTime);
+        genUi.text = "Generation : " + m_currentAttempts;
+        modulesUi.text = "Modules : " + m_spawnedModules.Count;
+        Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + m_currentAttempts + " ATTEMPTS!");
 
         yield return null;
     }
 
+    private RoomModule TrySpawnRandomModule(ModuleConnector _connector)
+    {
+        m_roomTry = 0;
+        List<string> excludedCodes = new List<string>();
+        foreach(RoomModule mod in loadedModules)
+        {
+            bool excluded = true;
+            foreach(string code in _connector.allowedCodesArray)
+            {
+                if (mod.moduleCode == code) excluded = false;
+            }
+            if (excluded) excludedCodes.Add(mod.moduleCode);
+        }
+        List<string> remainingCodes = new List<string>(_connector.allowedCodesArray);
+
+        RoomModule newModule = GameObject.Instantiate(GetRandomModuleExcluding(_connector, excludedCodes), transform).GetComponent<RoomModule>();
+
+        bool ready = false;
+
+        while (!ready && remainingCodes.Count >= 1 && m_roomTry <= loadedModules.Length)
+        {
+            if(newModule.gameObject != null) Destroy(newModule.gameObject);
+            newModule = GameObject.Instantiate(GetRandomModuleExcluding(_connector, excludedCodes), transform).GetComponent<RoomModule>();
+            AlignConnectors(_connector, newModule.GetEntrance());
+            if (TestSafeBox(newModule))
+            {
+                //  MODULE IS GOOD TO GO, SET IT UP
+                m_roomTry = 0;                
+                remainingCodes = new List<string>();
+                ready = true;
+            }
+            else
+            {
+                //  MODULE DOESNT FIT, DESTROY IT
+                remainingCodes.Remove(newModule.moduleCode);
+                excludedCodes.Add(newModule.moduleCode);
+                Destroy(newModule.gameObject);
+                m_roomTry++;
+            }
+        }
+
+        if(!ready)
+        {
+            newModule = GameObject.Instantiate(nullModule, transform).GetComponent<RoomModule>();
+            AlignConnectors(_connector, newModule.GetEntrance());
+        }
+        LinkModules(_connector, newModule.GetEntrance());
+        newModule.SetId(m_roomCount);
+        newModule.gameObject.name = ("Room " + m_roomCount + " : " + newModule.moduleCode);
+
+        newModule.gameObject.SetActive(true);
+        m_spawnedModules.Add(newModule);
+        m_roomCount++;
+
+        switch (generationRules.generationMethod)
+        {
+            case GenerationMethod.widthFirst:
+                m_pendingConnections.RemoveAt(0);
+                break;
+            case GenerationMethod.depthFirst:
+                m_pendingConnections.Remove(newModule.GetEntrance());
+                break;
+        }
+
+        foreach (ModuleConnector con in newModule.GetExits())
+        {
+            m_pendingConnections.Add(con);
+        }
+        m_pendingConnections.Remove(newModule.GetEntrance());
+
+        return newModule;
+    }
+
     private bool TestSafeBox(RoomModule _module)
     {
-        Debug.Log("STARTED RAYCAST TEST");
-
         RaycastHit hit;
         Ray ray;
         LayerMask mask = LayerMask.GetMask("World");
 
-        foreach(Transform t in _module.raycastCheckers)
+        for (int i = 0; i < _module.raycastCheckers.Count; i++)
         {
-            ray = new Ray(t.position, Vector3.down);
+            ray = new Ray(_module.raycastCheckers[i].position, Vector3.down);
             Physics.Raycast(ray, out hit, 50f, mask, QueryTriggerInteraction.UseGlobal);
-            if(hit.collider)
+            if (hit.collider)
             {
-                if(hit.collider.gameObject != _module.gameObject) return false;
+                if (hit.collider.gameObject != _module.gameObject) return false;
             }
         }
 
@@ -268,63 +310,55 @@ public class ModularWorldGenerator : MonoBehaviour
 		newModule.transform.position += correctiveTranslation;
 	}
 
-	private GameObject GetRandomModuleForConnector(ModuleConnector _connector, bool _useRarity)
+    private GameObject GetRandomModule(ModuleConnector _connector)
+    {
+        return GetRandomModuleExcluding(_connector, new List<string>());
+    }
+	private GameObject GetRandomModuleExcluding(ModuleConnector _connector, List<string> _excludedCodes)
 	{
         bool foundModule = false;
-
-        if (_connector == null) return GetSpecificModule("straight");
-
+        if (_connector == null)
+        {}
         int useModId = 0;
-
-        while (!foundModule)
+        bool excluded = false;
+        int tries = 1;
+        while (!foundModule && tries <= _excludedCodes.Count)
         {
-            if(_useRarity)
+            int random = Random.Range(0, m_totalRarity);
+            for (int i = 0; i < loadedModules.Length; i++)
             {
-                int random = Random.Range(0, m_totalRarity);
-                for (int i = 0; i < modules.Length; i++)
+                excluded = false;
+                if (!foundModule)
                 {
-                    if (!foundModule)
+                    foreach (string code in _excludedCodes)
                     {
-                        if(modules[i].unique)
-                        {
-
-                        }
-                        else if (random >= modules[i].GetMinRarity() && random <= modules[i].GetMaxRarity())
-                        {
-                            useModId = i;
-                            foundModule = true;
-                        }
+                        if (loadedModules[i].moduleCode == code) excluded = true;
                     }
-                }
-            }
-            else
-            {
-                int random = Random.Range(0, _connector.allowedCodesArray.Length);
-                string randomModuleCode = _connector.allowedCodesArray[random];
-                for (int i = 0; i < modules.Length; i++)
-                {
-                    if (modules[i].unique)
-                    {
-
-                    }
-                    else if (modules[i].moduleCode == randomModuleCode)
+                    if (excluded) {}
+                    else if (loadedModules[i].unique) {}
+                    else if (random >= loadedModules[i].GetMinRarity() && random <= loadedModules[i].GetMaxRarity())
                     {
                         useModId = i;
                         foundModule = true;
                     }
                 }
             }
+            tries++;
+        }
+        if(!foundModule)
+        {
+            return GetSpecificModule("straight");
         }
 
-        return modules[useModId].gameObject;
+        return loadedModules[useModId].gameObject;
     }
     private GameObject GetSpecificModule(string _code)
     {
-        for (int i = 0; i < modules.Length; i++)
+        for (int i = 0; i < loadedModules.Length; i++)
         {
-            if (modules[i].moduleCode == _code)
+            if (loadedModules[i].moduleCode == _code)
             {
-                return modules[i].gameObject;
+                return loadedModules[i].gameObject;
             }
         }
         return null;
