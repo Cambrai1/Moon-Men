@@ -18,12 +18,12 @@ public class AnimationBehaviour : MonoBehaviour {
 
 	void Update () {
         dist = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
-        if ((dist <= 5) && (state == 0))
+        if ((dist < 5) && (state == 0))
         {
             m_Animator.Play("Door_Open");
             state = 1;
         }
-        else if ((dist > 5) && (state == 1))
+        else if ((dist > 7) && (state == 1))
         {
             m_Animator.Play("Door_Close");
             state = 0;
