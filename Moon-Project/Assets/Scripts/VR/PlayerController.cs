@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 //  CLASS IS USED TO CONTROLL PLAYER MOVEMENT AND INTERACTION
 public class PlayerController : MonoBehaviour {
@@ -13,6 +14,21 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private PlayerMovementSettings m_movementSettings;      //  The movement settings
+
+    [Header("Bounds")]
+    [SerializeField]
+    private bool m_useBounds = true;
+    [SerializeField]
+    private float m_boundsRadius = 0.2f;
+    [SerializeField]
+    private LayerMask m_boundsMask;
+    [SerializeField]
+    private PostProcessProfile m_postProfile;
+    private float m_vignetteFade = 0.0f;
+    [SerializeField]
+    private float m_boundsFadeSpeed = 1.0f;
+    private Vignette m_vignette;
+    public bool forceVignette = false;
 
     [Header("Input")]
 
@@ -79,6 +95,8 @@ public class PlayerController : MonoBehaviour {
             m_powerIcon = powerUi.GetChild(0).GetComponent<Image>();
             m_powerBar = powerUi.GetChild(1).GetComponent<Image>();
         }
+
+        m_vignette = m_postProfile.GetSetting<Vignette>();
     }
 
     private void Update()
@@ -95,6 +113,9 @@ public class PlayerController : MonoBehaviour {
 
         //  UPDATE WRIST UI
         UpdateWristUi();
+
+        //  CHECK PLAYER BOUNDS
+        PlayerBounds();
     }
 
     private void GetInput()
@@ -334,6 +355,20 @@ public class PlayerController : MonoBehaviour {
     public void DecreasePowerLevel(float _amount)
     {
         SetPowerLevel(power - _amount);
+    }
+
+    private void PlayerBounds()
+    {
+        if (!m_useBounds) return;
+        if (forceVignette || (m_useBounds && Physics.CheckSphere(m_headTransform.position, m_boundsRadius, m_boundsMask)))
+        {
+            m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 1.0f, m_boundsFadeSpeed * Time.deltaTime);
+        }
+        else
+        {
+            m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 0.0f, m_boundsFadeSpeed * Time.deltaTime);
+        }
+        m_postProfile.GetSetting<Vignette>().opacity.value = m_vignetteFade;
     }
 }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Post
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114609346007671698}
   - {fileID: 114977612180098048}
---- !u!114 &114609346007671698
+  - {fileID: 114255000759541006}
+--- !u!114 &114255000759541006
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22,34 +22,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
-  m_Name: ScreenSpaceReflections
+  m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
+  m_Name: Vignette
   m_EditorClassIdentifier: 
   active: 1
   enabled:
     overrideState: 1
     value: 1
-  preset:
+  mode:
     overrideState: 1
-    value: 3
-  maximumIterationCount:
+    value: 1
+  color:
     overrideState: 0
-    value: 16
-  resolution:
+    value: {r: 0, g: 0, b: 0, a: 1}
+  center:
+    overrideState: 0
+    value: {x: 0.5, y: 0.5}
+  intensity:
+    overrideState: 1
+    value: 1
+  smoothness:
+    overrideState: 1
+    value: 1
+  roundness:
+    overrideState: 1
+    value: 1
+  rounded:
     overrideState: 0
     value: 0
-  thickness:
-    overrideState: 0
-    value: 8
-  maximumMarchDistance:
-    overrideState: 0
-    value: 100
-  distanceFade:
-    overrideState: 0
-    value: 0.5
-  vignette:
-    overrideState: 0
-    value: 0.5
+  mask:
+    overrideState: 1
+    value: {fileID: 8400000, guid: 005ed5a6df2f5ff468efd6497d37fefa, type: 2}
+    defaultState: 1
+  opacity:
+    overrideState: 1
+    value: 0
 --- !u!114 &114977612180098048
 MonoBehaviour:
   m_ObjectHideFlags: 3
