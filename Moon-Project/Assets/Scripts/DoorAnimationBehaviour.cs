@@ -26,28 +26,32 @@ public class DoorAnimationBehaviour : MonoBehaviour {
             }
         }
 	}
-	
 
 	void Update () {
-        if (isButtonControlled == false)
+        switch (isButtonControlled)
         {
-            dist = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
-            if ((dist < 5) && (isDoorOpen == false))
-            {
-                m_Animator.Play("Door_Open");
-                isDoorOpen = true;
-            }
-            else if ((dist > 7) && (isDoorOpen == true))
-            {
-                m_Animator.Play("Door_Close");
-                isDoorOpen = false;
-            }
+            case true:
+                {            
+                    break;
+                }
+            case false:
+                {
+                    dist = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
+                    if ((dist < 5) && (isDoorOpen == false))
+                    {
+                        m_Animator.Play("Door_Open");
+                        isDoorOpen = true;
+                    }
+                    else if ((dist > 7) && (isDoorOpen == true))
+                    {
+                        m_Animator.Play("Door_Close");
+                        isDoorOpen = false;
+                    }
+                    break;
+                }
         }
-        else
-        {
-            //check for button press and then relay door open action
-        }
-            
+      
     }
+    
 
 }
