@@ -970,7 +970,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957965358011676}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 85, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6341,24 +6341,28 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4343049538463094}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
     - l
     - straight
+    - room
+    - curve
     parentModule: {fileID: 114904580360592290}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4790983152567958}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
     - l
     - straight
+    - room
+    - curve
     parentModule: {fileID: 114904580360592290}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65753891235354996}
@@ -6485,6 +6489,6 @@ ReflectionProbe:
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 1
+  m_Importance: 2
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}

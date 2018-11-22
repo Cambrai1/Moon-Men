@@ -1884,7 +1884,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315102322613290}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14333,18 +14333,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -19180,18 +19180,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -25107,18 +25107,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -25938,35 +25938,41 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4414064354521666}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
     - l
     - straight
+    - room
+    - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4859555112173962}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
     - l
     - straight
+    - room
+    - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4258028874848244}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
     - cross
     - dead_end
     - dead_end_door
     - l
     - straight
+    - room
+    - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65614435953656772}
@@ -31211,6 +31217,6 @@ ReflectionProbe:
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 1
+  m_Importance: 2
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}

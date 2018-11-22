@@ -5570,7 +5570,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478868463554826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -20120,7 +20120,7 @@ BoxCollider:
   m_GameObject: {fileID: 1478868463554826}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 20, y: 1, z: 20}
   m_Center: {x: 0, y: 10, z: 0}
@@ -100153,42 +100153,52 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4700246762543000}
     isEntrance: 1
-    allowedCodes: dead_end,dead_end_door,straight,l
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
+    - cross
     - dead_end
     - dead_end_door
-    - straight
     - l
+    - straight
+    - room
+    - curve
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4117216763353234}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight,l
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
+    - cross
     - dead_end
     - dead_end_door
-    - straight
     - l
+    - straight
+    - room
+    - curve
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4294475686460458}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight,l
+    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
     allowedCodesArray:
+    - cross
     - dead_end
     - dead_end_door
-    - straight
     - l
+    - straight
+    - room
+    - curve
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4985831894010562}
     isEntrance: 0
-    allowedCodes: dead_end,dead_end_door,straight,l
+    allowedCodes: dead_end,dead_end_door,straight,l,curve
     allowedCodesArray:
     - dead_end
     - dead_end_door
     - straight
     - l
+    - curve
     parentModule: {fileID: 114923902725504534}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65461730691518360}
@@ -104529,6 +104539,6 @@ ReflectionProbe:
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 1
+  m_Importance: 2
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}
