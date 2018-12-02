@@ -32,27 +32,32 @@ public class ModularWorldGenerator : MonoBehaviour
         genUi = GameObject.Find("Generation").GetComponent<Text>();
         modulesUi = GameObject.Find("Module").GetComponent<Text>();
 
-        if (autoModules) AutoLoadModules();
-        foreach(RoomModule mod in loadedModules)
+        generationRules.SetUp();
+        if (autoModules) LoadModulesFromChildren();
+        foreach (RoomModule mod in loadedModules)
         {
-            mod.SetRarityMinMax(m_totalRarity);
-            m_totalRarity += mod.abundance;
             mod.gameObject.SetActive(false);
         }
-        Debug.Log("Loaded " + loadedModules.Length + " modules, total rarity " + m_totalRarity + "!");
 
         Regenerate();
 	}
 
-    private void AutoLoadModules()
+    public void LoadModulesFromChildren()
     {
+        m_totalRarity = 0;
         int childCount = transform.childCount;
         loadedModules = new RoomModule[childCount];
         for (int i = 0; i < childCount; i++)
         {
             loadedModules[i] = transform.GetChild(i).GetComponent<RoomModule>();
         }
-        startModule = loadedModules[0];
+        if(!startModule) startModule = loadedModules[0];
+        foreach (RoomModule mod in loadedModules)
+        {
+            mod.SetRarityMinMax(m_totalRarity);
+            m_totalRarity += mod.abundance;
+        }
+        Debug.Log("Loaded " + loadedModules.Length + " modules, total rarity " + m_totalRarity + "!");
     }
     
     public void Regenerate()
@@ -92,7 +97,7 @@ public class ModularWorldGenerator : MonoBehaviour
             m_pendingConnections = new List<ModuleConnector>(startingModule.GetExits());
             switch (generationRules.generationMethod)
             {
-                case GenerationMethod.widthFirst:
+                case GenerationMethod.original:
                     {
                         while (m_pendingConnections.Count >= 1 && m_roomCount <= generationRules.maximumRooms)
                         {
@@ -113,25 +118,9 @@ public class ModularWorldGenerator : MonoBehaviour
                     }
                     break;
 
-                case GenerationMethod.depthFirst:
+                case GenerationMethod.predictive:
                     {
-                        while (m_pendingConnections.Count >= 1 && m_roomCount <= generationRules.maximumRooms)
-                        {
-                            int c = m_pendingConnections.Count - 1;
-                            if (m_pendingConnections[c] != null)
-                            {
-                                RoomModule newModule = TrySpawnRandomModule(m_pendingConnections[c]);
-                            }
-                            else
-                            {
-                                Debug.LogWarning("PENDING CONNECTIONS [" + c + "] SOMEHOW IS NULL");
-                                m_pendingConnections.RemoveAt(c);
-                            }
 
-                            timeUi.text = "Time : " + (Time.time - startTime);
-                            modulesUi.text = "Modules : " + m_spawnedModules.Count;
-                            if (visibleIterations) yield return null;
-                        }
                     }
                     break;
             }
@@ -239,15 +228,7 @@ public class ModularWorldGenerator : MonoBehaviour
         m_spawnedModules.Add(newModule);
         m_roomCount++;
 
-        switch (generationRules.generationMethod)
-        {
-            case GenerationMethod.widthFirst:
-                m_pendingConnections.RemoveAt(0);
-                break;
-            case GenerationMethod.depthFirst:
-                m_pendingConnections.Remove(newModule.GetEntrance());
-                break;
-        }
+        m_pendingConnections.RemoveAt(0);
 
         foreach (ModuleConnector con in newModule.GetExits())
         {
@@ -322,6 +303,16 @@ public class ModularWorldGenerator : MonoBehaviour
         int useModId = 0;
         bool excluded = false;
         int tries = 1;
+        for(int i = 0; i < generationRules.moduleRules.Count; i++)
+        {
+            if(_connector.parentModule.moduleCode == generationRules.moduleRules[i].moduleCode)
+            {
+                for(int c = 0; c < generationRules.moduleRules[i].bannedCodesArray.Length; c++)
+                {
+                    _excludedCodes.Add(generationRules.moduleRules[i].bannedCodesArray[c]);
+                }
+            }
+        }
         while (!foundModule && tries <= _excludedCodes.Count)
         {
             int random = Random.Range(0, m_totalRarity);

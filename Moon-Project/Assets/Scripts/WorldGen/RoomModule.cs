@@ -6,6 +6,7 @@ public class RoomModule : MonoBehaviour
 {
     public string moduleCode = "error";
     public bool unique = false;
+    public bool includeInCount = true;
     public int abundance = 1;
     public List<ModuleConnector> connectors;
     public BoxCollider safetyBox;
