@@ -3136,7 +3136,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -3173,7 +3173,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -3210,7 +3210,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -3247,7 +3247,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -18191,6 +18191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleCode: start
   unique: 1
+  includeInCount: 1
   abundance: 1
   connectors:
   - transformPoint: {fileID: 4414064354521666}
@@ -18206,6 +18207,8 @@ MonoBehaviour:
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
+    linkedConnectorOnModule: 0
+    localId: 0
   - transformPoint: {fileID: 4859555112173962}
     isEntrance: 0
     allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
@@ -18219,6 +18222,8 @@ MonoBehaviour:
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
+    linkedConnectorOnModule: 0
+    localId: 1
   - transformPoint: {fileID: 4258028874848244}
     isEntrance: 0
     allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
@@ -18232,6 +18237,8 @@ MonoBehaviour:
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
+    linkedConnectorOnModule: 0
+    localId: 2
   safetyBox: {fileID: 65614435953656772}
   raycastCheckers:
   - {fileID: 4968977902537744}

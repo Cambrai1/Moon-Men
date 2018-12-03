@@ -80,10 +80,13 @@ public class RoomModule : MonoBehaviour
 
     public void SetUp()
     {
+        int i = 0;
         foreach (ModuleConnector con in connectors)
         {
             con.allowedCodesArray = con.allowedCodes.Split(',');
             con.parentModule = this;
+            con.localId = i;
+            i++;
         }
         if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
         safetyBox.enabled = false;
@@ -109,8 +112,10 @@ public class ModuleConnector
 
     public RoomModule parentModule;
     public RoomModule linkedModule;
+    public int linkedConnectorOnModule;
 
     private int uniqueId = 0;
+    public int localId = 0;
     public void SetUniqueId(int _id)
     {
         uniqueId = _id;

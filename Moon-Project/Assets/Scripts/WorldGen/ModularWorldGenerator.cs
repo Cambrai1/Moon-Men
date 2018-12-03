@@ -415,6 +415,8 @@ public class ModularWorldGenerator : MonoBehaviour
         {
             _a.linkedModule = _b.parentModule;
             _b.linkedModule = _a.parentModule;
+            _a.linkedConnectorOnModule = _b.localId;
+            _b.linkedConnectorOnModule = _a.localId;
             _a.SetUniqueId(m_newestConnectionID);
             _b.SetUniqueId(m_newestConnectionID);
         }
@@ -531,10 +533,14 @@ public class ModularWorldGenerator : MonoBehaviour
                 sMod.code = mod.moduleCode;
                 sMod.position = mod.transform.position;
                 sMod.rotation = Mathf.RoundToInt(mod.transform.eulerAngles.y);
-                sMod.connectedConnectors = new int[mod.connectors.Count];
+                sMod.connectedModuleId = new int[mod.connectors.Count];
+                sMod.connectedModuleCodes = new string[mod.connectors.Count];
+                sMod.connections = new SerializedConnector[mod.connectors.Count];
                 for (int c = 0; c < mod.connectors.Count; c++)
                 {
-                    sMod.connectedConnectors[c] = mod.connectors[c].linkedModule.GetId();
+                    sMod.connectedModuleId[c] = mod.connectors[c].linkedModule.GetId();
+                    sMod.connectedModuleCodes[c] = mod.connectors[c].linkedModule.moduleCode;
+                    sMod.connections[c] = new SerializedConnector(c, mod.connectors[c].linkedConnectorOnModule);
                 }
 
                 sWorld.modules[m] = sMod;
@@ -555,19 +561,29 @@ public class ModularWorldGenerator : MonoBehaviour
         {
             RoomModule newModule = Instantiate(GetSpecificModule(sMod.code), sMod.position, Quaternion.Euler(0, sMod.rotation, 0), transform).GetComponent<RoomModule>();
             newModule.gameObject.SetActive(true);
+
             AddModuleConnectorsToList(newModule);
             m_spawnedModules.Add(newModule);
             m_roomCount++;
             newModule.SetId(m_roomCount);
             newModule.gameObject.name = ("Room " + m_roomCount + " : " + newModule.moduleCode);
         }
+
+        int i = 0;
+
         for(int m = 0; m < m_spawnedModules.Count; m++)
         {
             for(int c = 0; c < m_spawnedModules[m].connectors.Count; c++)
             {
-                LinkModules(GetConnectorFromId(c), GetConnectorFromId(sWorld.modules[m].connectedConnectors[c]));
+                if(sWorld.modules[m].connectedModuleCodes[c] != "null")
+                {
+                    LinkModules(GetConnectorFromId(i), GetConnectorFromId(sWorld.modules[m].connectedModuleId[c]));
+                }
+
+                i++;
             }
         }
+
         timeUi.text = "Time : 0";
         genUi.text = "Generation : " + m_currentAttempts;
         modulesUi.text = "Modules : " + m_spawnedModules.Count;
@@ -603,5 +619,18 @@ public class SerializedModule
     public string code;
     public Vector3 position;
     public int rotation;
-    public int[] connectedConnectors;
+    public int[] connectedModuleId;
+    public string[] connectedModuleCodes;
+    public SerializedConnector[] connections;
+}
+[System.Serializable]
+public class SerializedConnector
+{
+    public SerializedConnector(int _id, int _connectedId)
+    {
+        id = _id;
+        connectedId = _connectedId;
+    }
+    int id;
+    int connectedId;
 }

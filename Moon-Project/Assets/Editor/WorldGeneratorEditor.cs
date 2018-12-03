@@ -17,6 +17,13 @@ public class WorldGeneratorEditor : Editor
         {
             gen.LoadModulesFromChildren();
         }
+        if (GUILayout.Button("Set Up Modules"))
+        {
+            foreach(RoomModule mod in gen.loadedModules)
+            {
+                mod.SetUp();
+            }
+        }
         if (GUILayout.Button("Create Seed"))
         {
             gen.CreateWorldSeed();
