@@ -24,9 +24,9 @@ public class WorldGeneratorEditor : Editor
                 mod.SetUp();
             }
         }
-        if (GUILayout.Button("Create Seed"))
+        if (GUILayout.Button("Save Seed"))
         {
-            gen.CreateWorldSeed();
+            gen.SaveSeed();
         }
     }
 }

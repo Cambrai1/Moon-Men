@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 
 public class ModularWorldGenerator : MonoBehaviour
@@ -28,7 +29,6 @@ public class ModularWorldGenerator : MonoBehaviour
 
     [SerializeField]
     private string worldSeed;
-    private int m_newestConnectionID = 0;
 
     void Start()
 	{
@@ -80,7 +80,6 @@ public class ModularWorldGenerator : MonoBehaviour
                 GameObject.Destroy(mod.gameObject);
             }
         }
-        m_newestConnectionID = 0;
         m_roomCount = 0;
         m_currentAttempts = 0;
         m_spawnedModules = new List<RoomModule>();
@@ -353,7 +352,6 @@ public class ModularWorldGenerator : MonoBehaviour
             newModule = GameObject.Instantiate(nullModule, transform).GetComponent<RoomModule>();
             AlignConnectors(_connector, newModule.GetEntrance());
         }
-        AddModuleConnectorsToList(newModule);
         LinkModules(_connector, newModule.GetEntrance());
         newModule.SetId(m_roomCount);
         newModule.gameObject.name = ("Room " + m_roomCount + " : " + newModule.moduleCode);
@@ -413,24 +411,17 @@ public class ModularWorldGenerator : MonoBehaviour
     {
         if(_a != null && _b != null)
         {
+            _a.UniqueId = StaticMethods.GetUniqueInt();
+            _b.UniqueId = StaticMethods.GetUniqueInt();
             _a.linkedModule = _b.parentModule;
             _b.linkedModule = _a.parentModule;
-            _a.linkedConnectorOnModule = _b.localId;
-            _b.linkedConnectorOnModule = _a.localId;
-            _a.SetUniqueId(m_newestConnectionID);
-            _b.SetUniqueId(m_newestConnectionID);
+            _a.LinkedUniqueId = _b.UniqueId;
+            _b.LinkedUniqueId = _a.UniqueId;
+            Debug.LogWarning("LINKED MODULES : " + _a.UniqueId + ", " + _b.UniqueId);
         }
         else
         {
-            Debug.LogWarning("COULD NOT LINK MODULES, AT LEAST ONE OF THEM WAS NULL!");
-        }
-    }
-
-    private void AddModuleConnectorsToList(RoomModule module)
-    {
-        foreach(ModuleConnector con in module.connectors)
-        {
-            m_newestConnectionID++;
+            Debug.LogWarning("COULD NOT LINK MODULES : " + _a.UniqueId + ", " + _b.UniqueId);
         }
     }
 
@@ -536,11 +527,12 @@ public class ModularWorldGenerator : MonoBehaviour
                 sMod.connectedModuleId = new int[mod.connectors.Count];
                 sMod.connectedModuleCodes = new string[mod.connectors.Count];
                 sMod.connections = new SerializedConnector[mod.connectors.Count];
+
                 for (int c = 0; c < mod.connectors.Count; c++)
                 {
                     sMod.connectedModuleId[c] = mod.connectors[c].linkedModule.GetId();
                     sMod.connectedModuleCodes[c] = mod.connectors[c].linkedModule.moduleCode;
-                    sMod.connections[c] = new SerializedConnector(c, mod.connectors[c].linkedConnectorOnModule);
+                    sMod.connections[c] = new SerializedConnector(mod.connectors[c].UniqueId, mod.connectors[c].LinkedUniqueId);
                 }
 
                 sWorld.modules[m] = sMod;
@@ -562,25 +554,23 @@ public class ModularWorldGenerator : MonoBehaviour
             RoomModule newModule = Instantiate(GetSpecificModule(sMod.code), sMod.position, Quaternion.Euler(0, sMod.rotation, 0), transform).GetComponent<RoomModule>();
             newModule.gameObject.SetActive(true);
 
-            AddModuleConnectorsToList(newModule);
             m_spawnedModules.Add(newModule);
             m_roomCount++;
             newModule.SetId(m_roomCount);
             newModule.gameObject.name = ("Room " + m_roomCount + " : " + newModule.moduleCode);
         }
 
-        int i = 0;
-
         for(int m = 0; m < m_spawnedModules.Count; m++)
         {
             for(int c = 0; c < m_spawnedModules[m].connectors.Count; c++)
             {
-                if(sWorld.modules[m].connectedModuleCodes[c] != "null")
+                if(m_spawnedModules[m].connectors[c].linkedModule == null)
                 {
-                    LinkModules(GetConnectorFromId(i), GetConnectorFromId(sWorld.modules[m].connectedModuleId[c]));
+                    m_spawnedModules[m].connectors[c].parentModule = m_spawnedModules[m];
+                    m_spawnedModules[m].connectors[c].UniqueId = sWorld.modules[m].connections[c].uniqueId;
+                    m_spawnedModules[m].connectors[c].LinkedUniqueId = sWorld.modules[m].connections[c].linkedUniqueId;
+                    LinkModules(GetConnectorFromId(m_spawnedModules[m].connectors[c].UniqueId), GetConnectorFromId(m_spawnedModules[m].connectors[c].LinkedUniqueId));
                 }
-
-                i++;
             }
         }
 
@@ -590,13 +580,21 @@ public class ModularWorldGenerator : MonoBehaviour
         Debug.Log("SPAWNED WORLD FROM SEED");
     }
 
+    public void SaveSeed()
+    {
+        string path = Application.dataPath + "/Seed.txt";
+        StreamWriter stream = new StreamWriter(path);
+        stream.WriteLine(worldSeed);
+        stream.Close();
+    }
+
     public ModuleConnector GetConnectorFromId(int _id)
     {
         foreach(RoomModule module in m_spawnedModules)
         {
             foreach(ModuleConnector connector in module.connectors)
             {
-                if(connector.GetUniqueId() == _id)
+                if(connector.UniqueId == _id)
                 {
                     return connector;
                 }
@@ -626,11 +624,11 @@ public class SerializedModule
 [System.Serializable]
 public class SerializedConnector
 {
-    public SerializedConnector(int _id, int _connectedId)
+    public SerializedConnector(int _uniqueId, int _linkedUniqueId)
     {
-        id = _id;
-        connectedId = _connectedId;
+        uniqueId = _uniqueId;
+        linkedUniqueId = _linkedUniqueId;
     }
-    int id;
-    int connectedId;
+    public int uniqueId;
+    public int linkedUniqueId;
 }

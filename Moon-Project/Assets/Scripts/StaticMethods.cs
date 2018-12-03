@@ -13,4 +13,26 @@ public static class StaticMethods
 
         return result;
     }
+
+    private static List<int> m_usedIds;
+    public static int GetUniqueInt()
+    {
+        if(m_usedIds == null)
+        {
+            m_usedIds = new List<int>();
+        }
+        bool foundUnique = false;
+        int newId = 0;
+        while(foundUnique == false)
+        {
+            newId = Random.Range((int)0, (int)999999);
+            bool foundInList = false;
+            foreach(int i in m_usedIds)
+            {
+                if (newId == i) foundInList = true;
+            }
+            if (foundInList == false) foundUnique = true;
+        }
+        return newId;
+    }
 }
