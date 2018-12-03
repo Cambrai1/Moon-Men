@@ -10,6 +10,7 @@ public class GrabableObject : Interactable {
     public bool isGrabbed;                          //  Is the object currently grabbed?
     private Transform m_handTransform;              //  The hand currently grabbing the object
     public bool disableColliderOnGrab = false;      //  Should the collider be disabled when grabbed?
+    public Transform grabPoint;                     //  The angle and position to grab the object with.
 
     [SerializeField]
     private int m_momentumExtrapolation = 10;       //  The number of frames used to extrapolate velocity

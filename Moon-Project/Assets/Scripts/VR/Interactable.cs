@@ -53,7 +53,7 @@ public class Interactable : MonoBehaviour {
         collider = GetComponent<Collider>();
         if (!collider) useCollider = false;
 
-        renderer = GetComponent<Renderer>();
+        renderer = GetComponentInChildren<Renderer>();
         if (renderer) originalColour = renderer.material.color;
 
         body = GetComponent<Rigidbody>();
@@ -61,8 +61,8 @@ public class Interactable : MonoBehaviour {
 
     public void CheckRange()
     {
-        if(Vector2.Distance(XYZToXZ(player.rHandTransform.position), XYZToXZ(transform.position)) <= checkRange
-        || Vector2.Distance(XYZToXZ(player.lHandTransform.position), XYZToXZ(transform.position)) <= checkRange)
+        if(Vector2.Distance(StaticMethods.TopDown(player.rHandTransform.position), StaticMethods.TopDown(transform.position)) <= checkRange
+        || Vector2.Distance(StaticMethods.TopDown(player.lHandTransform.position), StaticMethods.TopDown(transform.position)) <= checkRange)
         {
             player.AddInteractable(this);
         }
@@ -70,14 +70,6 @@ public class Interactable : MonoBehaviour {
         {
             player.RemoveInteractable(this);
         }
-    }
-
-    public Vector2 XYZToXZ(Vector3 input)
-    {
-        Vector2 result = Vector2.zero;
-        result.x = input.x;
-        result.y = input.z;
-        return result;
     }
 
     public virtual void InteractableUpdate()
