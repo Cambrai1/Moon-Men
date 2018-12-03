@@ -17,12 +17,15 @@ public class WorldGeneratorEditor : Editor
         {
             gen.LoadModulesFromChildren();
         }
-        if (GUILayout.Button("Set Up Modules"))
+        if (GUILayout.Button("Set Up Modules & Apply Prefabs"))
         {
             foreach(RoomModule mod in gen.loadedModules)
             {
                 mod.SetUp();
-                PrefabUtility.ReplacePrefab(mod.gameObject, PrefabUtility.GetCorrespondingObjectFromSource(mod), ReplacePrefabOptions.ConnectToPrefab);
+                if(PrefabUtility.GetCorrespondingObjectFromSource(mod))
+                {
+                    PrefabUtility.ReplacePrefab(mod.gameObject, PrefabUtility.GetCorrespondingObjectFromSource(mod), ReplacePrefabOptions.ConnectToPrefab);
+                }
             }
         }
         if (GUILayout.Button("Save Seed"))
