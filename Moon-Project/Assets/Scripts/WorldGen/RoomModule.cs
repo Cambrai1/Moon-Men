@@ -109,4 +109,14 @@ public class ModuleConnector
 
     public RoomModule parentModule;
     public RoomModule linkedModule;
+
+    private int uniqueId = 0;
+    public void SetUniqueId(int _id)
+    {
+        uniqueId = _id;
+    }
+    public int GetUniqueId()
+    {
+        return uniqueId;
+    }
 }

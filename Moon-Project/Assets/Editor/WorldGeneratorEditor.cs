@@ -17,5 +17,9 @@ public class WorldGeneratorEditor : Editor
         {
             gen.LoadModulesFromChildren();
         }
+        if (GUILayout.Button("Create Seed"))
+        {
+            gen.CreateWorldSeed();
+        }
     }
 }
