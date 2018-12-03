@@ -11,6 +11,7 @@ public class RoomModule : MonoBehaviour
     public List<ModuleConnector> connectors;
     public BoxCollider safetyBox;
     public List<Transform> raycastCheckers;
+    public List<ReflectionProbe> reflectionProbes;
 
     private bool m_singleEntranceEnforced = false;
     private ModuleConnector m_entranceConnector;
@@ -87,6 +88,7 @@ public class RoomModule : MonoBehaviour
         }
         if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
         safetyBox.enabled = false;
+        reflectionProbes = new List<ReflectionProbe>(GetComponentsInChildren<ReflectionProbe>());
     }
 
     public void SetId(int _id)
@@ -96,6 +98,14 @@ public class RoomModule : MonoBehaviour
     public int GetId()
     {
         return m_roomId;
+    }
+
+    public void OnGenerationComplete()
+    {
+        foreach(ReflectionProbe probe in reflectionProbes)
+        {
+            probe.RenderProbe();
+        }
     }
 }
 

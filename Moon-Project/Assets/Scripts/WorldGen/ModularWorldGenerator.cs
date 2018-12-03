@@ -196,6 +196,7 @@ public class ModularWorldGenerator : MonoBehaviour
             Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + m_currentAttempts + " ATTEMPTS!");
 
             CreateWorldSeed();
+            StartCoroutine(OnGenerationComplete());
         }
     }
     private IEnumerator RegenerateCoroutine()
@@ -302,7 +303,18 @@ public class ModularWorldGenerator : MonoBehaviour
         Debug.Log("GENERATED WORLD IN " + (Time.time - startTime) + " SECONDS AFTER " + m_currentAttempts + " ATTEMPTS!");
 
         CreateWorldSeed();
+        StartCoroutine(OnGenerationComplete());
 
+        yield return null;
+    }
+
+    private IEnumerator OnGenerationComplete()
+    {
+        foreach (RoomModule module in m_spawnedModules)
+        {
+            module.OnGenerationComplete();
+            yield return null;
+        }
         yield return null;
     }
 
