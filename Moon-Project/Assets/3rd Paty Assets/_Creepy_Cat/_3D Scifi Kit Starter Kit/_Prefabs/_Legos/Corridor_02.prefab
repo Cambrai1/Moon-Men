@@ -5866,7 +5866,9 @@ MonoBehaviour:
   - {fileID: 4104846460830090}
   - {fileID: 4691203714000598}
   - {fileID: 4780528699778714}
-  reflectionProbes: []
+  reflectionProbes:
+  - {fileID: 215326015624234628}
+  - {fileID: 215059532514804236}
 --- !u!215 &215059532514804236
 ReflectionProbe:
   m_ObjectHideFlags: 1
@@ -5892,12 +5894,12 @@ ReflectionProbe:
     serializedVersion: 2
     m_Bits: 823
   m_IntensityMultiplier: 1
-  m_BlendDistance: 1
+  m_BlendDistance: 0
   m_HDR: 1
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 2
+  m_Importance: 1
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}
 --- !u!215 &215326015624234628
@@ -5925,11 +5927,11 @@ ReflectionProbe:
     serializedVersion: 2
     m_Bits: 823
   m_IntensityMultiplier: 1
-  m_BlendDistance: 1
+  m_BlendDistance: 0
   m_HDR: 1
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 2
+  m_Importance: 1
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}

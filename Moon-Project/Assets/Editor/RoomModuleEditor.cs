@@ -16,7 +16,6 @@ public class RoomModuleEditor : Editor {
         if(GUILayout.Button("Set Up"))
         {
             mod.SetUp();
-
         }
     }
 }

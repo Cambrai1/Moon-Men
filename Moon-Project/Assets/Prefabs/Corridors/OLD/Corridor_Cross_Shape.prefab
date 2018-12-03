@@ -5579,7 +5579,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f634b7602367dc14c9f2bb12936f29ff, type: 2}
+  - {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -60845,7 +60845,8 @@ MonoBehaviour:
   - {fileID: 4085098054146020}
   - {fileID: 4722579621398422}
   - {fileID: 4360039790207022}
-  reflectionProbes: []
+  reflectionProbes:
+  - {fileID: 215762347071381076}
 --- !u!114 &114943982982841370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63200,11 +63201,11 @@ ReflectionProbe:
     serializedVersion: 2
     m_Bits: 823
   m_IntensityMultiplier: 1
-  m_BlendDistance: 1
+  m_BlendDistance: 0
   m_HDR: 1
   m_BoxProjection: 1
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
-  m_Importance: 2
+  m_Importance: 1
   m_CustomBakedTexture: {fileID: 8900000, guid: 6e77396d3b6bb704a808ff896bf345c2,
     type: 3}

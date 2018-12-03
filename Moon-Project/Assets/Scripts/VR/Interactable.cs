@@ -14,7 +14,6 @@ public class Interactable : MonoBehaviour {
     public float grabRange = 0.4f;
     [HideInInspector]
     public PlayerController player;         //  A reference to the player controller
-    [HideInInspector]
     public Renderer renderer;               //  The interactable's main renderer component
     [HideInInspector]
     public Rigidbody body;                  //  The interactable's rigidbody component
@@ -53,7 +52,7 @@ public class Interactable : MonoBehaviour {
         collider = GetComponent<Collider>();
         if (!collider) useCollider = false;
 
-        renderer = GetComponentInChildren<Renderer>();
+        if(!renderer) renderer = GetComponentInChildren<Renderer>();
         if (renderer) originalColour = renderer.material.color;
 
         body = GetComponent<Rigidbody>();

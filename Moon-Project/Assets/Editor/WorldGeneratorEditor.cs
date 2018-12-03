@@ -22,6 +22,7 @@ public class WorldGeneratorEditor : Editor
             foreach(RoomModule mod in gen.loadedModules)
             {
                 mod.SetUp();
+                PrefabUtility.ReplacePrefab(mod.gameObject, PrefabUtility.GetCorrespondingObjectFromSource(mod), ReplacePrefabOptions.ConnectToPrefab);
             }
         }
         if (GUILayout.Button("Save Seed"))
