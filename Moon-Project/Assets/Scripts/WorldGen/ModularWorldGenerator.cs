@@ -568,7 +568,9 @@ public class ModularWorldGenerator : MonoBehaviour
                 LinkModules(GetConnectorFromId(c), GetConnectorFromId(sWorld.modules[m].connectedConnectors[c]));
             }
         }
-
+        timeUi.text = "Time : 0";
+        genUi.text = "Generation : " + m_currentAttempts;
+        modulesUi.text = "Modules : " + m_spawnedModules.Count;
         Debug.Log("SPAWNED WORLD FROM SEED");
     }
 
