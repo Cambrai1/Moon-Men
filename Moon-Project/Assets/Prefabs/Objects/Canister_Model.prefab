@@ -38,12 +38,12 @@ GameObject:
   - component: {fileID: 4587987877590682}
   - component: {fileID: 54200896656583558}
   - component: {fileID: 114801179727409320}
+  - component: {fileID: 114937866239655100}
   - component: {fileID: 136364725785473896}
   - component: {fileID: 65120339124589488}
   - component: {fileID: 65319934342127026}
   - component: {fileID: 65104850579869796}
   - component: {fileID: 65427763978214694}
-  - component: {fileID: 114937866239655100}
   m_Layer: 9
   m_Name: Canister_Model
   m_TagString: Untagged
