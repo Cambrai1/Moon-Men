@@ -13,8 +13,10 @@ public class DoorAnimationBehaviour : MonoBehaviour {
     public GameObject Player;
     public float dist;
 
-	void Start () {
-        
+	void Start()
+    {
+        if (!Player) return;
+
         m_Animator = GetComponent<Animator>();
         dist = Vector3.Distance(Player.transform.position, this.gameObject.transform.position);
         
@@ -27,8 +29,16 @@ public class DoorAnimationBehaviour : MonoBehaviour {
         }
 	}
 
+<<<<<<< HEAD
 	void Update () {
         switch (isButtonControlled)
+=======
+	void Update()
+    {
+        if (!Player) return;
+
+        if (isButtonControlled == false)
+>>>>>>> origin/develop
         {
             case true:
                 {            

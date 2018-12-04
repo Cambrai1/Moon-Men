@@ -12,5 +12,7 @@ public class Movement : MonoBehaviour
 			
 		transform.Rotate (0, x, 0);
 		transform.Translate (0, 0, z);
+
+        if (Input.GetKeyDown(KeyCode.Space)) GetComponent<Rigidbody>().AddForce(Vector3.up * 2.0f, ForceMode.Impulse);
 	}
 }
