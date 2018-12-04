@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 //  INHERIT FROM INTERACTABLE & MONOBEHAVIOUR
@@ -15,6 +16,9 @@ public class GrabableObject : Interactable {
     [SerializeField]
     private int m_momentumExtrapolation = 10;       //  The number of frames used to extrapolate velocity
     private Vector3[] m_positionFrames;             //  The array of the most recent extrapolation frames
+
+    public UnityEvent OnGrab;
+    public UnityEvent OnRelease;
 
     public void ConfirmHoveredObject(Transform _hand, bool _state)
     {
@@ -45,6 +49,7 @@ public class GrabableObject : Interactable {
         body.useGravity = false;
         if (disableColliderOnGrab) collider.enabled = false;
         isGrabbed = true;
+        OnGrab.Invoke();
         Debug.Log("Grabable '" + gameObject.name + "' was grabbed by '" + m_handTransform.name + "'");
         return this;
     }
@@ -95,7 +100,7 @@ public class GrabableObject : Interactable {
         if (disableColliderOnGrab) collider.enabled = true;
         isGrabbed = false;
         m_handTransform = null;
-
+        OnRelease.Invoke();
         body.velocity = EstimateVelocity();
     }
 

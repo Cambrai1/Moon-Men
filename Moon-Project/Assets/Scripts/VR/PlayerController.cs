@@ -353,7 +353,11 @@ public class PlayerController : MonoBehaviour {
 
     public void SetOxygenLevel(float _level)
     {
-        oxygen = _level;
+        oxygen = Mathf.Clamp(_level, 0.0f, 100.0f);
+    }
+    public void IncreaseOxygenLevel(float _amount)
+    {
+        SetOxygenLevel(oxygen + _amount);
     }
     public void DecreaseOxygenLevel(float _amount)
     {
@@ -362,7 +366,11 @@ public class PlayerController : MonoBehaviour {
 
     public void SetPowerLevel(float _level)
     {
-        power = _level;
+        power = Mathf.Clamp(_level, 0.0f, 100.0f);
+    }
+    public void IncreasePowerLevel(float _amount)
+    {
+        SetPowerLevel(power + _amount);
     }
     public void DecreasePowerLevel(float _amount)
     {
