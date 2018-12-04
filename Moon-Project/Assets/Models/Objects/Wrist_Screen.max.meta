@@ -6,19 +6,55 @@ ModelImporter:
     100000: Arm
     100002: Tube001
     100004: //RootNode
+    100006: Device
+    100008: Screw
+    100010: Screw001
+    100012: Screw002
+    100014: Screw003
+    100016: Screw004
+    100018: Screw005
     400000: Arm
     400002: Tube001
     400004: //RootNode
+    400006: Device
+    400008: Screw
+    400010: Screw001
+    400012: Screw002
+    400014: Screw003
+    400016: Screw004
+    400018: Screw005
     2100000: No Name
     2100002: 'Material #55'
     2100004: Strp_Mat
     2100006: Screen_Mat
+    2100008: Screen_Rim_Mat
     2300000: Arm
     2300002: Tube001
+    2300004: Device
+    2300006: Screw
+    2300008: Screw001
+    2300010: Screw002
+    2300012: Screw003
+    2300014: Screw004
+    2300016: Screw005
     3300000: Arm
     3300002: Tube001
+    3300004: Device
+    3300006: Screw
+    3300008: Screw001
+    3300010: Screw002
+    3300012: Screw003
+    3300014: Screw004
+    3300016: Screw005
     4300000: Arm
     4300002: Tube001
+    4300004: Device
+    4300006: Screw
+    4300008: Screw001
+    4300010: Screw002
+    4300012: Screw003
+    4300014: Screw004
+    4300016: Screw005
   externalObjects: {}
   materials:
     importMaterials: 1
