@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
     private Transform m_headTransform;                      //  The transform of the head object
     public Transform rHandTransform;                        //  The transform of the right hand
     public Transform lHandTransform;                        //  The transform of the left hand
+    private Camera m_vrCam;
     public bool canGrab = true;                             //  Should the player be able to grab?
     [HideInInspector]
     public Interactable rHoverObject;                       //  The interactable being hovered over by the right hand
@@ -59,10 +60,12 @@ public class PlayerController : MonoBehaviour {
     public Transform powerUi;                               //  The main transform of the Power UI
     private Image m_powerIcon;                              //  The Power UI image
     private Image m_powerBar;                               //  The Power resource bar
+    public RawImage heartRateImage;                        //  The Heart rate monitor UI
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
     private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
     public float power = 100.0f;                            //  The amount of power remaining
+    public float heartRate = 50.0f;
 
     public Color resourceHigh = Color.green;                //  The colour used to indicate high resource quantity
     public Color resourceMedium = Color.yellow;             //  The colour used to indicate medium resource quantity
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour {
         {
             m_headTransform = m_transform.Find("Camera");
         }
+        m_vrCam = m_headTransform.GetComponent<Camera>();
         if(!rHandTransform || !lHandTransform)
         {
             rHandTransform = m_transform.Find("Controller (right)");
@@ -337,6 +341,14 @@ public class PlayerController : MonoBehaviour {
         else if (power <= 75.0f) { m_powerBar.color = resourceMedium; }
         else { m_powerBar.color = resourceHigh; }
         m_powerIcon.color = m_powerBar.color;
+
+        if(heartRateImage)
+        {
+            Rect uvRect = heartRateImage.uvRect;
+            if (uvRect.x >= 1.0f) uvRect.x = 0.0f;
+            uvRect.x += heartRate/60 * Time.deltaTime;
+            heartRateImage.uvRect = uvRect;
+        }
     }
 
     public void SetOxygenLevel(float _level)
@@ -359,15 +371,26 @@ public class PlayerController : MonoBehaviour {
 
     private void PlayerBounds()
     {
-        if (!m_useBounds) return;
-        if (forceVignette || (m_useBounds && Physics.CheckSphere(m_headTransform.position, m_boundsRadius, m_boundsMask)))
+        if (forceVignette || (m_useBounds && Physics.CheckSphere(m_headTransform.position, m_boundsRadius, m_boundsMask)) && m_useBounds)
         {
             m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 1.0f, m_boundsFadeSpeed * Time.deltaTime);
+            if (m_vignetteFade >= 1.0f)
+            {
+                m_vrCam.cullingMask = new LayerMask();
+                m_vrCam.clearFlags = CameraClearFlags.SolidColor;
+            }
         }
         else
         {
             m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 0.0f, m_boundsFadeSpeed * Time.deltaTime);
+            if (m_vignetteFade < 1.0f)
+            {
+                m_vrCam.cullingMask = ~0;
+                m_vrCam.clearFlags = CameraClearFlags.Skybox;
+            }
         }
+
+        
         m_postProfile.GetSetting<Vignette>().opacity.value = m_vignetteFade;
     }
 }
