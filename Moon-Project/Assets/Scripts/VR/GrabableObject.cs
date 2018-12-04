@@ -56,8 +56,8 @@ public class GrabableObject : Interactable {
     private void ParentGrab(Transform _hand)
     {
         transform.SetParent(_hand);
-        transform.localPosition = Vector3.zero;
-        transform.rotation = _hand.rotation;
+        //transform.localPosition = Vector3.zero;
+        //transform.rotation = _hand.rotation;
         body.isKinematic = true;
     }
     private void SpringGrab(Transform _hand)

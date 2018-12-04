@@ -1017,7 +1017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1651835538408358
 GameObject:
   m_ObjectHideFlags: 1
@@ -2208,8 +2208,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1006831633475574}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0407}
+  m_LocalRotation: {x: -0.8133249, y: -0.000000029802319, z: 0.000000059604638, w: 0.58180976}
+  m_LocalPosition: {x: 0.0000007484916, y: 0.0024745015, z: 0.04161714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4841881342797508}
@@ -2217,7 +2217,7 @@ Transform:
   - {fileID: 4626932053753980}
   m_Father: {fileID: 4767551000960388}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -108.843994, y: -0.000015258789, z: 0}
 --- !u!4 &4404102903198374
 Transform:
   m_ObjectHideFlags: 1
@@ -2585,14 +2585,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956387976187350}
-  m_LocalRotation: {x: 0.43045855, y: -0.70105654, z: 0.092296414, w: 0.5609871}
-  m_LocalPosition: {x: -0.0151, y: 0.0988, z: -0.2}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalRotation: {x: 0.68781966, y: -0.36831293, z: 0.61807054, w: -0.0961183}
+  m_LocalPosition: {x: -0.048675183, y: 0.092409514, z: -0.21647647}
+  m_LocalScale: {x: 0.4802867, y: 0.4802867, z: 0.4802867}
   m_Children:
   - {fileID: 4403704357678412}
   m_Father: {fileID: 458974}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 37.761, y: -116.565, z: -39.231003}
+  m_LocalEulerAnglesHint: {x: 18.848001, y: -256.713, z: -138.63}
 --- !u!4 &4768691210256774
 Transform:
   m_ObjectHideFlags: 1
@@ -55940,7 +55940,7 @@ MonoBehaviour:
     movementOrientation: 1
     teleportDistance: 1
   m_useBounds: 1
-  m_boundsRadius: 0.2
+  m_boundsRadius: 0.1
   m_boundsMask:
     serializedVersion: 2
     m_Bits: 512
