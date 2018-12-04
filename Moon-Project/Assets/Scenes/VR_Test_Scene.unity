@@ -42925,22 +42925,6 @@ Prefab:
       propertyPath: m_Name
       value: Canister
       objectReference: {fileID: 0}
-    - target: {fileID: 4729794547990788, guid: 0e0beac4b398a8b47aba1ae499a9729c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729794547990788, guid: 0e0beac4b398a8b47aba1ae499a9729c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729794547990788, guid: 0e0beac4b398a8b47aba1ae499a9729c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4729794547990788, guid: 0e0beac4b398a8b47aba1ae499a9729c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.7071068
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e0beac4b398a8b47aba1ae499a9729c, type: 2}
   m_IsPrefabAsset: 0

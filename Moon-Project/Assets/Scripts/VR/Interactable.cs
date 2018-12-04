@@ -14,7 +14,7 @@ public class Interactable : MonoBehaviour {
     public float grabRange = 0.4f;
     [HideInInspector]
     public PlayerController player;         //  A reference to the player controller
-    public Renderer renderer;               //  The interactable's main renderer component
+    public List<Renderer> renderers;
     [HideInInspector]
     public Rigidbody body;                  //  The interactable's rigidbody component
     [HideInInspector]
@@ -23,14 +23,19 @@ public class Interactable : MonoBehaviour {
     public virtual void HoverStart(Transform _hand)
     {
         if (isHovered) return;
-        renderer.material.EnableKeyword("_EMISSION");
-        renderer.material.SetColor("_EmissionColor", originalColour);
+        foreach(Renderer r in renderers)
+        {
+            r.material.SetInt("_ShowOutline", 1);
+        }
         isHovered = true;
     }
     public virtual void HoverEnd(Transform _hand)
     {
         if (!isHovered) return;
-        renderer.material.SetColor("_EmissionColor", Color.black);
+        foreach (Renderer r in renderers)
+        {
+            r.material.SetInt("_ShowOutline", 0);
+        }
         isHovered = false;
     }
 
@@ -51,9 +56,6 @@ public class Interactable : MonoBehaviour {
 
         collider = GetComponent<Collider>();
         if (!collider) useCollider = false;
-
-        if(!renderer) renderer = GetComponentInChildren<Renderer>();
-        if (renderer) originalColour = renderer.material.color;
 
         body = GetComponent<Rigidbody>();
     }
