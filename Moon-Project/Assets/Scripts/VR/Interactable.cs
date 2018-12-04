@@ -14,8 +14,7 @@ public class Interactable : MonoBehaviour {
     public float grabRange = 0.4f;
     [HideInInspector]
     public PlayerController player;         //  A reference to the player controller
-    [HideInInspector]
-    public Renderer renderer;               //  The interactable's main renderer component
+    public List<Renderer> renderers;
     [HideInInspector]
     public Rigidbody body;                  //  The interactable's rigidbody component
     [HideInInspector]
@@ -24,14 +23,19 @@ public class Interactable : MonoBehaviour {
     public virtual void HoverStart(Transform _hand)
     {
         if (isHovered) return;
-        renderer.material.EnableKeyword("_EMISSION");
-        renderer.material.SetColor("_EmissionColor", originalColour);
+        foreach(Renderer r in renderers)
+        {
+            r.material.SetInt("_ShowOutline", 1);
+        }
         isHovered = true;
     }
     public virtual void HoverEnd(Transform _hand)
     {
         if (!isHovered) return;
-        renderer.material.SetColor("_EmissionColor", Color.black);
+        foreach (Renderer r in renderers)
+        {
+            r.material.SetInt("_ShowOutline", 0);
+        }
         isHovered = false;
     }
 
@@ -53,16 +57,13 @@ public class Interactable : MonoBehaviour {
         collider = GetComponent<Collider>();
         if (!collider) useCollider = false;
 
-        renderer = GetComponent<Renderer>();
-        if (renderer) originalColour = renderer.material.color;
-
         body = GetComponent<Rigidbody>();
     }
 
     public void CheckRange()
     {
-        if(Vector2.Distance(XYZToXZ(player.rHandTransform.position), XYZToXZ(transform.position)) <= checkRange
-        || Vector2.Distance(XYZToXZ(player.lHandTransform.position), XYZToXZ(transform.position)) <= checkRange)
+        if(Vector2.Distance(StaticMethods.TopDown(player.rHandTransform.position), StaticMethods.TopDown(transform.position)) <= checkRange
+        || Vector2.Distance(StaticMethods.TopDown(player.lHandTransform.position), StaticMethods.TopDown(transform.position)) <= checkRange)
         {
             player.AddInteractable(this);
         }
@@ -70,14 +71,6 @@ public class Interactable : MonoBehaviour {
         {
             player.RemoveInteractable(this);
         }
-    }
-
-    public Vector2 XYZToXZ(Vector3 input)
-    {
-        Vector2 result = Vector2.zero;
-        result.x = input.x;
-        result.y = input.z;
-        return result;
     }
 
     public virtual void InteractableUpdate()

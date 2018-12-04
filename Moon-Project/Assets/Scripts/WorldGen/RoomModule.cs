@@ -6,10 +6,12 @@ public class RoomModule : MonoBehaviour
 {
     public string moduleCode = "error";
     public bool unique = false;
+    public bool includeInCount = true;
     public int abundance = 1;
     public List<ModuleConnector> connectors;
     public BoxCollider safetyBox;
     public List<Transform> raycastCheckers;
+    public List<ReflectionProbe> reflectionProbes;
 
     private bool m_singleEntranceEnforced = false;
     private ModuleConnector m_entranceConnector;
@@ -86,6 +88,7 @@ public class RoomModule : MonoBehaviour
         }
         if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
         safetyBox.enabled = false;
+        reflectionProbes = new List<ReflectionProbe>(GetComponentsInChildren<ReflectionProbe>());
     }
 
     public void SetId(int _id)
@@ -95,6 +98,14 @@ public class RoomModule : MonoBehaviour
     public int GetId()
     {
         return m_roomId;
+    }
+
+    public void OnGenerationComplete()
+    {
+        foreach(ReflectionProbe probe in reflectionProbes)
+        {
+            probe.RenderProbe();
+        }
     }
 }
 
@@ -108,4 +119,17 @@ public class ModuleConnector
 
     public RoomModule parentModule;
     public RoomModule linkedModule;
+    private int linkedUniqueId = 0;
+    private int uniqueId = 0;
+
+    public int LinkedUniqueId
+    {
+        get{return linkedUniqueId;}
+        set{linkedUniqueId = value;}
+    }
+    public int UniqueId
+    {
+        get{return uniqueId;}
+        set{uniqueId = value;}
+    }
 }
