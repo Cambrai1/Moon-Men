@@ -59,6 +59,8 @@ public class GrabableObject : Interactable {
         //transform.localPosition = Vector3.zero;
         //transform.rotation = _hand.rotation;
         body.isKinematic = true;
+
+        StartCoroutine(MatchTransform(transform, _hand, grabPoint));
     }
     private void SpringGrab(Transform _hand)
     {
@@ -130,5 +132,19 @@ public class GrabableObject : Interactable {
     {
         base.InteractableInit();
         m_positionFrames = new Vector3[m_momentumExtrapolation];
+        if (!grabPoint) grabPoint = transform;
+    }
+
+    private IEnumerator MatchTransform(Transform _a, Transform _b, Transform _grabPoint)
+    {
+        float speed = 2.0f;
+        while(Vector3.Distance(_grabPoint.position, _b.position) >= 0.01f)
+        {
+            _a.position = Vector3.MoveTowards(_a.position, _b.position + (_a.position - _grabPoint.position), speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        _a.position = _b.position + (_a.position - _grabPoint.position);
+
+        yield return null;
     }
 }

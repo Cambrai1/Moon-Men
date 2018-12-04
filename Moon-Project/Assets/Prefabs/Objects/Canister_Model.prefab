@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1292798184734340}
   m_IsPrefabAsset: 1
+--- !u!1 &1062338395647580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4565204764696054}
+  m_Layer: 9
+  m_Name: GrabPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1169072511463328
 GameObject:
   m_ObjectHideFlags: 1
@@ -208,6 +223,19 @@ Transform:
   m_Father: {fileID: 4587987877590682}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4565204764696054
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062338395647580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4587987877590682}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4568703508322878
 Transform:
   m_ObjectHideFlags: 1
@@ -265,6 +293,7 @@ Transform:
   - {fileID: 4571383884466494}
   - {fileID: 4179439730055870}
   - {fileID: 4037641971412306}
+  - {fileID: 4565204764696054}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -682,7 +711,7 @@ MonoBehaviour:
   grabMethod: 0
   isGrabbed: 0
   disableColliderOnGrab: 1
-  grabPoint: {fileID: 0}
+  grabPoint: {fileID: 4565204764696054}
   m_momentumExtrapolation: 10
   OnGrab:
     m_PersistentCalls:
