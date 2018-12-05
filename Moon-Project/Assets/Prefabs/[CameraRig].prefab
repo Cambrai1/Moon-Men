@@ -207,7 +207,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
   m_Name: 
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147176}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5890e3cad70bea64d91aef9145ba3454, type: 3}
   m_Name: 
@@ -298,7 +298,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4403704357678412}
-  m_Layer: 0
+  - component: {fileID: 65314006366669986}
+  m_Layer: 11
   m_Name: Wrist_Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +423,7 @@ GameObject:
   - component: {fileID: 4512572159794512}
   - component: {fileID: 33509939856166432}
   - component: {fileID: 23845197638085658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +470,7 @@ GameObject:
   - component: {fileID: 4434344267027120}
   - component: {fileID: 33324336866967988}
   - component: {fileID: 23230492847897772}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +718,7 @@ GameObject:
   - component: {fileID: 4914275720308692}
   - component: {fileID: 33817456856324030}
   - component: {fileID: 23953026193837292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -779,7 +780,7 @@ GameObject:
   - component: {fileID: 4626932053753980}
   - component: {fileID: 33322348072608346}
   - component: {fileID: 23311103695334466}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Device
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -955,6 +956,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1598331071178282
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4027139037127560}
+  - component: {fileID: 33199567668461110}
+  - component: {fileID: 23433707779598842}
+  - component: {fileID: 135140847916835992}
+  m_Layer: 11
+  m_Name: WristUiPointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1632178371902412
 GameObject:
   m_ObjectHideFlags: 1
@@ -1011,7 +1030,7 @@ GameObject:
   - component: {fileID: 4841881342797508}
   - component: {fileID: 33566917855376766}
   - component: {fileID: 23655910882739132}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1047,7 @@ GameObject:
   - component: {fileID: 4708972497768884}
   - component: {fileID: 33263819890558140}
   - component: {fileID: 23033758465627332}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1090,7 +1109,7 @@ GameObject:
   - component: {fileID: 4130789642160356}
   - component: {fileID: 33814431150076266}
   - component: {fileID: 23012555986734386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1200,7 +1219,7 @@ GameObject:
   - component: {fileID: 4908960533579238}
   - component: {fileID: 33280584874407772}
   - component: {fileID: 23674492296927876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Screw004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1634,6 +1653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767551000960388}
+  - component: {fileID: 114431986831238180}
   m_Layer: 11
   m_Name: WristUi
   m_TagString: Untagged
@@ -1723,6 +1743,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4746901667918764}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4027139037127560
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598331071178282}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0078, y: -0.0669, z: -0.013299942}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_Children: []
+  m_Father: {fileID: 4944808876098048}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4048298456957694
@@ -2869,6 +2902,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4746901667918764}
+  - {fileID: 4027139037127560}
   m_Father: {fileID: 420908}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3236,6 +3270,41 @@ MeshRenderer:
     subMeshCount: 0
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 4268556292863168}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!23 &23433707779598842
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598331071178282}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
@@ -3621,6 +3690,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203030883977038}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33199567668461110
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598331071178282}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &33263819890558140
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3756,6 +3832,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65314006366669986
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006831633475574}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18115467, y: 0.03431834, z: 0.14347966}
+  m_Center: {x: 0.0010769665, y: 0.04914506, z: -0.0073656146}
 --- !u!95 &95029303682515914
 Animator:
   serializedVersion: 3
@@ -21223,6 +21311,28 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &114431986831238180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1956387976187350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1746a97a9905f0489409442e863371b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handPointer: {fileID: 4027139037127560}
+  canvasPointer: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 2048
+  xAdd: -0.02
+  yAdd: 0.02
+  xMul: 4600
+  yMul: 4600
+  xAddP: 100
+  yAddP: 0
 --- !u!114 &114462797148117618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55971,6 +56081,18 @@ MonoBehaviour:
   resourceMedium: {r: 1, g: 1, b: 0, a: 1}
   resourceLow: {r: 1, g: 0.5691919, b: 0, a: 1}
   resourceCritical: {r: 1, g: 0, b: 0, a: 1}
+--- !u!135 &135140847916835992
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598331071178282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137006650003427658
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
