@@ -326,8 +326,12 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateWristUi()
     {
+        int numBars = 20;
+        float fillAmount = 100.0f/(float)numBars;
+
         //  OXYGEN
-        m_oxygenBar.fillAmount = oxygen / 100.0f;
+        fillAmount = (float)(Mathf.Ceil(numBars * (oxygen / 100)) * (100 / numBars))/100.0f;
+        m_oxygenBar.fillAmount = fillAmount;
         if (oxygen <= 25.0f) { m_oxygenBar.color = resourceCritical; }
         else if (oxygen <= 50.0f) { m_oxygenBar.color = resourceLow; }
         else if (oxygen <= 75.0f) { m_oxygenBar.color = resourceMedium; }
@@ -335,7 +339,8 @@ public class PlayerController : MonoBehaviour {
         m_oxygenIcon.color = m_oxygenBar.color;
 
         //  POWER
-        m_powerBar.fillAmount = power / 100.0f;
+        fillAmount = (float)(Mathf.Ceil(numBars * (power / 100)) * (100 / numBars)) / 100.0f;
+        m_powerBar.fillAmount = fillAmount;
         if (power <= 25.0f) { m_powerBar.color = resourceCritical; }
         else if (power <= 50.0f) { m_powerBar.color = resourceLow; }
         else if (power <= 75.0f) { m_powerBar.color = resourceMedium; }
