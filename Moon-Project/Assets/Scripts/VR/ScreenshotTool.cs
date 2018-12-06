@@ -1,9 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.IO;
 
 public class ScreenshotTool : MonoBehaviour {
+
+#if UNITY_EDITOR
+    [MenuItem("Tools/Screenshot")]
+    private static void CaptureEditorScreenshot()
+    {
+        GameObject g = GameObject.Find("ScreenshotCam");
+        if (g != null)
+        {
+            Camera c = g.GetComponent<Camera>();
+            ScreenshotTool t = g.GetComponent<ScreenshotTool>();
+            Vector3 pos = SceneView.lastActiveSceneView.camera.transform.position;
+            Quaternion rot = SceneView.lastActiveSceneView.camera.transform.rotation;
+            g.transform.position = pos;
+            g.transform.rotation = rot;
+            c.enabled = true;
+            c.fieldOfView = 55.5f;
+            t.Capture(c, 1);
+            c.enabled = false;
+        }
+    }
+#endif
 
     public int width = 3840;
     public int height = 2160;
