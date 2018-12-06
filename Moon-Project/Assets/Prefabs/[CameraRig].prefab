@@ -55566,7 +55566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_movementSettings:
     useTrackpad: 1
-    movementSpeed: 3
+    movementSpeed: 2
     movementOrientation: 1
     teleportDistance: 1
   m_useBounds: 0

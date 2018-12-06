@@ -219,8 +219,8 @@ public class PlayerController : MonoBehaviour {
     {
         Vector2 input = Vector2.zero;
         Vector3 direction = Vector3.zero;
-        input.x = lHandInput.trackpadAbsolute.x * m_movementSettings.movementSpeed;
-        input.y = lHandInput.trackpadAbsolute.y * m_movementSettings.movementSpeed;
+        input.x = lHandInput.trackpadAbsolute.x;
+        input.y = lHandInput.trackpadAbsolute.y;
         switch (m_movementSettings.movementOrientation)
         {
             case MovementOrientation.head:
@@ -232,6 +232,7 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
         input.Normalize();
+        input *= m_movementSettings.movementSpeed;
         direction.x = input.x; direction.z = input.y;
         direction *= Time.deltaTime;
 
@@ -513,7 +514,7 @@ public class PlayerController : MonoBehaviour {
 public class PlayerMovementSettings
 {
     public bool useTrackpad = true;
-    public float movementSpeed = 1f;
+    public float movementSpeed = 2f;
     public MovementOrientation movementOrientation;
     public float teleportDistance = 1f;
 }
