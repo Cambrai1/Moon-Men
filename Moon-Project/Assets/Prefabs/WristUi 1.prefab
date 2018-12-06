@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4192650848601130}
   - component: {fileID: 114701542103334282}
+  - component: {fileID: 114726635145715844}
   m_Layer: 11
   m_Name: WristUi 1
   m_TagString: Untagged
@@ -73,6 +74,22 @@ GameObject:
   - component: {fileID: 23857702518795066}
   m_Layer: 9
   m_Name: Screw001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1261657900526872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4133123267788066}
+  - component: {fileID: 108025123318385406}
+  m_Layer: 11
+  m_Name: MapCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,6 +212,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1909565910128428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4010375796648598}
+  - component: {fileID: 33068709584790992}
+  - component: {fileID: 23906596482220930}
+  m_Layer: 0
+  m_Name: Funle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4010375796648598
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909565910128428}
+  m_LocalRotation: {x: 0.9865092, y: 0.00000006322026, z: -0.000000021073422, w: 0.16370596}
+  m_LocalPosition: {x: 0, y: -0.0184, z: -0.0127}
+  m_LocalScale: {x: 0.6072079, y: 0.5080366, z: 0.45628}
+  m_Children: []
+  m_Father: {fileID: 4192650848601130}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+--- !u!4 &4133123267788066
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261657900526872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.077, z: -0.1946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4192650848601130}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4175431147064816
 Transform:
   m_ObjectHideFlags: 1
@@ -219,6 +279,8 @@ Transform:
   m_LocalScale: {x: 0.72043055, y: 0.7204308, z: 0.7204306}
   m_Children:
   - {fileID: 4589556387139034}
+  - {fileID: 4010375796648598}
+  - {fileID: 4133123267788066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -596,6 +658,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23906596482220930
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909565910128428}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 11f1f5661bd39e740bcfacbc20415d32, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23922090445359304
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -631,6 +728,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33068709584790992
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909565910128428}
+  m_Mesh: {fileID: 4300000, guid: 902d18eddd0ca7944952f8affe9430bc, type: 3}
 --- !u!33 &33225382863175752
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -699,6 +803,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.18115467, y: 0.03431834, z: 0.14347966}
   m_Center: {x: 0.0010769665, y: 0.04914506, z: -0.0073656146}
+--- !u!108 &108025123318385406
+Light:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261657900526872}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0, g: 0.2627451, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 2
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 3895
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114701542103334282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,6 +864,25 @@ MonoBehaviour:
   yMul: 4600
   xAddP: 100
   yAddP: 0
+--- !u!114 &114726635145715844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028427756513390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873739c7a4ff97941b1f853df2dd2e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapPeicees: []
+  hologramMaterial: {fileID: 2100000, guid: 11f1f5661bd39e740bcfacbc20415d32, type: 2}
+  hologramCenter: {fileID: 4133123267788066}
+  projectorBeam: {fileID: 23906596482220930}
+  hologramLight: {fileID: 108025123318385406}
+  hologramScale: 0.005
+  trueRotation: 1
+  active: 0
 --- !u!215 &215284045955649792
 ReflectionProbe:
   m_ObjectHideFlags: 1

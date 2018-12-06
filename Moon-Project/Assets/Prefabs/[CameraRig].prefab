@@ -55399,6 +55399,7 @@ MonoBehaviour:
   resourceMedium: {r: 1, g: 1, b: 0, a: 1}
   resourceLow: {r: 1, g: 0.5691919, b: 0, a: 1}
   resourceCritical: {r: 1, g: 0, b: 0, a: 1}
+  portableHoloMap: {fileID: 0}
 --- !u!135 &135140847916835992
 SphereCollider:
   m_ObjectHideFlags: 1

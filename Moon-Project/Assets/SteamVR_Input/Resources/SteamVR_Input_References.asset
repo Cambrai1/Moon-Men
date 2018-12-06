@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7a45a6c20c02084fbe5032c9f71e5b6, type: 2}
   actionNames:
   - __actions_default_in_InteractUI
-  - __actions_default_in_Teleport
+  - __actions_default_in_Menu
   - __actions_default_in_GrabPinch
   - __actions_default_in_GrabGrip
   - __actions_default_in_Pose
@@ -28,7 +28,7 @@ MonoBehaviour:
   - __actions_default_out_Haptic
   actionObjects:
   - {fileID: 11400000, guid: 436437ce2880f8841bffa671b575f7c2, type: 2}
-  - {fileID: 11400000, guid: eeceab771676a434b82b970da6bc4670, type: 2}
+  - {fileID: 11400000, guid: 0d40c51bfdf69db43b16f1feb43664d8, type: 2}
   - {fileID: 11400000, guid: 4350b5ab9fa1177429885ba00d64e44e, type: 2}
   - {fileID: 11400000, guid: 0135536826263df4c8ffd27d75535faa, type: 2}
   - {fileID: 11400000, guid: 327d5fea52f7ab34596124d8e88694c8, type: 2}

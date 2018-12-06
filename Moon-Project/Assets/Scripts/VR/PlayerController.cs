@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
     public Transform rHandTransform;                        //  The transform of the right hand
     public Transform lHandTransform;                        //  The transform of the left hand
     private Camera m_vrCam;
+    private LayerMask m_originalCamLayers;
     public bool canGrab = true;                             //  Should the player be able to grab?
     [HideInInspector]
     public Interactable rHoverObject;                       //  The interactable being hovered over by the right hand
@@ -72,6 +73,8 @@ public class PlayerController : MonoBehaviour {
     public Color resourceLow = new Color(1.0f, 0.6f, 0.0f); //  The colour used to indicate low resource quantity
     public Color resourceCritical = Color.red;              //  The colour used to indicate critical resource quantity
 
+    public HoloMap portableHoloMap;
+
     private void Start()
     {
         m_transform = transform;
@@ -83,6 +86,7 @@ public class PlayerController : MonoBehaviour {
             m_headTransform = m_transform.Find("Camera");
         }
         m_vrCam = m_headTransform.GetComponent<Camera>();
+        m_originalCamLayers = m_vrCam.cullingMask;
         if(!rHandTransform || !lHandTransform)
         {
             rHandTransform = m_transform.Find("Controller (right)");
@@ -126,6 +130,7 @@ public class PlayerController : MonoBehaviour {
     {
         //  RIGHT HAND
         {
+            //  TRACKPAD
             rHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.RightHand);
             if (rHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -137,6 +142,7 @@ public class PlayerController : MonoBehaviour {
                 rHandInput.trackpadNormalised = rHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -146,9 +152,16 @@ public class PlayerController : MonoBehaviour {
             {
                 TryRelease(ref rGrabbedObject, rHandTransform);
             }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.RightHand))
+            {
+                GetComponent<ScreenshotTool>().Capture();
+            }
         }
         //  LEFT HAND
         {
+            //  TRACKPAD
             lHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
             if(lHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -160,6 +173,7 @@ public class PlayerController : MonoBehaviour {
                 lHandInput.trackpadNormalised = lHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -168,6 +182,15 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
             {
                 TryRelease(ref lGrabbedObject, lHandTransform);
+            }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                if(portableHoloMap)
+                {
+                    portableHoloMap.Toggle();
+                }
             }
         }
     }
@@ -398,7 +421,7 @@ public class PlayerController : MonoBehaviour {
             m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 0.0f, m_boundsFadeSpeed * Time.deltaTime);
             if (m_vignetteFade < 1.0f)
             {
-                m_vrCam.cullingMask = ~0;
+                m_vrCam.cullingMask = m_originalCamLayers;
                 m_vrCam.clearFlags = CameraClearFlags.Skybox;
             }
         }

@@ -5,7 +5,7 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/Teleport",
+      "name": "/actions/default/in/Menu",
       "type": "boolean"
     },
     {

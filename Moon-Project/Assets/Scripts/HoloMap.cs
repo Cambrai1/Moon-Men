@@ -7,8 +7,12 @@ public class HoloMap : MonoBehaviour
     public List<GameObject> mapPeicees;
     public Material hologramMaterial;
     public Transform hologramCenter;
+    public Renderer projectorBeam;
+    public Light hologramLight;
     public float hologramScale = 0.01f;
     private ModularWorldGenerator m_gen;
+    public bool trueRotation = true;
+    public bool active = false;
 
     private bool m_initialSpawned = false;
 
@@ -25,6 +29,11 @@ public class HoloMap : MonoBehaviour
             {
                 RespawnPeices();
             }
+        }
+
+        if(trueRotation)
+        {
+            hologramCenter.rotation = Quaternion.identity;
         }
     }
 
@@ -57,6 +66,7 @@ public class HoloMap : MonoBehaviour
         }
 
         m_initialSpawned = true;
+        TurnOn();
     }
 
     public void TurnOn()
@@ -65,12 +75,23 @@ public class HoloMap : MonoBehaviour
         {
             module.SetActive(true);
         }
+        if (hologramLight) hologramLight.enabled = true;
+        if (projectorBeam) projectorBeam.enabled = true;
+        active = true;
     }
     public void TurnOff()
     {
         foreach (GameObject module in mapPeicees)
         {
-            module.SetActive(true);
+            module.SetActive(false);
         }
+        if (hologramLight) hologramLight.enabled = false;
+        if (projectorBeam) projectorBeam.enabled = false;
+        active = false;
+    }
+    public void Toggle()
+    {
+        if (active) TurnOff();
+        else TurnOn();
     }
 }

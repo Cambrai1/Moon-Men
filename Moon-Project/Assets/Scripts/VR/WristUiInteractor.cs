@@ -34,8 +34,12 @@ public class WristUiInteractor : MonoBehaviour
         if (!handPointer) return;
         if (!m_col) return;
         Pointer();
+    }
+
+    private void LateUpdate()
+    {
         if (!targetTransform) return;
-        LerpPos();
+        LerpPos(Time.deltaTime);
     }
 
     private void Pointer()
@@ -62,10 +66,10 @@ public class WristUiInteractor : MonoBehaviour
         }
     }
 
-    private void LerpPos()
+    private void LerpPos(float _dt)
     {
-        Vector3 pos = Vector3.Lerp(m_transform.position, targetTransform.position, lerpSpeed * Time.deltaTime);
-        Quaternion rot = Quaternion.Lerp(m_transform.rotation, targetTransform.rotation, lerpSpeed * Time.deltaTime);
+        Vector3 pos = Vector3.Lerp(m_transform.position, targetTransform.position, lerpSpeed * _dt);
+        Quaternion rot = Quaternion.Lerp(m_transform.rotation, targetTransform.rotation, lerpSpeed * _dt);
         m_transform.position = pos;
         m_transform.rotation = rot;
     }
