@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool suffocating;
     private bool m_prevSuffocating;
+    public Canvas deadCanvas;
 
     public HoloMap portableHoloMap;
 
@@ -458,11 +459,14 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            m_oxDeprivation -= (100.0f / 3.0f) * Time.deltaTime;
+            m_oxDeprivation -= 100 * Time.deltaTime;
             suffocating = false;
         }
 
         m_oxDeprivation = Mathf.Clamp(m_oxDeprivation, 0.0f, 100.0f);
+
+        if (m_oxDeprivation >= 100.0f) deadCanvas.enabled = true;
+        else deadCanvas.enabled = false;
 
         m_postProfile.GetSetting<ColorGrading>().saturation.value = -m_oxDeprivation;
 
