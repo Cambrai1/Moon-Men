@@ -14,6 +14,8 @@ public class HoloMap : MonoBehaviour
     public bool trueRotation = true;
     public bool active = false;
 
+    private List<Renderer> m_renderers;
+
     private bool m_initialSpawned = false;
 
     private void Start()
@@ -35,6 +37,15 @@ public class HoloMap : MonoBehaviour
         {
             hologramCenter.rotation = Quaternion.identity;
         }
+
+        if(active && m_initialSpawned)
+        {
+            foreach (Renderer r in m_renderers)
+            {
+                Vector3 diff = transform.position;
+                r.material.SetVector("_WaveOrigin", diff);
+            }
+        }
     }
 
     public void RespawnPeices()
@@ -47,6 +58,7 @@ public class HoloMap : MonoBehaviour
             }
         }
         mapPeicees = new List<GameObject>();
+        m_renderers = new List<Renderer>();
 
         foreach(RoomModule module in m_gen.GetSpawnedModules())
         {
@@ -59,14 +71,17 @@ public class HoloMap : MonoBehaviour
                 foreach (Renderer r in newMapObject.GetComponentsInChildren<Renderer>())
                 {
                     r.material = hologramMaterial;
+                    r.material.SetVector("_LocalOffset", r.transform.position);
                     r.gameObject.layer = LayerMask.NameToLayer("World");
+                    m_renderers.Add(r);
                 }
                 mapPeicees.Add(newMapObject);
             }
         }
 
         m_initialSpawned = true;
-        TurnOn();
+        if (active) TurnOn();
+        else TurnOff();
     }
 
     public void TurnOn()
