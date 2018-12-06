@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HoloMap : MonoBehaviour
 {
-    public List<GameObject> mapPeicees;
+    public List<GameObject> mapPieces;
     public Material hologramMaterial;
     public Transform hologramCenter;
     public Renderer projectorBeam;
@@ -17,10 +17,12 @@ public class HoloMap : MonoBehaviour
     private List<Renderer> m_renderers;
 
     private bool m_initialSpawned = false;
+    private Vector3 m_originalCenter;
 
     private void Start()
     {
         if (!m_gen) m_gen = GameObject.Find("GENERATED").GetComponent<ModularWorldGenerator>();
+        m_originalCenter = hologramCenter.localPosition;
     }
 
     private void Update()
@@ -50,15 +52,16 @@ public class HoloMap : MonoBehaviour
 
     public void RespawnPeices()
     {
-        if(mapPeicees.Count >= 1)
+        if(mapPieces.Count >= 1)
         {
-            foreach (GameObject module in mapPeicees)
+            foreach (GameObject module in mapPieces)
             {
                 GameObject.Destroy(module);
             }
         }
-        mapPeicees = new List<GameObject>();
+        mapPieces = new List<GameObject>();
         m_renderers = new List<Renderer>();
+
 
         foreach(RoomModule module in m_gen.GetSpawnedModules())
         {
@@ -75,8 +78,32 @@ public class HoloMap : MonoBehaviour
                     r.gameObject.layer = LayerMask.NameToLayer("World");
                     m_renderers.Add(r);
                 }
-                mapPeicees.Add(newMapObject);
+                mapPieces.Add(newMapObject);
             }
+        }
+
+        float minX = 0, maxX = 0, minZ = 0, maxZ = 0, cX = 0, cZ = 0;
+        foreach (GameObject r in mapPieces)
+        {
+            if (r.transform.localPosition.x < minX) minX = r.transform.localPosition.x;
+            if (r.transform.localPosition.x > maxX) maxX = r.transform.localPosition.x;
+            if (r.transform.localPosition.z < minZ) minZ = r.transform.localPosition.z;
+            if (r.transform.localPosition.z > maxZ) maxZ = r.transform.localPosition.z;
+        }
+        cX = Mathf.Lerp(minX, maxX, 0.5f);
+        cZ = Mathf.Lerp(minZ, maxZ, 0.5f);
+        Debug.Log("CX : " + cX);
+        Debug.Log("CZ : " + cZ);
+
+        cX = minX + 0.5f * (maxX - minX);
+        cZ = minZ + 0.5f * (maxZ - minZ);
+
+        foreach (GameObject obj in mapPieces)
+        {
+            Vector3 newPos = obj.transform.localPosition;
+            newPos.x -= cX;
+            newPos.z -= cZ;
+            obj.transform.localPosition = newPos;
         }
 
         m_initialSpawned = true;
@@ -86,7 +113,7 @@ public class HoloMap : MonoBehaviour
 
     public void TurnOn()
     {
-        foreach(GameObject module in mapPeicees)
+        foreach(GameObject module in mapPieces)
         {
             module.SetActive(true);
         }
@@ -96,7 +123,7 @@ public class HoloMap : MonoBehaviour
     }
     public void TurnOff()
     {
-        foreach (GameObject module in mapPeicees)
+        foreach (GameObject module in mapPieces)
         {
             module.SetActive(false);
         }
