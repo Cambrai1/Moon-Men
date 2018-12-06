@@ -73,6 +73,9 @@ public class PlayerController : MonoBehaviour {
     public Color resourceLow = new Color(1.0f, 0.6f, 0.0f); //  The colour used to indicate low resource quantity
     public Color resourceCritical = Color.red;              //  The colour used to indicate critical resource quantity
 
+    public float oxygenDeprivationTime = 10.0f;             //  The time before the player dies from oxygen deprivation
+    private float m_oxDeprivation = 0.0f;
+
     public HoloMap portableHoloMap;
 
     private void Start()
@@ -124,6 +127,8 @@ public class PlayerController : MonoBehaviour {
 
         //  CHECK PLAYER BOUNDS
         PlayerBounds();
+
+        OxygenDeprivation();
     }
 
     private void GetInput()
@@ -428,6 +433,22 @@ public class PlayerController : MonoBehaviour {
 
         
         m_postProfile.GetSetting<Vignette>().opacity.value = m_vignetteFade;
+    }
+
+    private void OxygenDeprivation()
+    {
+        if(oxygen <= 0.0f)
+        {
+            m_oxDeprivation += (100.0f / oxygenDeprivationTime) * Time.deltaTime;
+        }
+        else
+        {
+            m_oxDeprivation -= (100.0f / 3.0f) * Time.deltaTime;
+        }
+
+        m_oxDeprivation = Mathf.Clamp(m_oxDeprivation, 0.0f, 100.0f);
+
+        m_postProfile.GetSetting<ColorGrading>().saturation.value = -m_oxDeprivation;
     }
 }
 
