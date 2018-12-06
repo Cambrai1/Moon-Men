@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4010375796648598
 Transform:
   m_ObjectHideFlags: 1
@@ -460,7 +460,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: a2416573b9285c243a53263343b6b3b1, type: 3}
+  - {fileID: 2100000, guid: 266387aa4b3d7df449ed1ca595c195fc, type: 2}
   - {fileID: 2100004, guid: a2416573b9285c243a53263343b6b3b1, type: 3}
   - {fileID: 2100000, guid: 6fae7133b616f9642b0872c84c9ff1ef, type: 2}
   - {fileID: 2100000, guid: 99056624a821d3942821fd45de872447, type: 2}
@@ -858,6 +858,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 2048
+  screenMaterial: {fileID: 2100000, guid: 99056624a821d3942821fd45de872447, type: 2}
   xAdd: -0.02
   yAdd: 0.02
   xMul: 4600
@@ -875,14 +876,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873739c7a4ff97941b1f853df2dd2e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapPeicees: []
+  mapPieces: []
   hologramMaterial: {fileID: 2100000, guid: 11f1f5661bd39e740bcfacbc20415d32, type: 2}
   hologramCenter: {fileID: 4133123267788066}
   projectorBeam: {fileID: 23906596482220930}
   hologramLight: {fileID: 108025123318385406}
   hologramScale: 0.005
   trueRotation: 1
-  active: 0
+  active: 1
 --- !u!215 &215284045955649792
 ReflectionProbe:
   m_ObjectHideFlags: 1

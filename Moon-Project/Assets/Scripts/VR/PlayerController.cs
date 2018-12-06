@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour {
     public Transform powerUi;                               //  The main transform of the Power UI
     private Image m_powerIcon;                              //  The Power UI image
     private Image m_powerBar;                               //  The Power resource bar
-    public RawImage heartRateImage;                        //  The Heart rate monitor UI
+    public RawImage heartRateImage;                         //  The Heart rate monitor UI
+    public WristUiInteractor wristUi;
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
     private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 
     public float oxygenDeprivationTime = 10.0f;             //  The time before the player dies from oxygen deprivation
     private float m_oxDeprivation = 0.0f;
+    [HideInInspector]
     public bool suffocating;
     private bool m_prevSuffocating;
 
@@ -139,6 +141,7 @@ public class PlayerController : MonoBehaviour {
         //  CHECK PLAYER BOUNDS
         PlayerBounds();
 
+        PowerDeprivation();
         OxygenDeprivation();
     }
 
@@ -172,7 +175,7 @@ public class PlayerController : MonoBehaviour {
             //  MENU BUTTON
             if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
-                GetComponent<ScreenshotTool>().Capture();
+                wristUi.Toggle();
             }
         }
         //  LEFT HAND
@@ -491,6 +494,14 @@ public class PlayerController : MonoBehaviour {
         if (_clips.Count == 1) return _clips[0];
         int random = Random.Range(0, _clips.Count);
         return _clips[random];
+    }
+
+    private void PowerDeprivation()
+    {
+        if(power <= 0.0f)
+        {
+            wristUi.TurnOff();
+        }
     }
 }
 

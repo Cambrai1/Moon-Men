@@ -3198,7 +3198,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -55488,14 +55488,15 @@ MonoBehaviour:
   oxygenUi: {fileID: 0}
   powerUi: {fileID: 0}
   heartRateImage: {fileID: 0}
-  oxygen: 10
+  wristUi: {fileID: 0}
+  oxygen: 100
   power: 100
   heartRate: 50
   resourceHigh: {r: 0, g: 1, b: 0, a: 1}
   resourceMedium: {r: 1, g: 1, b: 0, a: 1}
   resourceLow: {r: 1, g: 0.5691919, b: 0, a: 1}
   resourceCritical: {r: 1, g: 0, b: 0, a: 1}
-  oxygenDeprivationTime: 10
+  oxygenDeprivationTime: 0
   suffocating: 0
   portableHoloMap: {fileID: 0}
   playerSource: {fileID: 82364490423938000}

@@ -14,10 +14,14 @@ public class WristUiInteractor : MonoBehaviour
     private Transform m_screenTransform;
     private Vector3 m_localHitPoint;
     private Transform m_transform;
+    public Material screenMaterial;
 
     public float xAdd, yAdd;
     public float xMul, yMul;
     public float xAddP, yAddP;
+
+    private bool m_animating;
+    private bool m_active = true;
 
     private void Start()
     {
@@ -27,6 +31,8 @@ public class WristUiInteractor : MonoBehaviour
         m_screenTransform = m_col.transform;
         if (!handPointer) handPointer = GameObject.Find("WristUiPointer").transform;
         if (!canvasPointer) canvasPointer = GameObject.Find("WristUiCanvasPointer").GetComponent<RectTransform>();
+
+        StartCoroutine(TurnOnCoroutine());
     }
 
     private void Update()
@@ -72,5 +78,59 @@ public class WristUiInteractor : MonoBehaviour
         Quaternion rot = Quaternion.Lerp(m_transform.rotation, targetTransform.rotation, lerpSpeed * _dt);
         m_transform.position = pos;
         m_transform.rotation = rot;
+    }
+
+    public void TurnOn()
+    {
+        if (m_active) return;
+        if (!m_animating) StartCoroutine(TurnOnCoroutine());
+    }
+    public void TurnOff()
+    {
+        if (!m_active) return;
+        if (!m_animating) StartCoroutine(TurnOffCoroutine());
+    }
+    public void Toggle()
+    {
+        if (m_active) TurnOff();
+        else TurnOn();
+    }
+
+    private IEnumerator TurnOnCoroutine()
+    {
+        m_animating = true;
+        m_active = true;
+        float t = 0.0f;
+        screenMaterial.SetFloat("_Completion", 0.0f);
+        screenMaterial.SetFloat("_Fade", 0.0f);
+        while (t < 1.0f)
+        {
+            screenMaterial.SetFloat("_Fade", t);
+            t += Time.deltaTime;
+            t = Mathf.Clamp(t, 0.0f, 1.0f);
+            yield return new WaitForEndOfFrame();
+        }
+        screenMaterial.SetFloat("_Fade", 1.0f);
+        m_animating = false;
+        yield return null;
+    }
+    private IEnumerator TurnOffCoroutine()
+    {
+        m_animating = true;
+        m_active = false;
+        float t = 0.0f;
+        screenMaterial.SetFloat("_Completion", 0.0f);
+        screenMaterial.SetFloat("_Fade", 1.0f);
+        while (t < 1.0f)
+        {
+            screenMaterial.SetFloat("_Completion", t);
+            t += Time.deltaTime;
+            t = Mathf.Clamp(t, 0.0f, 1.0f);
+            yield return new WaitForEndOfFrame();
+        }
+        screenMaterial.SetFloat("_Fade", 0.0f);
+        screenMaterial.SetFloat("_Completion", 1.0f);
+        m_animating = false;
+        yield return null;
     }
 }
