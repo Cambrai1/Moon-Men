@@ -106,7 +106,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146900}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
@@ -55569,7 +55569,7 @@ MonoBehaviour:
     movementSpeed: 3
     movementOrientation: 1
     teleportDistance: 1
-  m_useBounds: 1
+  m_useBounds: 0
   m_boundsRadius: 0.1
   m_boundsMask:
     serializedVersion: 2
@@ -55595,7 +55595,7 @@ MonoBehaviour:
   powerUi: {fileID: 0}
   heartRateImage: {fileID: 0}
   wristUi: {fileID: 0}
-  oxygen: 10
+  oxygen: 100
   power: 100
   heartRate: 50
   resourceHigh: {r: 0, g: 1, b: 0, a: 1}
