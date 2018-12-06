@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour {
     public Transform rHandTransform;                        //  The transform of the right hand
     public Transform lHandTransform;                        //  The transform of the left hand
     private Camera m_vrCam;
+    private LayerMask m_originalCamLayers;
     public bool canGrab = true;                             //  Should the player be able to grab?
     [HideInInspector]
     public Interactable rHoverObject;                       //  The interactable being hovered over by the right hand
@@ -72,6 +73,11 @@ public class PlayerController : MonoBehaviour {
     public Color resourceLow = new Color(1.0f, 0.6f, 0.0f); //  The colour used to indicate low resource quantity
     public Color resourceCritical = Color.red;              //  The colour used to indicate critical resource quantity
 
+    public float oxygenDeprivationTime = 10.0f;             //  The time before the player dies from oxygen deprivation
+    private float m_oxDeprivation = 0.0f;
+
+    public HoloMap portableHoloMap;
+
     private void Start()
     {
         m_transform = transform;
@@ -83,6 +89,7 @@ public class PlayerController : MonoBehaviour {
             m_headTransform = m_transform.Find("Camera");
         }
         m_vrCam = m_headTransform.GetComponent<Camera>();
+        m_originalCamLayers = m_vrCam.cullingMask;
         if(!rHandTransform || !lHandTransform)
         {
             rHandTransform = m_transform.Find("Controller (right)");
@@ -120,12 +127,15 @@ public class PlayerController : MonoBehaviour {
 
         //  CHECK PLAYER BOUNDS
         PlayerBounds();
+
+        OxygenDeprivation();
     }
 
     private void GetInput()
     {
         //  RIGHT HAND
         {
+            //  TRACKPAD
             rHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.RightHand);
             if (rHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -137,6 +147,7 @@ public class PlayerController : MonoBehaviour {
                 rHandInput.trackpadNormalised = rHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -146,9 +157,16 @@ public class PlayerController : MonoBehaviour {
             {
                 TryRelease(ref rGrabbedObject, rHandTransform);
             }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.RightHand))
+            {
+                GetComponent<ScreenshotTool>().Capture();
+            }
         }
         //  LEFT HAND
         {
+            //  TRACKPAD
             lHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
             if(lHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -160,6 +178,7 @@ public class PlayerController : MonoBehaviour {
                 lHandInput.trackpadNormalised = lHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -168,6 +187,15 @@ public class PlayerController : MonoBehaviour {
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateUp(SteamVR_Input_Sources.LeftHand))
             {
                 TryRelease(ref lGrabbedObject, lHandTransform);
+            }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                if(portableHoloMap)
+                {
+                    portableHoloMap.Toggle();
+                }
             }
         }
     }
@@ -398,13 +426,29 @@ public class PlayerController : MonoBehaviour {
             m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 0.0f, m_boundsFadeSpeed * Time.deltaTime);
             if (m_vignetteFade < 1.0f)
             {
-                m_vrCam.cullingMask = ~0;
+                m_vrCam.cullingMask = m_originalCamLayers;
                 m_vrCam.clearFlags = CameraClearFlags.Skybox;
             }
         }
 
         
         m_postProfile.GetSetting<Vignette>().opacity.value = m_vignetteFade;
+    }
+
+    private void OxygenDeprivation()
+    {
+        if(oxygen <= 0.0f)
+        {
+            m_oxDeprivation += (100.0f / oxygenDeprivationTime) * Time.deltaTime;
+        }
+        else
+        {
+            m_oxDeprivation -= (100.0f / 3.0f) * Time.deltaTime;
+        }
+
+        m_oxDeprivation = Mathf.Clamp(m_oxDeprivation, 0.0f, 100.0f);
+
+        m_postProfile.GetSetting<ColorGrading>().saturation.value = -m_oxDeprivation;
     }
 }
 

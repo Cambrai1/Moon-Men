@@ -20,6 +20,8 @@ public class RoomModule : MonoBehaviour
     private bool m_initialised;
     private List<ModuleConnector> m_remainingExits;
 
+    private GameObject m_mapObject;
+
     public List<ModuleConnector> GetConnectors()
     {
         return connectors;
@@ -88,7 +90,16 @@ public class RoomModule : MonoBehaviour
         }
         if (!safetyBox) safetyBox = GetComponent<BoxCollider>();
         safetyBox.enabled = false;
-        reflectionProbes = new List<ReflectionProbe>(GetComponentsInChildren<ReflectionProbe>());
+        reflectionProbes = new List<ReflectionProbe>(GetComponentsInChildren<ReflectionProbe>());        
+    }
+
+    private void SetMapObject()
+    {
+        m_mapObject = transform.Find("MapObject").gameObject;
+    }
+    public GameObject GetMapObject()
+    {
+        return m_mapObject;
     }
 
     public void SetId(int _id)
@@ -105,6 +116,16 @@ public class RoomModule : MonoBehaviour
         foreach(ReflectionProbe probe in reflectionProbes)
         {
             probe.RenderProbe();
+        }
+
+        if (!m_mapObject && moduleCode != "null") SetMapObject();
+        if (m_mapObject)
+        {
+            m_mapObject.layer = LayerMask.NameToLayer("Map");
+            Collider col = m_mapObject.GetComponent<Collider>();
+            if (col) col.enabled = false;
+            m_mapObject.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            m_mapObject.GetComponent<Renderer>().receiveShadows = false;
         }
     }
 }

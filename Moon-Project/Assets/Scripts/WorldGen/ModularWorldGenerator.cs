@@ -27,6 +27,8 @@ public class ModularWorldGenerator : MonoBehaviour
 
     private Text timeUi, genUi, modulesUi;
 
+    public bool generationComplete = true;
+
     [SerializeField]
     private string worldSeed;
 
@@ -87,6 +89,7 @@ public class ModularWorldGenerator : MonoBehaviour
     
     public void Regenerate()
     {
+        generationComplete = false;
         ResetWorld();
 
         if(visibleIterations || neverStop)
@@ -315,7 +318,15 @@ public class ModularWorldGenerator : MonoBehaviour
             module.OnGenerationComplete();
             yield return null;
         }
+
+        generationComplete = true;
+
         yield return null;
+    }
+
+    public List<RoomModule> GetSpawnedModules()
+    {
+        return m_spawnedModules;
     }
 
     private RoomModule TrySpawnRandomModule(ModuleConnector _connector)
