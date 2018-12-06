@@ -57,7 +57,7 @@ MonoBehaviour:
     defaultState: 1
   opacity:
     overrideState: 1
-    value: 1
+    value: 0
 --- !u!114 &114903272231528066
 MonoBehaviour:
   m_ObjectHideFlags: 3

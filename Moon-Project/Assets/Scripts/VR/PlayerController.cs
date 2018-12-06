@@ -75,8 +75,19 @@ public class PlayerController : MonoBehaviour {
 
     public float oxygenDeprivationTime = 10.0f;             //  The time before the player dies from oxygen deprivation
     private float m_oxDeprivation = 0.0f;
+    public bool suffocating;
+    private bool m_prevSuffocating;
 
     public HoloMap portableHoloMap;
+
+    [Header("Audio")]
+
+    public AudioSource playerSource;
+    public List<AudioClip> suffocationClips;
+    private bool m_playingSuffocatingClip;
+    public List<AudioClip> oxygenatedClips;
+    private bool m_playingOxygenatedClip;
+    private bool m_playingBreathingAudio;
 
     private void Start()
     {
@@ -440,15 +451,46 @@ public class PlayerController : MonoBehaviour {
         if(oxygen <= 0.0f)
         {
             m_oxDeprivation += (100.0f / oxygenDeprivationTime) * Time.deltaTime;
+            suffocating = true;
         }
         else
         {
             m_oxDeprivation -= (100.0f / 3.0f) * Time.deltaTime;
+            suffocating = false;
         }
 
         m_oxDeprivation = Mathf.Clamp(m_oxDeprivation, 0.0f, 100.0f);
 
         m_postProfile.GetSetting<ColorGrading>().saturation.value = -m_oxDeprivation;
+
+        if(suffocating && !m_prevSuffocating && !m_playingSuffocatingClip)
+        {
+            playerSource.Stop();
+            playerSource.loop = true;
+            playerSource.clip = GetRandomClip(suffocationClips);
+            playerSource.Play();
+            m_playingSuffocatingClip = true;
+            m_playingOxygenatedClip = false;
+            m_prevSuffocating = true;
+        }
+
+        if (!suffocating && m_prevSuffocating && !m_playingOxygenatedClip)
+        {
+            playerSource.Stop();
+            playerSource.loop = false;
+            playerSource.clip = GetRandomClip(oxygenatedClips);
+            playerSource.Play();
+            m_playingSuffocatingClip = false;
+            m_playingOxygenatedClip = true;
+            m_prevSuffocating = false;
+        }
+    }
+
+    private AudioClip GetRandomClip(List<AudioClip> _clips)
+    {
+        if (_clips.Count == 1) return _clips[0];
+        int random = Random.Range(0, _clips.Count);
+        return _clips[random];
     }
 }
 
