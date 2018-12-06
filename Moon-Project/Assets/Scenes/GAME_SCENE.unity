@@ -7001,6 +7001,11 @@ Prefab:
       propertyPath: m_Name
       value: WristUi
       objectReference: {fileID: 0}
+    - target: {fileID: 114726635145715844, guid: 818a26a3ae1d6764baaacfe2b0220956,
+        type: 2}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818a26a3ae1d6764baaacfe2b0220956, type: 2}
   m_IsPrefabAsset: 0
