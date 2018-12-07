@@ -35,6 +35,7 @@ public class WristUiInteractor : MonoBehaviour
 
     private bool m_docked = false;
     private PlayerController m_player;
+    private bool m_pickedUp = false;
 
     private void Start()
     {
@@ -76,11 +77,18 @@ public class WristUiInteractor : MonoBehaviour
         {
             targetTransform = closestCharger;
             m_docked = true;
+            m_pickedUp = true;
+            TurnOn();
         }
-        else
+        else if(m_pickedUp)
         {
             targetTransform = m_originalTargetTransform;
             m_docked = false;
+        }
+        else
+        {
+            targetTransform = closestCharger;
+            m_docked = true;
         }
 
 
@@ -136,17 +144,26 @@ public class WristUiInteractor : MonoBehaviour
     public void TurnOn()
     {
         if (m_active) return;
+        if (!m_pickedUp) return;
+        if (m_player.power <= 0.0f) return;
         if (!m_animating) StartCoroutine(TurnOnCoroutine());
     }
     public void TurnOff()
     {
         if (!m_active) return;
+        if (!m_pickedUp) return;
         if (!m_animating) StartCoroutine(TurnOffCoroutine());
     }
     public void Toggle()
     {
         if (m_active) TurnOff();
         else TurnOn();
+    }
+
+    public void ToggleMap()
+    {
+        if (m_player.power <= 0.0f) return;
+        m_map.Toggle();
     }
 
     private IEnumerator TurnOnCoroutine()
@@ -171,6 +188,7 @@ public class WristUiInteractor : MonoBehaviour
     {
         m_animating = true;
         m_active = false;
+        m_map.TurnOff();
         float t = 0.0f;
         screenMaterial.SetFloat("_Completion", 0.0f);
         screenMaterial.SetFloat("_Fade", 1.0f);

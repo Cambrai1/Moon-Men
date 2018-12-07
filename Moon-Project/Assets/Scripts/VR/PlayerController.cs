@@ -206,10 +206,7 @@ public class PlayerController : MonoBehaviour {
             //  MENU BUTTON
             if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
-                if(portableHoloMap)
-                {
-                    portableHoloMap.Toggle();
-                }
+                wristUi.ToggleMap();
             }
         }
     }
@@ -223,7 +220,7 @@ public class PlayerController : MonoBehaviour {
         switch (m_movementSettings.movementOrientation)
         {
             case MovementOrientation.head:
-                input = RotateVector2(input, m_headTransform.localEulerAngles.y);
+                input = RotateVector2(input, m_headTransform.eulerAngles.y);
                 break;
             case MovementOrientation.controller:
                 break;
