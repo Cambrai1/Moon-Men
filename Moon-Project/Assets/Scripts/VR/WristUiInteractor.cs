@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WristUiInteractor : MonoBehaviour
 {
     public Transform targetTransform;
+    private Transform m_originalTargetTransform;
     public float lerpSpeed = 50.0f;
     public Transform handPointer;
     public RectTransform canvasPointer;
@@ -15,6 +16,15 @@ public class WristUiInteractor : MonoBehaviour
     private Vector3 m_localHitPoint;
     private Transform m_transform;
     public Material screenMaterial;
+    private HoloMap m_map;
+
+    private List<GameObject> m_chargerList;
+    public Transform closestCharger;
+    private float m_chargerDistance = 100f;
+    public float chargerSnapDistance = 0.2f;
+    public float rechargeRate = 20.0f;
+    private float m_totalPowerUsage = 0.0f;
+    public float powerUsage = 1.0f;
 
     public float xAdd, yAdd;
     public float xMul, yMul;
@@ -23,14 +33,22 @@ public class WristUiInteractor : MonoBehaviour
     private bool m_animating;
     private bool m_active = true;
 
+    private bool m_docked = false;
+    private PlayerController m_player;
+
     private void Start()
     {
         m_transform = transform;
+        m_originalTargetTransform = targetTransform;
+        m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        m_map = GetComponent<HoloMap>();
         if (!m_col) m_col = GetComponentInChildren<BoxCollider>();
         if (!targetTransform) targetTransform = GameObject.Find("WristUiTargetTransform").transform;
         m_screenTransform = m_col.transform;
         if (!handPointer) handPointer = GameObject.Find("WristUiPointer").transform;
         if (!canvasPointer) canvasPointer = GameObject.Find("WristUiCanvasPointer").GetComponent<RectTransform>();
+
+        m_chargerList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Charger"));
 
         StartCoroutine(TurnOnCoroutine());
     }
@@ -44,8 +62,43 @@ public class WristUiInteractor : MonoBehaviour
 
     private void LateUpdate()
     {
+        float dist = 0f;
+        foreach(GameObject charger in m_chargerList)
+        {
+            dist = Vector3.Distance(charger.transform.position, m_transform.position);
+            if (dist < m_chargerDistance)
+            {
+                closestCharger = charger.transform;
+                m_chargerDistance = dist;
+            }
+        }
+        if(Vector3.Distance(m_originalTargetTransform.position, closestCharger.position) <= chargerSnapDistance)
+        {
+            targetTransform = closestCharger;
+            m_docked = true;
+        }
+        else
+        {
+            targetTransform = m_originalTargetTransform;
+            m_docked = false;
+        }
+
+
         if (!targetTransform) return;
         LerpPos(Time.deltaTime);
+
+        m_totalPowerUsage = 0.0f;
+        if(m_docked)
+        {
+            m_player.IncreasePowerLevel(rechargeRate * Time.deltaTime);
+        }
+        else
+        {
+
+            if (m_active) m_totalPowerUsage += powerUsage;
+            if(m_map.active) m_totalPowerUsage += powerUsage;
+            m_player.DecreasePowerLevel(m_totalPowerUsage * Time.deltaTime * 2.0f);
+        }
     }
 
     private void Pointer()

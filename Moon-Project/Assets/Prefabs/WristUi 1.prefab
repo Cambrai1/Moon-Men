@@ -274,7 +274,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028427756513390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.055, z: -2.559}
   m_LocalScale: {x: 0.72043055, y: 0.7204308, z: 0.7204306}
   m_Children:
@@ -461,7 +461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 266387aa4b3d7df449ed1ca595c195fc, type: 2}
-  - {fileID: 2100004, guid: a2416573b9285c243a53263343b6b3b1, type: 3}
+  - {fileID: 2100000, guid: 705c09c11db7e274c94c7a91b22e6f1a, type: 2}
   - {fileID: 2100000, guid: 6fae7133b616f9642b0872c84c9ff1ef, type: 2}
   - {fileID: 2100000, guid: 99056624a821d3942821fd45de872447, type: 2}
   m_StaticBatchInfo:
@@ -859,6 +859,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   screenMaterial: {fileID: 2100000, guid: 99056624a821d3942821fd45de872447, type: 2}
+  closestCharger: {fileID: 0}
+  chargerSnapDistance: 0.2
+  rechargeRate: 20
+  powerUsage: 1
   xAdd: -0.02
   yAdd: 0.02
   xMul: 4600
@@ -883,7 +887,7 @@ MonoBehaviour:
   hologramLight: {fileID: 108025123318385406}
   hologramScale: 0.005
   trueRotation: 1
-  active: 1
+  active: 0
 --- !u!215 &215284045955649792
 ReflectionProbe:
   m_ObjectHideFlags: 1

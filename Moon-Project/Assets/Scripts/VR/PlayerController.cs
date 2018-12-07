@@ -134,7 +134,6 @@ public class PlayerController : MonoBehaviour {
 
         //  DEPLETE OXYGEN & POWER
         DecreaseOxygenLevel(m_oxygenDepletionRate * Time.deltaTime);
-        DecreasePowerLevel(m_oxygenDepletionRate * Time.deltaTime / 3.0f);
 
         //  UPDATE WRIST UI
         UpdateWristUi();
