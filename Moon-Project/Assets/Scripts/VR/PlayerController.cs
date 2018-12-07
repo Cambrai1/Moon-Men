@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     public WristUiInteractor wristUi;
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
-    private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
+    private float m_oxygenDepletionRate = 0.7f;             //  The rate at which oxygen depletes
     public float power = 100.0f;                            //  The amount of power remaining
     public float heartRate = 50.0f;
 
@@ -233,6 +233,8 @@ public class PlayerController : MonoBehaviour {
         direction *= Time.deltaTime;
 
         m_transform.position += direction;
+
+        if (input.magnitude >= 0.1f) DecreaseOxygenLevel(3 * m_oxygenDepletionRate * Time.deltaTime);
     }
     private Vector2 RotateVector2(Vector2 _vector, float _angle)
     {

@@ -37,6 +37,8 @@ public class WristUiInteractor : MonoBehaviour
     private PlayerController m_player;
     private bool m_pickedUp = false;
 
+    public Text helperUi;
+
     private void Start()
     {
         m_transform = transform;
@@ -84,6 +86,7 @@ public class WristUiInteractor : MonoBehaviour
         {
             targetTransform = m_originalTargetTransform;
             m_docked = false;
+            helperUi.text = "RECHARGE YOUR WRIST UI";
         }
         else
         {
@@ -162,6 +165,7 @@ public class WristUiInteractor : MonoBehaviour
 
     public void ToggleMap()
     {
+        if (!m_pickedUp) return;
         if (m_player.power <= 0.0f) return;
         m_map.Toggle();
     }
