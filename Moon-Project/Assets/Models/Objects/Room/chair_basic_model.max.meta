@@ -1,47 +1,38 @@
 fileFormatVersion: 2
-guid: d34deac4e3cdef24db513b15488461bd
+guid: b530b68fa4bdb06409968da91d38c772
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Base
-    100004: Chair
-    100006: Cushion
-    100008: Cushion001
-    100010: Desk
-    100012: Shaft
-    400000: //RootNode
-    400002: Base
-    400004: Chair
-    400006: Cushion
-    400008: Cushion001
-    400010: Desk
-    400012: Shaft
+    100000: Base
+    100002: //RootNode
+    100004: Cushion
+    100006: Cushion001
+    100008: Shaft
+    400000: Base
+    400002: //RootNode
+    400004: Cushion
+    400006: Cushion001
+    400008: Shaft
     2100000: No Name
     2100002: 'Material #27'
     2100004: 'Material #28'
     2100006: 'Material #26'
     2100008: 'Material #25'
-    2300000: //RootNode
-    2300002: Base
-    2300004: Chair
-    2300006: Cushion
-    2300008: Cushion001
-    2300010: Desk
-    2300012: Shaft
-    3300000: //RootNode
-    3300002: Base
-    3300004: Chair
-    3300006: Cushion
-    3300008: Cushion001
-    3300010: Desk
-    3300012: Shaft
-    4300000: Desk
-    4300002: Chair
-    4300004: Cushion
-    4300006: Cushion001
-    4300008: Shaft
-    4300010: Base
+    2300000: Base
+    2300002: //RootNode
+    2300004: Cushion
+    2300006: Cushion001
+    2300008: Shaft
+    3300000: Base
+    3300002: //RootNode
+    3300004: Cushion
+    3300006: Cushion001
+    3300008: Shaft
+    4300000: Chair
+    4300002: Cushion
+    4300004: Cushion001
+    4300006: Shaft
+    4300008: Base
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -73,7 +64,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.05
+    globalScale: 0.068
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
@@ -96,8 +87,8 @@ ModelImporter:
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
-    normalSmoothAngle: 40
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
