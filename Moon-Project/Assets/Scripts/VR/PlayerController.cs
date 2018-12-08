@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     public WristUiInteractor wristUi;
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
-    private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
+    private float m_oxygenDepletionRate = 0.7f;             //  The rate at which oxygen depletes
     public float power = 100.0f;                            //  The amount of power remaining
     public float heartRate = 50.0f;
 
@@ -134,7 +134,6 @@ public class PlayerController : MonoBehaviour {
 
         //  DEPLETE OXYGEN & POWER
         DecreaseOxygenLevel(m_oxygenDepletionRate * Time.deltaTime);
-        DecreasePowerLevel(m_oxygenDepletionRate * Time.deltaTime / 3.0f);
 
         //  UPDATE WRIST UI
         UpdateWristUi();
@@ -207,10 +206,7 @@ public class PlayerController : MonoBehaviour {
             //  MENU BUTTON
             if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
-                if(portableHoloMap)
-                {
-                    portableHoloMap.Toggle();
-                }
+                wristUi.ToggleMap();
             }
         }
     }
@@ -224,7 +220,7 @@ public class PlayerController : MonoBehaviour {
         switch (m_movementSettings.movementOrientation)
         {
             case MovementOrientation.head:
-                input = RotateVector2(input, m_headTransform.localEulerAngles.y);
+                input = RotateVector2(input, m_headTransform.eulerAngles.y);
                 break;
             case MovementOrientation.controller:
                 break;
@@ -237,6 +233,8 @@ public class PlayerController : MonoBehaviour {
         direction *= Time.deltaTime;
 
         m_transform.position += direction;
+
+        if (input.magnitude >= 0.1f) DecreaseOxygenLevel(3 * m_oxygenDepletionRate * Time.deltaTime);
     }
     private Vector2 RotateVector2(Vector2 _vector, float _angle)
     {
