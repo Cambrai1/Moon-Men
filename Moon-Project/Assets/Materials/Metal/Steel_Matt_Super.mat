@@ -89,7 +89,7 @@ Material:
     - _OutlineSize: 0.00077
     - _Parallax: 0.02
     - _ShowOutline: 0
-    - _Smoothness: 0.8
+    - _Smoothness: 0.46
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

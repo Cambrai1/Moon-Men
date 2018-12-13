@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     public WristUiInteractor wristUi;
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
-    private float m_oxygenDepletionRate = 0.7f;             //  The rate at which oxygen depletes
+    private float m_oxygenDepletionRate = 0.5f;             //  The rate at which oxygen depletes
     public float power = 100.0f;                            //  The amount of power remaining
     public float heartRate = 50.0f;
 
