@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 //  CLASS IS USED TO CONTROLL PLAYER MOVEMENT AND INTERACTION
 public class PlayerController : MonoBehaviour {
@@ -13,6 +14,21 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField]
     private PlayerMovementSettings m_movementSettings;      //  The movement settings
+
+    [Header("Bounds")]
+    [SerializeField]
+    private bool m_useBounds = true;
+    [SerializeField]
+    private float m_boundsRadius = 0.2f;
+    [SerializeField]
+    private LayerMask m_boundsMask;
+    [SerializeField]
+    private PostProcessProfile m_postProfile;
+    private float m_vignetteFade = 0.0f;
+    [SerializeField]
+    private float m_boundsFadeSpeed = 1.0f;
+    private Vignette m_vignette;
+    public bool forceVignette = false;
 
     [Header("Input")]
 
@@ -26,6 +42,8 @@ public class PlayerController : MonoBehaviour {
     private Transform m_headTransform;                      //  The transform of the head object
     public Transform rHandTransform;                        //  The transform of the right hand
     public Transform lHandTransform;                        //  The transform of the left hand
+    private Camera m_vrCam;
+    private LayerMask m_originalCamLayers;
     public bool canGrab = true;                             //  Should the player be able to grab?
     [HideInInspector]
     public Interactable rHoverObject;                       //  The interactable being hovered over by the right hand
@@ -43,15 +61,36 @@ public class PlayerController : MonoBehaviour {
     public Transform powerUi;                               //  The main transform of the Power UI
     private Image m_powerIcon;                              //  The Power UI image
     private Image m_powerBar;                               //  The Power resource bar
+    public RawImage heartRateImage;                         //  The Heart rate monitor UI
+    public WristUiInteractor wristUi;
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
-    private float m_oxygenDepletionRate = 2.0f;             //  The rate at which oxygen depletes
+    private float m_oxygenDepletionRate = 0.7f;             //  The rate at which oxygen depletes
     public float power = 100.0f;                            //  The amount of power remaining
+    public float heartRate = 50.0f;
 
     public Color resourceHigh = Color.green;                //  The colour used to indicate high resource quantity
     public Color resourceMedium = Color.yellow;             //  The colour used to indicate medium resource quantity
     public Color resourceLow = new Color(1.0f, 0.6f, 0.0f); //  The colour used to indicate low resource quantity
     public Color resourceCritical = Color.red;              //  The colour used to indicate critical resource quantity
+
+    public float oxygenDeprivationTime = 10.0f;             //  The time before the player dies from oxygen deprivation
+    private float m_oxDeprivation = 0.0f;
+    [HideInInspector]
+    public bool suffocating;
+    private bool m_prevSuffocating;
+    public Canvas deadCanvas;
+
+    public HoloMap portableHoloMap;
+
+    [Header("Audio")]
+
+    public AudioSource playerSource;
+    public List<AudioClip> suffocationClips;
+    private bool m_playingSuffocatingClip;
+    public List<AudioClip> oxygenatedClips;
+    private bool m_playingOxygenatedClip;
+    private bool m_playingBreathingAudio;
 
     private void Start()
     {
@@ -63,6 +102,8 @@ public class PlayerController : MonoBehaviour {
         {
             m_headTransform = m_transform.Find("Camera");
         }
+        m_vrCam = m_headTransform.GetComponent<Camera>();
+        m_originalCamLayers = m_vrCam.cullingMask;
         if(!rHandTransform || !lHandTransform)
         {
             rHandTransform = m_transform.Find("Controller (right)");
@@ -79,6 +120,8 @@ public class PlayerController : MonoBehaviour {
             m_powerIcon = powerUi.GetChild(0).GetComponent<Image>();
             m_powerBar = powerUi.GetChild(1).GetComponent<Image>();
         }
+
+        m_vignette = m_postProfile.GetSetting<Vignette>();
     }
 
     private void Update()
@@ -91,16 +134,22 @@ public class PlayerController : MonoBehaviour {
 
         //  DEPLETE OXYGEN & POWER
         DecreaseOxygenLevel(m_oxygenDepletionRate * Time.deltaTime);
-        DecreasePowerLevel(m_oxygenDepletionRate * Time.deltaTime / 3.0f);
 
         //  UPDATE WRIST UI
         UpdateWristUi();
+
+        //  CHECK PLAYER BOUNDS
+        PlayerBounds();
+
+        PowerDeprivation();
+        OxygenDeprivation();
     }
 
     private void GetInput()
     {
         //  RIGHT HAND
         {
+            //  TRACKPAD
             rHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.RightHand);
             if (rHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -112,6 +161,7 @@ public class PlayerController : MonoBehaviour {
                 rHandInput.trackpadNormalised = rHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.RightHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -121,9 +171,16 @@ public class PlayerController : MonoBehaviour {
             {
                 TryRelease(ref rGrabbedObject, rHandTransform);
             }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.RightHand))
+            {
+                wristUi.Toggle();
+            }
         }
         //  LEFT HAND
         {
+            //  TRACKPAD
             lHandInput.trackpadAbsolute = SteamVR_Input._default.inActions.Trackpad.GetAxis(SteamVR_Input_Sources.LeftHand);
             if(lHandInput.trackpadAbsolute.magnitude <= m_trackpadDeadzone)
             {
@@ -135,6 +192,7 @@ public class PlayerController : MonoBehaviour {
                 lHandInput.trackpadNormalised = lHandInput.trackpadAbsolute.normalized;
             }
 
+            //  TRIGGER
             if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
                 //GetComponent<ScreenshotTool>().Capture();
@@ -144,6 +202,12 @@ public class PlayerController : MonoBehaviour {
             {
                 TryRelease(ref lGrabbedObject, lHandTransform);
             }
+
+            //  MENU BUTTON
+            if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                wristUi.ToggleMap();
+            }
         }
     }
 
@@ -151,12 +215,12 @@ public class PlayerController : MonoBehaviour {
     {
         Vector2 input = Vector2.zero;
         Vector3 direction = Vector3.zero;
-        input.x = lHandInput.trackpadAbsolute.x * m_movementSettings.movementSpeed;
-        input.y = lHandInput.trackpadAbsolute.y * m_movementSettings.movementSpeed;
+        input.x = lHandInput.trackpadAbsolute.x;
+        input.y = lHandInput.trackpadAbsolute.y;
         switch (m_movementSettings.movementOrientation)
         {
             case MovementOrientation.head:
-                input = RotateVector2(input, m_headTransform.localEulerAngles.y);
+                input = RotateVector2(input, m_headTransform.eulerAngles.y);
                 break;
             case MovementOrientation.controller:
                 break;
@@ -164,10 +228,13 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
         input.Normalize();
+        input *= m_movementSettings.movementSpeed;
         direction.x = input.x; direction.z = input.y;
         direction *= Time.deltaTime;
 
         m_transform.position += direction;
+
+        if (input.magnitude >= 0.1f) DecreaseOxygenLevel(3 * m_oxygenDepletionRate * Time.deltaTime);
     }
     private Vector2 RotateVector2(Vector2 _vector, float _angle)
     {
@@ -301,8 +368,12 @@ public class PlayerController : MonoBehaviour {
 
     private void UpdateWristUi()
     {
+        int numBars = 20;
+        float fillAmount = 100.0f/(float)numBars;
+
         //  OXYGEN
-        m_oxygenBar.fillAmount = oxygen / 100.0f;
+        fillAmount = (float)(Mathf.Ceil(numBars * (oxygen / 100)) * (100 / numBars))/100.0f;
+        m_oxygenBar.fillAmount = fillAmount;
         if (oxygen <= 25.0f) { m_oxygenBar.color = resourceCritical; }
         else if (oxygen <= 50.0f) { m_oxygenBar.color = resourceLow; }
         else if (oxygen <= 75.0f) { m_oxygenBar.color = resourceMedium; }
@@ -310,17 +381,30 @@ public class PlayerController : MonoBehaviour {
         m_oxygenIcon.color = m_oxygenBar.color;
 
         //  POWER
-        m_powerBar.fillAmount = power / 100.0f;
+        fillAmount = (float)(Mathf.Ceil(numBars * (power / 100)) * (100 / numBars)) / 100.0f;
+        m_powerBar.fillAmount = fillAmount;
         if (power <= 25.0f) { m_powerBar.color = resourceCritical; }
         else if (power <= 50.0f) { m_powerBar.color = resourceLow; }
         else if (power <= 75.0f) { m_powerBar.color = resourceMedium; }
         else { m_powerBar.color = resourceHigh; }
         m_powerIcon.color = m_powerBar.color;
+
+        if(heartRateImage)
+        {
+            Rect uvRect = heartRateImage.uvRect;
+            if (uvRect.x >= 1.0f) uvRect.x = 0.0f;
+            uvRect.x += heartRate/60 * Time.deltaTime;
+            heartRateImage.uvRect = uvRect;
+        }
     }
 
     public void SetOxygenLevel(float _level)
     {
-        oxygen = _level;
+        oxygen = Mathf.Clamp(_level, 0.0f, 100.0f);
+    }
+    public void IncreaseOxygenLevel(float _amount)
+    {
+        SetOxygenLevel(oxygen + _amount);
     }
     public void DecreaseOxygenLevel(float _amount)
     {
@@ -329,11 +413,98 @@ public class PlayerController : MonoBehaviour {
 
     public void SetPowerLevel(float _level)
     {
-        power = _level;
+        power = Mathf.Clamp(_level, 0.0f, 100.0f);
+    }
+    public void IncreasePowerLevel(float _amount)
+    {
+        SetPowerLevel(power + _amount);
     }
     public void DecreasePowerLevel(float _amount)
     {
         SetPowerLevel(power - _amount);
+    }
+
+    private void PlayerBounds()
+    {
+        if (forceVignette || (m_useBounds && Physics.CheckSphere(m_headTransform.position, m_boundsRadius, m_boundsMask)) && m_useBounds)
+        {
+            m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 1.0f, m_boundsFadeSpeed * Time.deltaTime);
+            if (m_vignetteFade >= 1.0f)
+            {
+                m_vrCam.cullingMask = new LayerMask();
+                m_vrCam.clearFlags = CameraClearFlags.SolidColor;
+            }
+        }
+        else
+        {
+            m_vignetteFade = Mathf.MoveTowards(m_vignetteFade, 0.0f, m_boundsFadeSpeed * Time.deltaTime);
+            if (m_vignetteFade < 1.0f)
+            {
+                m_vrCam.cullingMask = m_originalCamLayers;
+                m_vrCam.clearFlags = CameraClearFlags.Skybox;
+            }
+        }
+
+        
+        m_postProfile.GetSetting<Vignette>().opacity.value = m_vignetteFade;
+    }
+
+    private void OxygenDeprivation()
+    {
+        if(oxygen <= 0.0f)
+        {
+            m_oxDeprivation += (100.0f / oxygenDeprivationTime) * Time.deltaTime;
+            suffocating = true;
+        }
+        else
+        {
+            m_oxDeprivation -= 100 * Time.deltaTime;
+            suffocating = false;
+        }
+
+        m_oxDeprivation = Mathf.Clamp(m_oxDeprivation, 0.0f, 100.0f);
+
+        if (m_oxDeprivation >= 100.0f) deadCanvas.enabled = true;
+        else deadCanvas.enabled = false;
+
+        m_postProfile.GetSetting<ColorGrading>().saturation.value = -m_oxDeprivation;
+
+        if(suffocating && !m_prevSuffocating && !m_playingSuffocatingClip)
+        {
+            playerSource.Stop();
+            playerSource.loop = true;
+            playerSource.clip = GetRandomClip(suffocationClips);
+            playerSource.Play();
+            m_playingSuffocatingClip = true;
+            m_playingOxygenatedClip = false;
+            m_prevSuffocating = true;
+        }
+
+        if (!suffocating && m_prevSuffocating && !m_playingOxygenatedClip)
+        {
+            playerSource.Stop();
+            playerSource.loop = false;
+            playerSource.clip = GetRandomClip(oxygenatedClips);
+            playerSource.Play();
+            m_playingSuffocatingClip = false;
+            m_playingOxygenatedClip = true;
+            m_prevSuffocating = false;
+        }
+    }
+
+    private AudioClip GetRandomClip(List<AudioClip> _clips)
+    {
+        if (_clips.Count == 1) return _clips[0];
+        int random = Random.Range(0, _clips.Count);
+        return _clips[random];
+    }
+
+    private void PowerDeprivation()
+    {
+        if(power <= 0.0f)
+        {
+            wristUi.TurnOff();
+        }
     }
 }
 
@@ -341,7 +512,7 @@ public class PlayerController : MonoBehaviour {
 public class PlayerMovementSettings
 {
     public bool useTrackpad = true;
-    public float movementSpeed = 1f;
+    public float movementSpeed = 2f;
     public MovementOrientation movementOrientation;
     public float teleportDistance = 1f;
 }

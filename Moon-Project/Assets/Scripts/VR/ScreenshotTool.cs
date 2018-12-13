@@ -1,15 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.IO;
 
 public class ScreenshotTool : MonoBehaviour {
+
+#if UNITY_EDITOR
+    [MenuItem("Tools/Screenshot")]
+    private static void CaptureEditorScreenshot()
+    {
+        GameObject g = GameObject.Find("ScreenshotCam");
+        if (g != null)
+        {
+            Camera c = g.GetComponent<Camera>();
+            ScreenshotTool t = g.GetComponent<ScreenshotTool>();
+            Vector3 pos = SceneView.lastActiveSceneView.camera.transform.position;
+            Quaternion rot = SceneView.lastActiveSceneView.camera.transform.rotation;
+            g.transform.position = pos;
+            g.transform.rotation = rot;
+            c.enabled = true;
+            c.fieldOfView = 55.5f;
+            t.Capture(c, 1);
+            c.enabled = false;
+        }
+    }
+#endif
 
     public int width = 3840;
     public int height = 2160;
     public float fov = 0.0f;
 
     public Camera cam;
+    public KeyCode captureKey = KeyCode.P;
 
     private RenderTexture m_tex;
 
@@ -30,29 +55,37 @@ public class ScreenshotTool : MonoBehaviour {
         if (fov == 0.0f) fov = cam.fieldOfView;
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(captureKey))
+        {
+            Capture();
+        }
+    }
+
     public void Capture()
     {
-        Capture(1);
+        Capture(cam, 1);
     }
 
-    public void Capture(int _multiplier)
+    public void Capture(Camera _cam, int _multiplier)
     {
-        StartCoroutine(CaptureCoroutine(_multiplier));
+        StartCoroutine(CaptureCoroutine(cam, _multiplier));
     }
 
-    private IEnumerator CaptureCoroutine(int _multiplier)
+    private IEnumerator CaptureCoroutine(Camera _cam, int _multiplier)
     {
         int actualWidth = width * _multiplier;
         int actualHeight = height * _multiplier;
         string filename = Time.time.ToString();
         m_tex = new RenderTexture(actualWidth, actualHeight, 24);
         TextureFormat f = TextureFormat.RGB24;
-        cam.targetTexture = m_tex;
+        _cam.targetTexture = m_tex;
         Texture2D screenshot = new Texture2D(actualWidth, actualHeight, f, false);
-        cam.Render();
+        _cam.Render();
         RenderTexture.active = m_tex;
         screenshot.ReadPixels(new Rect(0, 0, actualWidth, actualHeight), 0, 0);
-        cam.targetTexture = null;
+        _cam.targetTexture = null;
         byte[] data = screenshot.EncodeToPNG();
         RenderTexture.active = null;
         System.IO.File.WriteAllBytes(Application.dataPath + "/" + filename + ".png", data);

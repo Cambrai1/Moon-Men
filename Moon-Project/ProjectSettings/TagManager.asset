@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - projectile
+  - FxTemporaire
+  - Charger
   layers:
   - Default
   - TransparentFX
@@ -14,10 +17,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - World
+  - Terrain
+  - Player
+  - Map
   - 
   - 
   - 

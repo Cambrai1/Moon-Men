@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 //  INHERIT FROM INTERACTABLE & MONOBEHAVIOUR
@@ -10,10 +11,14 @@ public class GrabableObject : Interactable {
     public bool isGrabbed;                          //  Is the object currently grabbed?
     private Transform m_handTransform;              //  The hand currently grabbing the object
     public bool disableColliderOnGrab = false;      //  Should the collider be disabled when grabbed?
+    public Transform grabPoint;                     //  The angle and position to grab the object with.
 
     [SerializeField]
     private int m_momentumExtrapolation = 10;       //  The number of frames used to extrapolate velocity
     private Vector3[] m_positionFrames;             //  The array of the most recent extrapolation frames
+
+    public UnityEvent OnGrab;
+    public UnityEvent OnRelease;
 
     public void ConfirmHoveredObject(Transform _hand, bool _state)
     {
@@ -44,15 +49,18 @@ public class GrabableObject : Interactable {
         body.useGravity = false;
         if (disableColliderOnGrab) collider.enabled = false;
         isGrabbed = true;
+        OnGrab.Invoke();
         Debug.Log("Grabable '" + gameObject.name + "' was grabbed by '" + m_handTransform.name + "'");
         return this;
     }
     private void ParentGrab(Transform _hand)
     {
         transform.SetParent(_hand);
-        transform.localPosition = Vector3.zero;
-        transform.rotation = _hand.rotation;
+        //transform.localPosition = Vector3.zero;
+        //transform.rotation = _hand.rotation;
         body.isKinematic = true;
+
+        StartCoroutine(MatchTransform(transform, _hand, grabPoint));
     }
     private void SpringGrab(Transform _hand)
     {
@@ -94,7 +102,7 @@ public class GrabableObject : Interactable {
         if (disableColliderOnGrab) collider.enabled = true;
         isGrabbed = false;
         m_handTransform = null;
-
+        OnRelease.Invoke();
         body.velocity = EstimateVelocity();
     }
 
@@ -124,5 +132,19 @@ public class GrabableObject : Interactable {
     {
         base.InteractableInit();
         m_positionFrames = new Vector3[m_momentumExtrapolation];
+        if (!grabPoint) grabPoint = transform;
+    }
+
+    private IEnumerator MatchTransform(Transform _a, Transform _b, Transform _grabPoint)
+    {
+        float speed = 2.0f;
+        while(Vector3.Distance(_grabPoint.position, _b.position) >= 0.01f)
+        {
+            _a.position = Vector3.MoveTowards(_a.position, _b.position + (_a.position - _grabPoint.position), speed * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        _a.position = _b.position + (_a.position - _grabPoint.position);
+
+        yield return null;
     }
 }
