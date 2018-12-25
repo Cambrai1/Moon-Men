@@ -9,6 +9,7 @@ public class HoloMap : MonoBehaviour
     public Transform hologramCenter;
     public Renderer projectorBeam;
     public Light hologramLight;
+    public ParticleSystemRenderer particles;
     public float hologramScale = 0.01f;
     private ModularWorldGenerator m_gen;
     public bool trueRotation = true;
@@ -119,6 +120,7 @@ public class HoloMap : MonoBehaviour
         }
         if (hologramLight) hologramLight.enabled = true;
         if (projectorBeam) projectorBeam.enabled = true;
+        if (particles) particles.enabled = true;
         active = true;
     }
     public void TurnOff()
@@ -129,6 +131,8 @@ public class HoloMap : MonoBehaviour
         }
         if (hologramLight) hologramLight.enabled = false;
         if (projectorBeam) projectorBeam.enabled = false;
+        if (particles)
+            if (particles) particles.enabled = false;
         active = false;
     }
     public void Toggle()
