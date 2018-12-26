@@ -15,7 +15,7 @@ MonoBehaviour:
   - {fileID: 114977612180098048}
   - {fileID: 114255000759541006}
   - {fileID: 114903272231528066}
-  - {fileID: 114575407309964360}
+  - {fileID: 114503423681959426}
 --- !u!114 &114255000759541006
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -59,7 +59,7 @@ MonoBehaviour:
   opacity:
     overrideState: 1
     value: 0
---- !u!114 &114575407309964360
+--- !u!114 &114503423681959426
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,13 +70,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
   m_Name: ScreenSpaceReflections
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   preset:
-    overrideState: 1
-    value: 0
+    overrideState: 0
+    value: 2
   maximumIterationCount:
     overrideState: 0
     value: 16
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -159,7 +159,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: -23.88327
+    value: -100
   brightness:
     overrideState: 0
     value: 0
