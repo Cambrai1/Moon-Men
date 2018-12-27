@@ -87,7 +87,7 @@ Material:
     - _SpecularHighlights: 1
     - _Speed: -20
     - _SrcBlend: 1
-    - _Stripiness: 1000
+    - _Stripiness: 500
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0

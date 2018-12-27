@@ -13,6 +13,8 @@ public class HoloMap : MonoBehaviour
     public float hologramScale = 0.01f;
     private ModularWorldGenerator m_gen;
     public bool trueRotation = true;
+    public bool showPlayerPosition = true;
+    public GameObject playerIndicator;
     public bool active = false;
 
     private List<Renderer> m_renderers;
@@ -20,10 +22,14 @@ public class HoloMap : MonoBehaviour
     private bool m_initialSpawned = false;
     private Vector3 m_originalCenter;
 
+    private Transform m_player;
+    private float cX, cZ;
+
     private void Start()
     {
         if (!m_gen) m_gen = GameObject.Find("GENERATED").GetComponent<ModularWorldGenerator>();
         m_originalCenter = hologramCenter.localPosition;
+        m_player = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
@@ -48,7 +54,19 @@ public class HoloMap : MonoBehaviour
                 Vector3 diff = transform.position;
                 r.material.SetVector("_WaveOrigin", diff);
             }
+
+            if (showPlayerPosition) ShowPlayer();
         }
+    }
+
+    private void ShowPlayer()
+    {
+        Vector3 indicatorPos = m_player.position;
+        indicatorPos.y = 1.0f;
+        indicatorPos *= hologramScale;
+        indicatorPos.x -= cX;
+        indicatorPos.z -= cZ;
+        playerIndicator.transform.localPosition = indicatorPos;
     }
 
     public void RespawnPeices()
@@ -83,7 +101,7 @@ public class HoloMap : MonoBehaviour
             }
         }
 
-        float minX = 0, maxX = 0, minZ = 0, maxZ = 0, cX = 0, cZ = 0;
+        float minX = 0, maxX = 0, minZ = 0, maxZ = 0;
         foreach (GameObject r in mapPieces)
         {
             if (r.transform.localPosition.x < minX) minX = r.transform.localPosition.x;
@@ -93,8 +111,6 @@ public class HoloMap : MonoBehaviour
         }
         cX = Mathf.Lerp(minX, maxX, 0.5f);
         cZ = Mathf.Lerp(minZ, maxZ, 0.5f);
-        Debug.Log("CX : " + cX);
-        Debug.Log("CZ : " + cZ);
 
         cX = minX + 0.5f * (maxX - minX);
         cZ = minZ + 0.5f * (maxZ - minZ);
@@ -118,6 +134,7 @@ public class HoloMap : MonoBehaviour
         {
             module.SetActive(true);
         }
+        if (playerIndicator && showPlayerPosition) playerIndicator.SetActive(true);
         if (hologramLight) hologramLight.enabled = true;
         if (projectorBeam) projectorBeam.enabled = true;
         if (particles) particles.enabled = true;
@@ -129,10 +146,10 @@ public class HoloMap : MonoBehaviour
         {
             module.SetActive(false);
         }
+        if (playerIndicator && showPlayerPosition) playerIndicator.SetActive(false);
         if (hologramLight) hologramLight.enabled = false;
         if (projectorBeam) projectorBeam.enabled = false;
-        if (particles)
-            if (particles) particles.enabled = false;
+        if (particles) particles.enabled = false;
         active = false;
     }
     public void Toggle()
