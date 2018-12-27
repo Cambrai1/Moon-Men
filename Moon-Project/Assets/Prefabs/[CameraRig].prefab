@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 11489174}
   - component: {fileID: 114992721828267194}
   - component: {fileID: 114219022931445448}
+  - component: {fileID: 114653271318277296}
   m_Layer: 11
   m_Name: '[CameraRig]'
   m_TagString: Player
@@ -106,9 +107,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146900}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029504295}
+  m_LocalPosition: {x: 0, y: 0, z: -21.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 458974}
   - {fileID: 402434}
@@ -117,7 +118,7 @@ Transform:
   - {fileID: 4944808876098048}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
 --- !u!4 &458974
 Transform:
   m_ObjectHideFlags: 1
@@ -253,14 +254,14 @@ MonoBehaviour:
   size: 0
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.0000002, y: 0.01, z: -0.7500002}
-  - {x: -1.0000002, y: 0.01, z: -0.7500002}
-  - {x: -1.0000002, y: 0.01, z: 0.7500002}
-  - {x: 1.0000002, y: 0.01, z: 0.7500002}
-  - {x: 1.1500002, y: 0.01, z: -0.9000002}
-  - {x: -1.1500002, y: 0.01, z: -0.9000002}
-  - {x: -1.1500002, y: 0.01, z: 0.9000002}
-  - {x: 1.1500002, y: 0.01, z: 0.9000002}
+  - {x: 1.1000001, y: 0.01, z: -0.9000002}
+  - {x: -1.1000001, y: 0.01, z: -0.9000002}
+  - {x: -1.1000001, y: 0.01, z: 0.9000002}
+  - {x: 1.1000001, y: 0.01, z: 0.9000002}
+  - {x: 1.2500001, y: 0.01, z: -1.0500002}
+  - {x: -1.2500001, y: 0.01, z: -1.0500002}
+  - {x: -1.2500001, y: 0.01, z: 1.0500002}
+  - {x: 1.2500001, y: 0.01, z: 1.0500002}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1800,13 +1801,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1265998037948468}
-  m_LocalRotation: {x: 0.6878196, y: -0.3683129, z: 0.6180705, w: -0.096118286}
-  m_LocalPosition: {x: -0.048675187, y: 0.092409514, z: -0.21647644}
+  m_LocalRotation: {x: 0.70863605, y: -0.3647397, z: 0.5941116, w: -0.10877231}
+  m_LocalPosition: {x: -0.0574, y: 0.0971, z: -0.2151}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 458974}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.214, y: 106.356, z: -137.705}
 --- !u!4 &4183005163732032
 Transform:
   m_ObjectHideFlags: 1
@@ -38206,6 +38207,27 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114653271318277296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc557f9dfe6857448b6aa0aa58327dce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allMissions:
+  - {fileID: 11400000, guid: 63b6437798fe7d042adad6029e5134bc, type: 2}
+  - {fileID: 11400000, guid: c14fe485df7048c45977793e87aada14, type: 2}
+  m_activeMissions: []
+  m_completedMissions: []
+  m_missionUiPrefab: {fileID: 1743935589526698, guid: fb43b8d986d648b449d0d86755041777,
+    type: 2}
+  m_activeMissionsPanel: {fileID: 0}
+  m_completedMissionsPanel: {fileID: 0}
+  m_missionDetailsText: {fileID: 0}
 --- !u!114 &114883434834465070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55596,7 +55618,7 @@ MonoBehaviour:
   heartRateImage: {fileID: 0}
   wristUi: {fileID: 0}
   oxygen: 100
-  power: 100
+  power: 10
   heartRate: 50
   resourceHigh: {r: 0, g: 1, b: 0, a: 1}
   resourceMedium: {r: 1, g: 1, b: 0, a: 1}
