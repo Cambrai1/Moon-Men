@@ -102,12 +102,12 @@ Material:
     - _Stripiness: 1000
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _ASEOutlineColor: {r: 1, g: 0, b: 0.43164778, a: 0}
     - _BasePosition: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0, g: 0.38452864, b: 1, a: 1}
-    - _Emission: {r: 0, g: 0.343848, b: 2.828427, a: 1}
+    - _Emission: {r: 0, g: 0.7108089, b: 5.6568537, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LocalOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling: {r: 0.1, g: -0.1, b: 0, a: 0}
