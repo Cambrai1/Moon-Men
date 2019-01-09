@@ -19,7 +19,7 @@ public class UiButton : MonoBehaviour {
         {
             m_col = gameObject.AddComponent<BoxCollider>();
         }
-        Vector3 newSize = m_rect.sizeDelta;
+        Vector3 newSize = m_rect.sizeDelta * 1.2f;
         newSize.z = 1.0f;
         m_col.size = newSize;
     }

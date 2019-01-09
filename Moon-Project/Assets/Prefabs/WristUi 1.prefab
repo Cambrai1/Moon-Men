@@ -1047,6 +1047,9 @@ MonoBehaviour:
   xAddP: 100
   yAddP: 0
   helperUi: {fileID: 0}
+  m_vibration: {fileID: 11400000, guid: efde99067f4521e41b1c9897bb212a33, type: 2}
+  m_vibrationFrequency: 200
+  m_vibrationStrength: 0.05
 --- !u!114 &114726635145715844
 MonoBehaviour:
   m_ObjectHideFlags: 1

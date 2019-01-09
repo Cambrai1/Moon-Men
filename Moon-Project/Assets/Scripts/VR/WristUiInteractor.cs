@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 using System;
 
 public class WristUiInteractor : MonoBehaviour
@@ -34,12 +35,20 @@ public class WristUiInteractor : MonoBehaviour
 
     private bool m_animating;
     private bool m_active = true;
+    private bool m_pressedUiScreen = false;
 
     private bool m_docked = false;
     private PlayerController m_player;
     private bool m_pickedUp = false;
 
     public Text helperUi;
+
+    [SerializeField]
+    SteamVR_Action_Vibration m_vibration;
+    [SerializeField]
+    float m_vibrationFrequency = 100;
+    [SerializeField]
+    float m_vibrationStrength = 0.5f;
 
     private void Start()
     {
@@ -136,16 +145,27 @@ public class WristUiInteractor : MonoBehaviour
         {
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
-            if (hit.distance <= 0.1f)
+            if (hit.distance <= 0.015f)
             {
-                canvasPointer.GetComponentInChildren<RawImage>().color = Color.blue;
-                Physics.Raycast(canvasPointer.transform.position - new Vector3(0,0,10), Vector3.forward, out hit, 20.0f, LayerMask.NameToLayer("UI"));
-
-                hit.collider.gameObject.GetComponent<UiButton>()?.TriggerButton();
+                m_pressedUiScreen = true;
+                RaycastHit hit2;
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
+                Physics.Raycast(canvasPointer.transform.position - new Vector3(0,0,10), Vector3.forward, out hit2, 20.0f);
+                if(hit2.collider != null && m_pressedUiScreen == true)
+                {
+                    m_vibration.Execute(0f, 0.1f, m_vibrationFrequency, m_vibrationStrength, SteamVR_Input_Sources.RightHand);
+                    hit2.collider.transform.GetComponent<UiButton>().TriggerButton();
+                }                
+            }
+            else if (hit.distance <= 0.03f)
+            {
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
+                m_pressedUiScreen = false;
             }
             else
             {
-                canvasPointer.GetComponentInChildren<RawImage>().color = Color.red;
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = false;
+                m_pressedUiScreen = false;
             }
         }
     }
