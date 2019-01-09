@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4347064637090786}
   - component: {fileID: 33209465938951998}
   - component: {fileID: 23954684946338422}
-  - component: {fileID: 65356354057608628}
+  - component: {fileID: 65728032935014196}
   m_Layer: 9
   m_Name: wrist_screen_charger
   m_TagString: Untagged
@@ -97,16 +97,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727230845246214}
-  m_LocalRotation: {x: -0.4304603, y: -0.56098485, z: -0.56098485, w: 0.4304603}
-  m_LocalPosition: {x: 0.748, y: 1.144, z: -5.808}
-  m_LocalScale: {x: 0.7204306, y: 0.7204306, z: 0.7204306}
+  m_LocalRotation: {x: 0.09229379, y: -0.70105773, z: -0.70105773, w: -0.09229379}
+  m_LocalPosition: {x: 3.915, y: 0.96714, z: -22.852}
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
   m_Children:
   - {fileID: 4674710359065620}
   - {fileID: 4074290799085618}
   - {fileID: 4575923123772568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -105.00001}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: -194.99998}
 --- !u!4 &4575923123772568
 Transform:
   m_ObjectHideFlags: 1
@@ -266,7 +266,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052445592179274}
   m_Mesh: {fileID: 4300002, guid: 50f4b48db47defa44a9c9c37e15c1751, type: 3}
---- !u!65 &65356354057608628
+--- !u!65 &65728032935014196
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,5 +276,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2398928, y: 0.23949844, z: 0.112601556}
-  m_Center: {x: 0.000053678694, y: -0.00000000845585, z: 0.05630087}
+  m_Size: {x: 0.2398928, y: 0.23949842, z: 0.11260154}
+  m_Center: {x: 0.00005368692, y: -0.00000001319369, z: 0.056300864}

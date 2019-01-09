@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
+using System;
 
 public class WristUiInteractor : MonoBehaviour
 {
@@ -17,21 +19,23 @@ public class WristUiInteractor : MonoBehaviour
     private Transform m_transform;
     public Material screenMaterial;
     private HoloMap m_map;
+    private Text m_time;
 
     private List<GameObject> m_chargerList;
     public Transform closestCharger;
     private float m_chargerDistance = 100f;
     public float chargerSnapDistance = 0.2f;
-    public float rechargeRate = 20.0f;
+    public float rechargeRate = 30.0f;
     private float m_totalPowerUsage = 0.0f;
     public float powerUsage = 1.0f;
 
-    public float xAdd, yAdd;
-    public float xMul, yMul;
-    public float xAddP, yAddP;
+    public float xAdd = -0.02f, yAdd = 0.02f;
+    public float xMul = 4600f, yMul = 4600f;
+    public float xAddP = 100f, yAddP = 0f;
 
     private bool m_animating;
     private bool m_active = true;
+    private bool m_pressedUiScreen = false;
 
     private bool m_docked = false;
     private PlayerController m_player;
@@ -39,12 +43,20 @@ public class WristUiInteractor : MonoBehaviour
 
     public Text helperUi;
 
+    [SerializeField]
+    SteamVR_Action_Vibration m_vibration;
+    [SerializeField]
+    float m_vibrationFrequency = 100;
+    [SerializeField]
+    float m_vibrationStrength = 0.5f;
+
     private void Start()
     {
         m_transform = transform;
         m_originalTargetTransform = targetTransform;
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         m_map = GetComponent<HoloMap>();
+        m_time = GameObject.Find("WristUiTime").GetComponent<Text>();
         if (!m_col) m_col = GetComponentInChildren<BoxCollider>();
         if (!targetTransform) targetTransform = GameObject.Find("WristUiTargetTransform").transform;
         m_screenTransform = m_col.transform;
@@ -61,6 +73,7 @@ public class WristUiInteractor : MonoBehaviour
         if (!handPointer) return;
         if (!m_col) return;
         Pointer();
+        ShowTime();
     }
 
     private void LateUpdate()
@@ -115,7 +128,6 @@ public class WristUiInteractor : MonoBehaviour
     private void Pointer()
     {
         RaycastHit hit;
-        Ray ray = new Ray(handPointer.position, -m_screenTransform.up);
         Debug.DrawLine(handPointer.position, handPointer.position - m_screenTransform.up);
         Physics.Raycast(handPointer.position, -m_screenTransform.up, out hit, 1.0f);
         Vector3 result = new Vector3(9999,9999,9999);
@@ -133,7 +145,40 @@ public class WristUiInteractor : MonoBehaviour
         {
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
+            if (hit.distance <= 0.01f && m_active == true)
+            {
+                RaycastHit hit2;
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
+                Physics.Raycast(canvasPointer.transform.position - new Vector3(0,0,10), Vector3.forward, out hit2, 20.0f);
+                if(hit2.collider != null && m_pressedUiScreen == false)
+                {
+                    m_vibration.Execute(0f, 0.1f, m_vibrationFrequency, m_vibrationStrength, SteamVR_Input_Sources.RightHand);
+                    hit2.collider.transform.GetComponent<UiButton>().TriggerButton();
+                    m_pressedUiScreen = true;
+                }                
+            }
+            else if (hit.distance <= 0.05f)
+            {
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
+                m_pressedUiScreen = false;
+            }
+            else
+            {
+                canvasPointer.GetComponentInChildren<RawImage>().enabled = false;
+                m_pressedUiScreen = false;
+            }
         }
+    }
+
+    private void ShowTime()
+    {
+        int hour = System.DateTime.Now.Hour;
+        int minute = System.DateTime.Now.Minute;
+        string hourString = hour.ToString();
+        string minuteString = minute.ToString();
+        if (hour <= 9) hourString = "0" + hourString;
+        if (minute <= 9) minuteString = "0" + minuteString;
+        m_time.text = ($"{hourString}:{minuteString}");
     }
 
     private void LerpPos(float _dt)

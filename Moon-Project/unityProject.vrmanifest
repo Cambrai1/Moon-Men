@@ -2,12 +2,12 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "application.generated.unity.moonproject.exe",
+      "app_key": "application.generated.unity.lunacy.exe",
       "launch_type": "url",
       "url": "steam://launch/",
       "strings": {
         "en_us": {
-          "name": "Moon-Project [Testing]"
+          "name": "LUNACY [Testing]"
         }
       }
     }

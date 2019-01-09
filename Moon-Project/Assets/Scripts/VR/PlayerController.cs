@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour {
             //  MENU BUTTON
             if (SteamVR_Input._default.inActions.Menu.GetStateDown(SteamVR_Input_Sources.LeftHand))
             {
-                wristUi.ToggleMap();
+                //wristUi.ToggleMap();
             }
         }
     }
