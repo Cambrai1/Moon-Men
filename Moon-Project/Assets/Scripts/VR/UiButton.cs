@@ -20,7 +20,13 @@ public class UiButton : MonoBehaviour {
             m_col = gameObject.AddComponent<BoxCollider>();
         }
         Vector3 newSize = m_rect.sizeDelta;
-        newSize.z = 20.0f;
+        newSize.z = 1.0f;
         m_col.size = newSize;
+    }
+
+    public void TriggerButton()
+    {
+        Debug.Log("Triggered UI BUtton");
+        onClick.Invoke();
     }
 }

@@ -119,7 +119,6 @@ public class WristUiInteractor : MonoBehaviour
     private void Pointer()
     {
         RaycastHit hit;
-        Ray ray = new Ray(handPointer.position, -m_screenTransform.up);
         Debug.DrawLine(handPointer.position, handPointer.position - m_screenTransform.up);
         Physics.Raycast(handPointer.position, -m_screenTransform.up, out hit, 1.0f);
         Vector3 result = new Vector3(9999,9999,9999);
@@ -137,6 +136,17 @@ public class WristUiInteractor : MonoBehaviour
         {
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
+            if (hit.distance <= 0.1f)
+            {
+                canvasPointer.GetComponentInChildren<RawImage>().color = Color.blue;
+                Physics.Raycast(canvasPointer.transform.position - new Vector3(0,0,10), Vector3.forward, out hit, 20.0f, LayerMask.NameToLayer("UI"));
+
+                hit.collider.gameObject.GetComponent<UiButton>()?.TriggerButton();
+            }
+            else
+            {
+                canvasPointer.GetComponentInChildren<RawImage>().color = Color.red;
+            }
         }
     }
 

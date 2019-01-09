@@ -508,6 +508,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfe8d6103d21e8419c4cdba8c4d4dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114340799348966614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -798,6 +803,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfe8d6103d21e8419c4cdba8c4d4dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114789694242516666
 MonoBehaviour:
   m_ObjectHideFlags: 1
