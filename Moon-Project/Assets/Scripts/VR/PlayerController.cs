@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float m_trackpadDeadzone = 0.5f;                //  The trackpad movement deadzone
 
+    private Vector3 m_intendedDirection;
+    private bool m_wallDetected = false;
+
     [Header("Interaction")]
 
     private Transform m_headTransform;                      //  The transform of the head object
@@ -145,6 +148,11 @@ public class PlayerController : MonoBehaviour {
         OxygenDeprivation();
     }
 
+    private void FixedUpdate()
+    {
+        //m_wallDetected = WallTest(m_intendedDirection);
+    }
+
     private void GetInput()
     {
         //  RIGHT HAND
@@ -230,11 +238,17 @@ public class PlayerController : MonoBehaviour {
         input.Normalize();
         input *= m_movementSettings.movementSpeed;
         direction.x = input.x; direction.z = input.y;
-        direction *= Time.deltaTime;
 
-        m_transform.position += direction;
+        m_intendedDirection = direction;
 
-        if (input.magnitude >= 0.1f) DecreaseOxygenLevel(3 * m_oxygenDepletionRate * Time.deltaTime);
+        //m_wallDetected = WallTest(m_intendedDirection);
+
+        if(m_wallDetected == false)
+        {
+            direction *= Time.deltaTime;
+            m_transform.position += direction;
+            if (input.magnitude >= 0.1f) DecreaseOxygenLevel(3 * m_oxygenDepletionRate * Time.deltaTime);
+        }
     }
     private Vector2 RotateVector2(Vector2 _vector, float _angle)
     {
@@ -242,6 +256,36 @@ public class PlayerController : MonoBehaviour {
         float newX = _vector.x * Mathf.Cos(t) + _vector.y * Mathf.Sin(t);
         float newY = _vector.y * Mathf.Cos(t) - _vector.x * Mathf.Sin(t);
         return new Vector2(newX, newY);
+    }
+    private bool WallTest(Vector3 direction)
+    {
+        direction = direction.normalized;
+        for(int i = 0; i < 10; i++)
+        {
+            Vector3 footPos = m_headTransform.position;
+            footPos.y = ((((float)i / 10) * m_headTransform.position.y) + 0.1f);
+            RaycastHit wallHit;
+            Physics.Raycast(footPos + (direction * 0.1f), footPos + (direction), out wallHit, 3.0f);
+
+            if (wallHit.collider)
+            {
+                if (wallHit.distance <= 0.5f)
+                {
+                    Debug.DrawLine(footPos, footPos + direction, Color.red);
+                    return true;
+                }
+                else
+                {
+                    Debug.DrawLine(footPos, footPos + direction, Color.yellow);
+                }
+            }
+            else
+            {
+                Debug.DrawLine(footPos, footPos + direction, Color.green);
+            }
+        }        
+
+        return false;
     }
 
     public void AddInteractable(Interactable _obj)
