@@ -145,7 +145,7 @@ public class WristUiInteractor : MonoBehaviour
         {
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
-            if (hit.distance <= 0.015f && m_active == true)
+            if (hit.distance <= 0.01f && m_active == true)
             {
                 RaycastHit hit2;
                 canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
@@ -157,7 +157,7 @@ public class WristUiInteractor : MonoBehaviour
                     m_pressedUiScreen = true;
                 }                
             }
-            else if (hit.distance <= 0.03f)
+            else if (hit.distance <= 0.05f)
             {
                 canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
                 m_pressedUiScreen = false;
