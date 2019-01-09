@@ -23,6 +23,8 @@ public class MissionLog : MonoBehaviour
     [SerializeField]
     private Text m_missionDetailsText;              //  The text detailing the selected mission
 
+    public bool showDebug = false;
+
 
     private void Start()
     {
@@ -46,7 +48,7 @@ public class MissionLog : MonoBehaviour
     }
     public void ActivateMission(Mission _mission)
     {
-        if(m_activeMissions.Contains(_mission))
+        if(m_activeMissions.Contains(_mission) && showDebug)
         {
             Debug.Log("'" + _mission.title + "' already active.");
         }
@@ -74,7 +76,7 @@ public class MissionLog : MonoBehaviour
     }
     public void CompleteMission(Mission _mission)
     {
-        if(m_completedMissions.Contains(_mission))
+        if(m_completedMissions.Contains(_mission) && showDebug)
         {
             Debug.Log("'" + _mission.title + "' already completed.");
         }
