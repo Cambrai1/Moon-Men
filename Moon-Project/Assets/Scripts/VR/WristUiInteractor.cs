@@ -145,16 +145,16 @@ public class WristUiInteractor : MonoBehaviour
         {
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
-            if (hit.distance <= 0.015f)
+            if (hit.distance <= 0.015f && m_active == true)
             {
-                m_pressedUiScreen = true;
                 RaycastHit hit2;
                 canvasPointer.GetComponentInChildren<RawImage>().enabled = true;
                 Physics.Raycast(canvasPointer.transform.position - new Vector3(0,0,10), Vector3.forward, out hit2, 20.0f);
-                if(hit2.collider != null && m_pressedUiScreen == true)
+                if(hit2.collider != null && m_pressedUiScreen == false)
                 {
                     m_vibration.Execute(0f, 0.1f, m_vibrationFrequency, m_vibrationStrength, SteamVR_Input_Sources.RightHand);
                     hit2.collider.transform.GetComponent<UiButton>().TriggerButton();
+                    m_pressedUiScreen = true;
                 }                
             }
             else if (hit.distance <= 0.03f)
