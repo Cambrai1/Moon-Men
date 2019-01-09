@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class WristUiInteractor : MonoBehaviour
 {
@@ -17,18 +18,19 @@ public class WristUiInteractor : MonoBehaviour
     private Transform m_transform;
     public Material screenMaterial;
     private HoloMap m_map;
+    private Text m_time;
 
     private List<GameObject> m_chargerList;
     public Transform closestCharger;
     private float m_chargerDistance = 100f;
     public float chargerSnapDistance = 0.2f;
-    public float rechargeRate = 20.0f;
+    public float rechargeRate = 30.0f;
     private float m_totalPowerUsage = 0.0f;
     public float powerUsage = 1.0f;
 
-    public float xAdd, yAdd;
-    public float xMul, yMul;
-    public float xAddP, yAddP;
+    public float xAdd = -0.02f, yAdd = 0.02f;
+    public float xMul = 4600f, yMul = 4600f;
+    public float xAddP = 100f, yAddP = 0f;
 
     private bool m_animating;
     private bool m_active = true;
@@ -45,6 +47,7 @@ public class WristUiInteractor : MonoBehaviour
         m_originalTargetTransform = targetTransform;
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         m_map = GetComponent<HoloMap>();
+        m_time = m_transform.Find("Time").GetComponent<Text>();
         if (!m_col) m_col = GetComponentInChildren<BoxCollider>();
         if (!targetTransform) targetTransform = GameObject.Find("WristUiTargetTransform").transform;
         m_screenTransform = m_col.transform;
@@ -134,6 +137,13 @@ public class WristUiInteractor : MonoBehaviour
             canvasPointer.gameObject.SetActive(true);
             canvasPointer.anchoredPosition = result;
         }
+    }
+
+    private void ShowTime()
+    {
+        int hour = System.DateTime.Now.Hour;
+        int minute = System.DateTime.Now.Minute;
+        m_time.text = ($"{hour}:{minute}");
     }
 
     private void LerpPos(float _dt)

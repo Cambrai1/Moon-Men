@@ -1038,7 +1038,7 @@ MonoBehaviour:
   screenMaterial: {fileID: 2100000, guid: 99056624a821d3942821fd45de872447, type: 2}
   closestCharger: {fileID: 0}
   chargerSnapDistance: 0.2
-  rechargeRate: 20
+  rechargeRate: 30
   powerUsage: 1
   xAdd: -0.02
   yAdd: 0.02
@@ -5669,9 +5669,9 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
+  m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 128
+  m_Resolution: 256
   m_UpdateFrequency: 0
   m_BoxSize: {x: 0.5, y: 0.5, z: 0.5}
   m_BoxOffset: {x: 0, y: 0, z: 0}

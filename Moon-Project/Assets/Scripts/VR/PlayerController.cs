@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour {
     private Image m_powerBar;                               //  The Power resource bar
     public RawImage heartRateImage;                         //  The Heart rate monitor UI
     public WristUiInteractor wristUi;
+    private Text m_uiTime;                                  //  The timepeice on the wrist UI
 
     public float oxygen = 100.0f;                           //  The amount of oxygen remaining
     private float m_oxygenDepletionRate = 0.7f;             //  The rate at which oxygen depletes
