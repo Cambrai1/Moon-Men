@@ -47,7 +47,7 @@ public class WristUiInteractor : MonoBehaviour
         m_originalTargetTransform = targetTransform;
         m_player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         m_map = GetComponent<HoloMap>();
-        m_time = m_transform.Find("Time").GetComponent<Text>();
+        m_time = GameObject.Find("WristUiTime").GetComponent<Text>();
         if (!m_col) m_col = GetComponentInChildren<BoxCollider>();
         if (!targetTransform) targetTransform = GameObject.Find("WristUiTargetTransform").transform;
         m_screenTransform = m_col.transform;
@@ -64,6 +64,7 @@ public class WristUiInteractor : MonoBehaviour
         if (!handPointer) return;
         if (!m_col) return;
         Pointer();
+        ShowTime();
     }
 
     private void LateUpdate()
@@ -143,7 +144,11 @@ public class WristUiInteractor : MonoBehaviour
     {
         int hour = System.DateTime.Now.Hour;
         int minute = System.DateTime.Now.Minute;
-        m_time.text = ($"{hour}:{minute}");
+        string hourString = hour.ToString();
+        string minuteString = minute.ToString();
+        if (hour <= 9) hourString = "0" + hourString;
+        if (minute <= 9) minuteString = "0" + minuteString;
+        m_time.text = ($"{hourString}:{minuteString}");
     }
 
     private void LerpPos(float _dt)
