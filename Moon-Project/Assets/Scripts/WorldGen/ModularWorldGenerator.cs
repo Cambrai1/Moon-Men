@@ -13,6 +13,8 @@ public class ModularWorldGenerator : MonoBehaviour
 	public RoomModule[] loadedModules;
 	public RoomModule startModule;
     public RoomModule nullModule;
+    public GameObject doorPrefab;
+    public GameObject wallPrefab;
     public bool visibleIterations = true;
     public bool showDebug = true;
     [Range(1,1000)]
@@ -20,6 +22,8 @@ public class ModularWorldGenerator : MonoBehaviour
 
     private int m_totalRarity;
     private List<RoomModule> m_spawnedModules;
+    private List<DoorController> m_spawnedDoors;
+    private List<GameObject> m_spawnedWalls;
     private int m_roomCount = 0;
     private int m_currentAttempts = 0;
     private int m_roomTry = 0;
@@ -80,6 +84,20 @@ public class ModularWorldGenerator : MonoBehaviour
             foreach (RoomModule mod in m_spawnedModules)
             {
                 GameObject.Destroy(mod.gameObject);
+            }
+        }
+        if (m_spawnedDoors != null)
+        {
+            foreach (DoorController door in m_spawnedDoors)
+            {
+                GameObject.Destroy(door.gameObject);
+            }
+        }
+        if (m_spawnedWalls != null)
+        {
+            foreach (GameObject wall in m_spawnedWalls)
+            {
+                GameObject.Destroy(wall.gameObject);
             }
         }
         m_roomCount = 0;
@@ -300,6 +318,8 @@ public class ModularWorldGenerator : MonoBehaviour
             genUi.text = "Generation : " + m_currentAttempts;
         }
 
+        GenerateDoorsAndWalls();
+
         timeUi.text = "Time : " + (Time.time - startTime);
         genUi.text = "Generation : " + m_currentAttempts;
         modulesUi.text = "Modules : " + m_spawnedModules.Count;
@@ -322,6 +342,41 @@ public class ModularWorldGenerator : MonoBehaviour
         generationComplete = true;
 
         yield return null;
+    }
+
+
+    private void GenerateDoorsAndWalls()
+    {
+        m_spawnedDoors = new List<DoorController>();
+        m_spawnedWalls = new List<GameObject>();
+        List<int> proccessedConnectors = new List<int>();
+        foreach(RoomModule module in m_spawnedModules)
+        {
+            foreach(ModuleConnector connector in module.GetConnectors())
+            {
+                if(connector.linkedModule == null)
+                {
+                    //  Spawn wall
+                    GameObject wall = Instantiate(wallPrefab, connector.transformPoint.position, connector.transformPoint.rotation, module.transform);
+                    proccessedConnectors.Add(connector.UniqueId);
+                    m_spawnedWalls.Add(wall);
+                }
+                else
+                {
+                    if (proccessedConnectors.Contains(connector.LinkedUniqueId) == false)
+                    {
+                        //  Spawn door
+                        if(Random.Range(0f,1f) >= 0.5f)
+                        {
+                            DoorController cont = Instantiate(doorPrefab, connector.transformPoint.position, connector.transformPoint.rotation, module.transform).GetComponent<DoorController>();
+                            m_spawnedDoors.Add(cont);
+                        }
+                        proccessedConnectors.Add(connector.UniqueId);
+                        proccessedConnectors.Add(connector.LinkedUniqueId);                        
+                    }
+                }
+            }
+        }
     }
 
     public List<RoomModule> GetSpawnedModules()

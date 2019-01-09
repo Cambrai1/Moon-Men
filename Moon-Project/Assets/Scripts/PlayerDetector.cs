@@ -26,7 +26,7 @@ public class PlayerDetector : MonoBehaviour {
     private void Start()
     {
         m_transform = transform;
-        if (!m_player) m_player = GameObject.FindWithTag("Player").transform;
+        if (!m_player) m_player = GameObject.FindWithTag("Player").transform.Find("Camera");
     }
 
     private void Update()
