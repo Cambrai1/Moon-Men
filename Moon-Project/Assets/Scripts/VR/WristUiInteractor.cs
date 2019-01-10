@@ -39,6 +39,7 @@ public class WristUiInteractor : MonoBehaviour
 
     private bool m_docked = false;
     private PlayerController m_player;
+    [SerializeField]
     private bool m_pickedUp = false;
 
     public Text helperUi;

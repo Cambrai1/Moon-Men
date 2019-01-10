@@ -106,8 +106,8 @@ Material:
     m_Colors:
     - _ASEOutlineColor: {r: 1, g: 0, b: 0.43164778, a: 0}
     - _BasePosition: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0.38452858, b: 1, a: 1}
-    - _Emission: {r: 0, g: 0.7108089, b: 5.6568537, a: 1}
+    - _Color: {r: 0, g: 0.53380704, b: 1, a: 1}
+    - _Emission: {r: 0, g: 1.4216177, b: 11.313707, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LocalOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tilling: {r: 0.1, g: -0.1, b: 0, a: 0}

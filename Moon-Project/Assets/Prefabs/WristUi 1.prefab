@@ -1039,13 +1039,14 @@ MonoBehaviour:
   closestCharger: {fileID: 0}
   chargerSnapDistance: 0.2
   rechargeRate: 30
-  powerUsage: 1
+  powerUsage: 0.2
   xAdd: -0.02
   yAdd: 0.02
   xMul: 4600
   yMul: 4600
   xAddP: 100
   yAddP: 0
+  m_pickedUp: 1
   helperUi: {fileID: 0}
   m_vibration: {fileID: 11400000, guid: efde99067f4521e41b1c9897bb212a33, type: 2}
   m_vibrationFrequency: 200
@@ -5674,7 +5675,7 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 256
+  m_Resolution: 128
   m_UpdateFrequency: 0
   m_BoxSize: {x: 0.5, y: 0.5, z: 0.5}
   m_BoxOffset: {x: 0, y: 0, z: 0}
