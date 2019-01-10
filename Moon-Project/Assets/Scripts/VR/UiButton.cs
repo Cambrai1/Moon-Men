@@ -21,6 +21,7 @@ public class UiButton : MonoBehaviour {
         }
         Vector3 newSize = m_rect.sizeDelta * 1.2f;
         newSize.z = 1.0f;
+        newSize.y = newSize.x;
         m_col.size = newSize;
         m_col.center = new Vector3(-50, 0, 0);
     }
