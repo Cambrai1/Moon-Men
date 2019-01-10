@@ -30,12 +30,14 @@ public class DoorController : MonoBehaviour
 
     public void OpenDoor()
     {
+        if (m_locked) return;
         if (m_animating) return;
         StartCoroutine(AnimateDoor(0.0f, 1.0f));
         m_open = true;
     }
     public void CloseDoor()
     {
+        if (m_locked) return;
         if (m_animating) return;
         StartCoroutine(AnimateDoor(1.0f, 0.0f));
         m_open = false;

@@ -99,7 +99,6 @@ public class WristUiInteractor : MonoBehaviour
         {
             targetTransform = m_originalTargetTransform;
             m_docked = false;
-            helperUi.text = "RECHARGE YOUR WRIST UI";
         }
         else
         {
