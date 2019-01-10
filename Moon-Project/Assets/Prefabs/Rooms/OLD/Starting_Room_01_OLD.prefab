@@ -6844,40 +6844,31 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4414064354521666}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
+    allowedCodes: cross,straight,corner,curve
     allowedCodesArray:
     - cross
-    - dead_end
-    - dead_end_door
-    - l
     - straight
-    - room
+    - corner
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4859555112173962}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
+    allowedCodes: cross,straight,corner,curve
     allowedCodesArray:
     - cross
-    - dead_end
-    - dead_end_door
-    - l
     - straight
-    - room
+    - corner
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4258028874848244}
     isEntrance: 0
-    allowedCodes: cross,dead_end,dead_end_door,l,straight,room,curve
+    allowedCodes: cross,straight,corner,curve
     allowedCodesArray:
     - cross
-    - dead_end
-    - dead_end_door
-    - l
     - straight
-    - room
+    - corner
     - curve
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
@@ -6956,7 +6947,7 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 256
+  m_Resolution: 128
   m_UpdateFrequency: 0
   m_BoxSize: {x: 16, y: 10, z: 16}
   m_BoxOffset: {x: 0, y: 0, z: 0}

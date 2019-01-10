@@ -379,7 +379,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 127
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1241073244944582
 GameObject:
@@ -5908,18 +5908,22 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4078156620129794}
     isEntrance: 1
-    allowedCodes: curve,room
+    allowedCodes: cross,straight,corner,curve
     allowedCodesArray:
+    - cross
+    - straight
+    - corner
     - curve
-    - room
     parentModule: {fileID: 114013370852275344}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4300501474420830}
     isEntrance: 1
-    allowedCodes: curve,room
+    allowedCodes: cross,straight,corner,curve
     allowedCodesArray:
+    - cross
+    - straight
+    - corner
     - curve
-    - room
     parentModule: {fileID: 114013370852275344}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65193363670070606}
@@ -6690,7 +6694,7 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 256
+  m_Resolution: 128
   m_UpdateFrequency: 0
   m_BoxSize: {x: 27, y: 10, z: 10}
   m_BoxOffset: {x: 0, y: 0, z: 0}
@@ -6723,7 +6727,7 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 0
   m_TimeSlicingMode: 0
-  m_Resolution: 256
+  m_Resolution: 128
   m_UpdateFrequency: 0
   m_BoxSize: {x: 10, y: 10, z: 27}
   m_BoxOffset: {x: 0, y: 0, z: 0}
