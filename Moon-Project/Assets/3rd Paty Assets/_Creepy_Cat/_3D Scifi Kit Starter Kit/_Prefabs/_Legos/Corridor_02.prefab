@@ -5904,26 +5904,28 @@ MonoBehaviour:
   moduleCode: curve
   unique: 0
   includeInCount: 1
-  abundance: 5
+  abundance: 1
   connectors:
   - transformPoint: {fileID: 4078156620129794}
     isEntrance: 1
-    allowedCodes: cross,straight,corner,curve
+    allowedCodes: cross,straight,corner,curve,end
     allowedCodesArray:
     - cross
     - straight
     - corner
     - curve
+    - end
     parentModule: {fileID: 114013370852275344}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4300501474420830}
     isEntrance: 1
-    allowedCodes: cross,straight,corner,curve
+    allowedCodes: cross,straight,corner,curve,end
     allowedCodesArray:
     - cross
     - straight
     - corner
     - curve
+    - end
     parentModule: {fileID: 114013370852275344}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65193363670070606}

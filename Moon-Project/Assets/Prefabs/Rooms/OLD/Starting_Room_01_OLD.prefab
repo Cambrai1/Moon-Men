@@ -953,7 +953,7 @@ Transform:
   m_GameObject: {fileID: 1315102322613290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.6, z: 0.75}
   m_Children:
   - {fileID: 4374346356848892}
   - {fileID: 4926960265603532}
@@ -1096,7 +1096,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827039630160598}
   m_LocalRotation: {x: -0, y: -0.7071066, z: -0, w: -0.707107}
-  m_LocalPosition: {x: 8.989402, y: -0.0000021457672, z: -0.0029995441}
+  m_LocalPosition: {x: 7.99, y: -0.0000021457672, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4111559668757546}
@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1302666957131276}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -9.009598, y: -0.0000021457672, z: -0.0029995441}
+  m_LocalPosition: {x: -8, y: -0.0000021457672, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4111559668757546}
@@ -1531,7 +1531,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638537753352720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.013000488, y: -0.0000021457672, z: 8.995}
+  m_LocalPosition: {x: -0.013000488, y: -0.0000021457672, z: 7.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4111559668757546}
@@ -6844,32 +6844,35 @@ MonoBehaviour:
   connectors:
   - transformPoint: {fileID: 4414064354521666}
     isEntrance: 0
-    allowedCodes: cross,straight,corner,curve
+    allowedCodes: cross,straight,corner,curve,end
     allowedCodesArray:
     - cross
     - straight
     - corner
     - curve
+    - end
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4859555112173962}
     isEntrance: 0
-    allowedCodes: cross,straight,corner,curve
+    allowedCodes: cross,straight,corner,curve,end
     allowedCodesArray:
     - cross
     - straight
     - corner
     - curve
+    - end
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   - transformPoint: {fileID: 4258028874848244}
     isEntrance: 0
-    allowedCodes: cross,straight,corner,curve
+    allowedCodes: cross,straight,corner,curve,end
     allowedCodesArray:
     - cross
     - straight
     - corner
     - curve
+    - end
     parentModule: {fileID: 114876656784964350}
     linkedModule: {fileID: 0}
   safetyBox: {fileID: 65614435953656772}
